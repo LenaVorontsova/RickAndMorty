@@ -21,7 +21,7 @@
 		8400D3562899629600C35767 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D3552899629600C35767 /* Character.swift */; };
 		8400D358289962A700C35767 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D357289962A700C35767 /* Location.swift */; };
 		8400D35A289962BC00C35767 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D359289962BC00C35767 /* Episode.swift */; };
-		8400D367289ADAD400C35767 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D366289ADAD400C35767 /* Service.swift */; };
+		8400D367289ADAD400C35767 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D366289ADAD400C35767 /* NetworkService.swift */; };
 		8400D3BC289E91BC00C35767 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D3BB289E91BC00C35767 /* LocationTableViewCell.swift */; };
 		8400D3BE289E9ACD00C35767 /* EpisodesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D3BD289E9ACD00C35767 /* EpisodesTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -43,9 +43,10 @@
 		8400D3552899629600C35767 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		8400D357289962A700C35767 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		8400D359289962BC00C35767 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
-		8400D366289ADAD400C35767 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		8400D366289ADAD400C35767 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		8400D3BB289E91BC00C35767 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 		8400D3BD289E9ACD00C35767 /* EpisodesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesTableViewCell.swift; sourceTree = "<group>"; };
+		8497F9F128ACFBE600C5BCD2 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		8E616BEA614F5CAD2D1CBA76 /* Pods_RickAndMortyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RickAndMortyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F59EC1BC5AFB5B1247883102 /* Pods-RickAndMortyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RickAndMortyApp.debug.xcconfig"; path = "Target Support Files/Pods-RickAndMortyApp/Pods-RickAndMortyApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,6 +74,7 @@
 		8400D32128991DD700C35767 = {
 			isa = PBXGroup;
 			children = (
+				8497F9F128ACFBE600C5BCD2 /* .swiftlint.yml */,
 				8400D32C28991DD700C35767 /* RickAndMortyApp */,
 				8400D32B28991DD700C35767 /* Products */,
 				CB60C1A6C2EF4564447BB26A /* Pods */,
@@ -187,7 +189,7 @@
 		8400D3BF289EAE1E00C35767 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				8400D366289ADAD400C35767 /* Service.swift */,
+				8400D366289ADAD400C35767 /* NetworkService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -213,6 +215,7 @@
 				8400D32728991DD700C35767 /* Frameworks */,
 				8400D32828991DD700C35767 /* Resources */,
 				8FC72793EEA71A40C3E556E8 /* [CP] Embed Pods Frameworks */,
+				8497F9F028ACC90100C5BCD2 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -270,6 +273,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		8497F9F028ACC90100C5BCD2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
 		8FC72793EEA71A40C3E556E8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -326,7 +346,7 @@
 				8400D32E28991DD700C35767 /* AppDelegate.swift in Sources */,
 				8400D33028991DD700C35767 /* SceneDelegate.swift in Sources */,
 				8400D3BC289E91BC00C35767 /* LocationTableViewCell.swift in Sources */,
-				8400D367289ADAD400C35767 /* Service.swift in Sources */,
+				8400D367289ADAD400C35767 /* NetworkService.swift in Sources */,
 				8400D35228995F7200C35767 /* CharactersTableViewCell.swift in Sources */,
 				8400D34C28992FB000C35767 /* LocationsViewController.swift in Sources */,
 			);

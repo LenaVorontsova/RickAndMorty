@@ -4,4 +4,5 @@ use_frameworks!
 target 'RickAndMortyApp' do 
 pod 'Alamofire'
 pod 'SnapKit'
+pod 'SwiftLint'
 end

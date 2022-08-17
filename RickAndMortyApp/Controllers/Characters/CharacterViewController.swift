@@ -15,8 +15,8 @@ class CharacterViewController: UIViewController {
         tableView.dataSource = self
         searchBar.delegate = self
         
-        let service = Service(baseURL: "https://rickandmortyapi.com/api/")
-        service.getInfoCharacters(endPoint: "character") { result in
+        let networkService = NetworkService(baseURL: "https://rickandmortyapi.com/api/")
+        networkService.getInfoCharacters(endPoint: "character") { result in
             self.characters = result.results!
             self.charactersSearch = self.characters
             self.tableView.reloadData()
@@ -34,20 +34,20 @@ extension CharacterViewController: UITableViewDataSource, UITableViewDelegate, U
         return charactersSearch.count
     }
         
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterCell") as! CharactersTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterCell") as! CharactersTableViewCell
 
-            let url = URL(string: charactersSearch[indexPath.row].image!)
-            let data = try? Data(contentsOf: url!)
-            cell.avatarView.image = UIImage(data: data!)
+        let url = URL(string: charactersSearch[indexPath.row].image!)
+        let data = try? Data(contentsOf: url!)
+        cell.avatarView.image = UIImage(data: data!)
             
-            cell.nameLabel.text = "Name: " + charactersSearch[indexPath.row].name!
-            cell.genderLabel.text = "Gender: " + charactersSearch[indexPath.row].gender!
-            cell.locationLabel.text = "Location: " + charactersSearch[indexPath.row].location!.name!
-            cell.speciesLabel.text = "Species: " + charactersSearch[indexPath.row].species!
+        cell.nameLabel.text = "Name: " + charactersSearch[indexPath.row].name!
+        cell.genderLabel.text = "Gender: " + charactersSearch[indexPath.row].gender!
+        cell.locationLabel.text = "Location: " + charactersSearch[indexPath.row].location!.name!
+        cell.speciesLabel.text = "Species: " + charactersSearch[indexPath.row].species!
             
-            return cell
-        }
+        return cell
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 125

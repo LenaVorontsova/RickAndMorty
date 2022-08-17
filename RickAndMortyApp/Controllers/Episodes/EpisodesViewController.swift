@@ -15,8 +15,8 @@ class EpisodesViewController: UIViewController {
         tableView.dataSource = self
         searchBar.delegate = self
         
-        let service = Service(baseURL: "https://rickandmortyapi.com/api/")
-        service.getInfoEpisodes(endPoint: "episode") { result in
+        let networkService = NetworkService(baseURL: "https://rickandmortyapi.com/api/")
+        networkService.getInfoEpisodes(endPoint: "episode") { result in
             self.episodes = result.results!
             self.episodesSearch = self.episodes
             self.tableView.reloadData()
@@ -32,23 +32,23 @@ extension EpisodesViewController: UITableViewDataSource, UITableViewDelegate, UI
         return episodesSearch.count
     }
         
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "episodesCell") as! EpisodesTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "episodesCell") as! EpisodesTableViewCell
 
-            cell.nameLabel.text = episodesSearch[indexPath.row].name
-            cell.airDateLabel.text = "Air date: " + episodesSearch[indexPath.row].air_date!
-            
-            var season = ""
-            var episode = ""
-            if let range = episodesSearch[indexPath.row].episode?.range(of: "E") {
-                season = String(episodesSearch[indexPath.row].episode![..<range.lowerBound])
-                episode = String(episodesSearch[indexPath.row].episode![range.lowerBound...])
-            }
-            cell.seasonLabel.text = "Season: " + season
-            cell.episodeLabel.text = "Episode: " + episode
-            
-            return cell
+        cell.nameLabel.text = episodesSearch[indexPath.row].name
+        cell.airDateLabel.text = "Air date: " + episodesSearch[indexPath.row].air_date!
+                    
+        var season = ""
+        var episode = ""
+        if let range = episodesSearch[indexPath.row].episode?.range(of: "E") {
+            season = String(episodesSearch[indexPath.row].episode![..<range.lowerBound])
+            episode = String(episodesSearch[indexPath.row].episode![range.lowerBound...])
         }
+        cell.seasonLabel.text = "Season: " + season
+        cell.episodeLabel.text = "Episode: " + episode
+                    
+        return cell
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 125

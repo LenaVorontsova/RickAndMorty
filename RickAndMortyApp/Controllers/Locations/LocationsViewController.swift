@@ -15,8 +15,8 @@ class LocationsViewController: UIViewController {
         tableView.dataSource = self
         searchBar.delegate = self
         
-        let service = Service(baseURL: "https://rickandmortyapi.com/api/")
-        service.getInfoLocations(endPoint: "location") { result in
+        let networkService = NetworkService(baseURL: "https://rickandmortyapi.com/api/")
+        networkService.getInfoLocations(endPoint: "location") { result in
             self.locations = result.results!
             self.locationsSearch = self.locations
             self.tableView.reloadData()
@@ -33,15 +33,15 @@ extension LocationsViewController: UITableViewDataSource, UITableViewDelegate, U
         return locationsSearch.count
     }
         
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "locationsCell") as! LocationTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "locationsCell") as! LocationTableViewCell
 
-            cell.nameLabel.text = locationsSearch[indexPath.row].name
-            cell.typeLabel.text = "Type: " + locationsSearch[indexPath.row].type!
-            cell.dimensionLabel.text = "Dimension: " + locationsSearch[indexPath.row].dimension!
-            
-            return cell
-        }
+        cell.nameLabel.text = locationsSearch[indexPath.row].name
+        cell.typeLabel.text = "Type: " + locationsSearch[indexPath.row].type!
+        cell.dimensionLabel.text = "Dimension: " + locationsSearch[indexPath.row].dimension!
+                    
+        return cell
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
