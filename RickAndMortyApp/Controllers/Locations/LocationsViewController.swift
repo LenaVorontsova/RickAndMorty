@@ -1,3 +1,10 @@
+//
+//  LocationsViewController.swift
+//  RickAndMortyApp
+//
+//  Created by Lena Vorontsova on 17.08.2022.
+//
+
 import UIKit
 import Alamofire
 
@@ -24,7 +31,6 @@ class LocationsViewController: UIViewController {
         
         self.title = "Locations"
     }
-    
 }
 
 extension LocationsViewController: UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
@@ -34,8 +40,11 @@ extension LocationsViewController: UITableViewDataSource, UITableViewDelegate, U
     }
         
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "locationsCell") as! LocationTableViewCell
-
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "locationsCell",
+                                                       for: indexPath) as? LocationTableViewCell else {
+            return UITableViewCell()
+        }
+        
         cell.nameLabel.text = locationsSearch[indexPath.row].name
         cell.typeLabel.text = "Type: " + locationsSearch[indexPath.row].type!
         cell.dimensionLabel.text = "Dimension: " + locationsSearch[indexPath.row].dimension!
@@ -51,11 +60,11 @@ extension LocationsViewController: UITableViewDataSource, UITableViewDelegate, U
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         locationsSearch = []
         
-        if searchText == "" {
+        if searchText.isEmpty {
             locationsSearch = locations
         } else {
             for location in locations {
-                if ((location.name!.lowercased().contains(searchText.lowercased()))) {
+                if location.name!.lowercased().contains(searchText.lowercased()) {
                     locationsSearch.append(location)
                 }
             }

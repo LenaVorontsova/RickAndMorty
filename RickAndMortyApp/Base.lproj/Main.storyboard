@@ -25,7 +25,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Locations" image="location.magnifyingglass" catalog="system">
+                                <state key="normal" title="Locations" image="location" catalog="system">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -424,7 +424,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="location.magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="location" catalog="system" width="128" height="118"/>
         <image name="person.3" catalog="system" width="128" height="62"/>
         <image name="play.rectangle" catalog="system" width="128" height="93"/>
         <image name="rickAndMortyPreview" width="1500" height="1000"/>

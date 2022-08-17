@@ -1,35 +1,41 @@
+//
+//  MainViewController.swift
+//  RickAndMortyApp
+//
+//  Created by Lena Vorontsova on 17.08.2022.
+//
+
 import UIKit
 import SnapKit
 
 class MainViewController: UIViewController {
     
-    @IBOutlet weak var charactersButton: UIButton!
-    @IBOutlet weak var locationsButton: UIButton!
-    @IBOutlet weak var episodesButton: UIButton!
+    @IBOutlet private weak var charactersButton: UIButton!
+    @IBOutlet private weak var locationsButton: UIButton!
+    @IBOutlet private weak var episodesButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
-    @IBAction func characterButtonTap(_ sender: Any) {
+    @IBAction private func characterButtonTap(_ sender: Any) {
         
         charactersButton.backgroundColor = UIColor.link
         performSegue(withIdentifier: "characterVC", sender: nil)
         charactersButton.backgroundColor = UIColor.clear
     }
     
-    @IBAction func locationButtonTap(_ sender: Any) {
+    @IBAction private func locationButtonTap(_ sender: Any) {
         
         locationsButton.backgroundColor = UIColor.link
         performSegue(withIdentifier: "locationVC", sender: nil)
         locationsButton.backgroundColor = UIColor.clear
     }
     
-    @IBAction func episodeButtonTap(_ sender: Any) {
+    @IBAction private func episodeButtonTap(_ sender: Any) {
         
         episodesButton.backgroundColor = UIColor.link
         performSegue(withIdentifier: "episodeVC", sender: nil)
         episodesButton.backgroundColor = UIColor.clear
     }
 }
-

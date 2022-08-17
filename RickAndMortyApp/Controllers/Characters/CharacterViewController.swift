@@ -1,3 +1,10 @@
+//
+//  CharacterViewController.swift
+//  RickAndMortyApp
+//
+//  Created by Lena Vorontsova on 17.08.2022.
+//
+
 import UIKit
 import Alamofire
 
@@ -23,9 +30,7 @@ class CharacterViewController: UIViewController {
         }
         
         self.title = "Characters"
-        
     }
-    
 }
 
 extension CharacterViewController: UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
@@ -35,7 +40,10 @@ extension CharacterViewController: UITableViewDataSource, UITableViewDelegate, U
     }
         
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterCell") as! CharactersTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterCell",
+                                                       for: indexPath) as? CharactersTableViewCell else {
+            return UITableViewCell()
+        }
 
         let url = URL(string: charactersSearch[indexPath.row].image!)
         let data = try? Data(contentsOf: url!)
@@ -57,11 +65,11 @@ extension CharacterViewController: UITableViewDataSource, UITableViewDelegate, U
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         charactersSearch = []
         
-        if searchText == "" {
+        if searchText.isEmpty {
             charactersSearch = characters
         } else {
             for character in characters {
-                if ((character.name!.lowercased().contains(searchText.lowercased()))) {
+                if character.name!.lowercased().contains(searchText.lowercased()) {
                     charactersSearch.append(character)
                 }
             }

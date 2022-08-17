@@ -86,9 +86,8 @@ opt_in_rules:
     - pattern_matching_keywords
     - prefer_self_type_over_type_of_self
     - private_action
-    - private_outlet
+   # - private_outlet
     - private_over_fileprivate
-    - prohibited_interface_builder
     - prohibited_super_call
     - protocol_property_accessors_order
     - reduce_boolean
@@ -144,6 +143,7 @@ included: # paths to include during linting. `--path` is ignored if present.
 excluded: # paths to ignore during linting. Takes precedence over `included`.
 #- LoyaltyApp/Extensions/DateHelper.swift
 #- LoyaltyApp/R.generated.swift
+ - RickAndMortyApp/SceneDelegate.swift
 
 custom_rules:
     restricted_names_starting_with_underscore:

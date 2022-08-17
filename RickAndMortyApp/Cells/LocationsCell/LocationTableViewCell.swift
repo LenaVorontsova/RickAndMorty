@@ -1,3 +1,10 @@
+//
+//  LocationTableViewCell.swift
+//  RickAndMortyApp
+//
+//  Created by Lena Vorontsova on 17.08.2022.
+//
+
 import UIKit
 
 class LocationTableViewCell: UITableViewCell {

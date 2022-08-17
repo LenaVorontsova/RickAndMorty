@@ -1,3 +1,10 @@
+//
+//  EpisodesViewController.swift
+//  RickAndMortyApp
+//
+//  Created by Lena Vorontsova on 17.08.2022.
+//
+
 import UIKit
 import Alamofire
 
@@ -33,7 +40,10 @@ extension EpisodesViewController: UITableViewDataSource, UITableViewDelegate, UI
     }
         
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "episodesCell") as! EpisodesTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "episodesCell",
+                                                       for: indexPath) as? EpisodesTableViewCell else {
+            return UITableViewCell()
+        }
 
         cell.nameLabel.text = episodesSearch[indexPath.row].name
         cell.airDateLabel.text = "Air date: " + episodesSearch[indexPath.row].air_date!
@@ -58,11 +68,11 @@ extension EpisodesViewController: UITableViewDataSource, UITableViewDelegate, UI
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         episodesSearch = []
         
-        if searchText == "" {
+        if searchText.isEmpty {
             episodesSearch = episodes
         } else {
             for episode in episodes {
-                if ((episode.name!.lowercased().contains(searchText.lowercased()))) {
+                if episode.name!.lowercased().contains(searchText.lowercased()) {
                     episodesSearch.append(episode)
                 }
             }
