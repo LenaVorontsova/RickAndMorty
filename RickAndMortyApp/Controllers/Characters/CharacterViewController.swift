@@ -35,7 +35,9 @@ class CharacterViewController: UIViewController {
                 self.charactersSearch = self.characters
                 self.tableView.reloadData()
             case .failure(let error):
-                print("\(error)")
+                let alert = UIAlertController(title: "Error", message: "\(error)", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self?.present(alert, animated: true)
             }
         }
         
