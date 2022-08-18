@@ -23,10 +23,20 @@ class CharacterViewController: UIViewController {
         searchBar.delegate = self
         
         let networkService = NetworkService(baseURL: "https://rickandmortyapi.com/api/")
-        networkService.getInfoCharacters(endPoint: "character") { result in
-            self.characters = result.results!
-            self.charactersSearch = self.characters
-            self.tableView.reloadData()
+        networkService.getInfoCharacters(endPoint: "character") { [weak self] result in
+            switch result {
+            case .success(let serverData):
+                guard let self = self else { return }
+                if let character = serverData.results {
+                    self.characters = character
+                } else {
+                    self.characters = []
+                }
+                self.charactersSearch = self.characters
+                self.tableView.reloadData()
+            case .failure(let error):
+                print("\(error)")
+            }
         }
         
         self.title = "Characters"
@@ -55,11 +65,12 @@ extension CharacterViewController: UITableViewDataSource, UITableViewDelegate, U
             
         if let nameText = charactersSearch[indexPath.row].name,
            let genderText = charactersSearch[indexPath.row].gender,
-           let locationText = charactersSearch[indexPath.row].location!.name,
-           let speciesText = charactersSearch[indexPath.row].species {
+           let speciesText = charactersSearch[indexPath.row].species,
+           let locationText = charactersSearch[indexPath.row].location,
+           let locationNameText = locationText.name {
                 cell.nameLabel.text = "Name: " + nameText
                 cell.genderLabel.text = "Gender: " + genderText
-                cell.locationLabel.text = "Location: " + locationText
+                cell.locationLabel.text = "Location: " + locationNameText
                 cell.speciesLabel.text = "Species: " + speciesText
         } else {
             cell.nameLabel.text = "Name: "

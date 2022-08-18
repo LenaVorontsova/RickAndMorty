@@ -23,10 +23,20 @@ class LocationsViewController: UIViewController {
         searchBar.delegate = self
         
         let networkService = NetworkService(baseURL: "https://rickandmortyapi.com/api/")
-        networkService.getInfoLocations(endPoint: "location") { result in
-            self.locations = result.results!
-            self.locationsSearch = self.locations
-            self.tableView.reloadData()
+        networkService.getInfoLocations(endPoint: "location") { [weak self] result in
+            switch result {
+            case .success(let serverData):
+                guard let self = self else { return }
+                if let location = serverData.results {
+                    self.locations = location
+                } else {
+                    self.locations = []
+                }
+                self.locationsSearch = self.locations
+                self.tableView.reloadData()
+            case .failure(let error):
+                print("\(error)")
+            }
         }
         
         self.title = "Locations"

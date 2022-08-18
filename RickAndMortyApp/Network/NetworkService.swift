@@ -16,51 +16,30 @@ final class NetworkService {
     }
     
     // get all info about character
-    func getInfoCharacters(endPoint: String, completion: @escaping (ServerData) -> Void) {
+    func getInfoCharacters(endPoint: String, completion: @escaping (Result<ServerData, AFError>) -> Void) {
         AF.request(
             self.baseURL + endPoint,
             method: .get)
             .responseDecodable(of: ServerData.self) { response in
-                switch response.result {
-                case .success:
-                    guard let results = response.value else { return }
-                    print(results)
-                    completion(results)
-                case .failure(let error):
-                    print("\(error)")
-                }
+                completion(response.result)
             }
     }
     
-    func getInfoLocations(endPoint: String, completion: @escaping (ServerDataLocation) -> Void) {
+    func getInfoLocations(endPoint: String, completion: @escaping (Result<ServerDataLocation, AFError>) -> Void) {
         AF.request(
             self.baseURL + endPoint,
             method: .get)
             .responseDecodable(of: ServerDataLocation.self) { response in
-                switch response.result {
-                case .success:
-                    guard let results = response.value else { return }
-                    print(results)
-                    completion(results)
-                case .failure(let error):
-                    print("\(error)")
-                }
+                completion(response.result)
             }
     }
     
-    func getInfoEpisodes(endPoint: String, completion: @escaping (ServerDataEpisode) -> Void) {
+    func getInfoEpisodes(endPoint: String, completion: @escaping (Result<ServerDataEpisode, AFError>) -> Void) {
         AF.request(
             self.baseURL + endPoint,
             method: .get)
             .responseDecodable(of: ServerDataEpisode.self) { response in
-                switch response.result {
-                case .success:
-                    guard let results = response.value else { return }
-                    print(results)
-                    completion(results)
-                case .failure(let error):
-                    print("\(error)")
-                }
+                completion(response.result)
             }
     }
 }

@@ -23,10 +23,20 @@ class EpisodesViewController: UIViewController {
         searchBar.delegate = self
         
         let networkService = NetworkService(baseURL: "https://rickandmortyapi.com/api/")
-        networkService.getInfoEpisodes(endPoint: "episode") { result in
-            self.episodes = result.results!
-            self.episodesSearch = self.episodes
-            self.tableView.reloadData()
+        networkService.getInfoEpisodes(endPoint: "episode") { [weak self] result in
+            switch result {
+            case .success(let serverData):
+                guard let self = self else { return }
+                if let episode = serverData.results {
+                    self.episodes = episode
+                } else {
+                    self.episodes = []
+                }
+                self.episodesSearch = self.episodes
+                self.tableView.reloadData()
+            case .failure(let error):
+                print("\(error)")
+            }
         }
         
         self.title = "Episodes"
