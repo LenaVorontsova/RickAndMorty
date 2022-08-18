@@ -46,13 +46,21 @@ extension EpisodesViewController: UITableViewDataSource, UITableViewDelegate, UI
         }
 
         cell.nameLabel.text = episodesSearch[indexPath.row].name
-        cell.airDateLabel.text = "Air date: " + episodesSearch[indexPath.row].air_date!
+        if let airDateText = episodesSearch[indexPath.row].air_date {
+            cell.airDateLabel.text = "Air date: " + airDateText
+        } else {
+            cell.airDateLabel.text = "Air date: "
+        }
                     
         var season = ""
         var episode = ""
-        if let range = episodesSearch[indexPath.row].episode?.range(of: "E") {
-            season = String(episodesSearch[indexPath.row].episode![..<range.lowerBound])
-            episode = String(episodesSearch[indexPath.row].episode![range.lowerBound...])
+        if let range = episodesSearch[indexPath.row].episode?.range(of: "E"),
+                let episodeText = episodesSearch[indexPath.row].episode {
+            season = String(episodeText[..<range.lowerBound])
+            episode = String(episodeText[range.lowerBound...])
+        } else {
+            season = "number"
+            episode = "number"
         }
         cell.seasonLabel.text = "Season: " + season
         cell.episodeLabel.text = "Episode: " + episode

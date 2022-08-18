@@ -45,14 +45,28 @@ extension CharacterViewController: UITableViewDataSource, UITableViewDelegate, U
             return UITableViewCell()
         }
 
-        let url = URL(string: charactersSearch[indexPath.row].image!)
-        let data = try? Data(contentsOf: url!)
-        cell.avatarView.image = UIImage(data: data!)
+        if let urlString = charactersSearch[indexPath.row].image,
+                   let url = URL(string: urlString),
+                   let data = try? Data(contentsOf: url) {
+                    cell.avatarView.image = UIImage(data: data)
+                } else {
+                    cell.avatarView.image = UIImage(systemName: "person.circle.fill")
+                }
             
-        cell.nameLabel.text = "Name: " + charactersSearch[indexPath.row].name!
-        cell.genderLabel.text = "Gender: " + charactersSearch[indexPath.row].gender!
-        cell.locationLabel.text = "Location: " + charactersSearch[indexPath.row].location!.name!
-        cell.speciesLabel.text = "Species: " + charactersSearch[indexPath.row].species!
+        if let nameText = charactersSearch[indexPath.row].name,
+           let genderText = charactersSearch[indexPath.row].gender,
+           let locationText = charactersSearch[indexPath.row].location!.name,
+           let speciesText = charactersSearch[indexPath.row].species {
+                cell.nameLabel.text = "Name: " + nameText
+                cell.genderLabel.text = "Gender: " + genderText
+                cell.locationLabel.text = "Location: " + locationText
+                cell.speciesLabel.text = "Species: " + speciesText
+        } else {
+            cell.nameLabel.text = "Name: "
+            cell.genderLabel.text = "Gender: "
+            cell.locationLabel.text = "Location: "
+            cell.speciesLabel.text = "Species: "
+        }
             
         return cell
     }

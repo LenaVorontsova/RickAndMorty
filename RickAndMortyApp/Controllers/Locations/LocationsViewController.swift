@@ -46,8 +46,12 @@ extension LocationsViewController: UITableViewDataSource, UITableViewDelegate, U
         }
         
         cell.nameLabel.text = locationsSearch[indexPath.row].name
-        cell.typeLabel.text = "Type: " + locationsSearch[indexPath.row].type!
-        cell.dimensionLabel.text = "Dimension: " + locationsSearch[indexPath.row].dimension!
+        
+        if let typeText = locationsSearch[indexPath.row].type,
+           let dimensionText = locationsSearch[indexPath.row].dimension {
+            cell.typeLabel.text = "Type: " + typeText
+            cell.dimensionLabel.text = "Dimension: " + dimensionText
+        }
                     
         return cell
     }

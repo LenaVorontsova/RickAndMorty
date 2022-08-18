@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-class NetworkService {
+final class NetworkService {
     fileprivate var baseURL = ""
     
     init(baseURL: String) {
@@ -21,9 +21,14 @@ class NetworkService {
             self.baseURL + endPoint,
             method: .get)
             .responseDecodable(of: ServerData.self) { response in
-            guard let results = response.value else { return }
-            print(results)
-            completion(results)
+                switch response.result {
+                case .success:
+                    guard let results = response.value else { return }
+                    print(results)
+                    completion(results)
+                case .failure(let error):
+                    print("\(error)")
+                }
             }
     }
     
@@ -32,9 +37,14 @@ class NetworkService {
             self.baseURL + endPoint,
             method: .get)
             .responseDecodable(of: ServerDataLocation.self) { response in
-            guard let results = response.value else { return }
-            print(results)
-            completion(results)
+                switch response.result {
+                case .success:
+                    guard let results = response.value else { return }
+                    print(results)
+                    completion(results)
+                case .failure(let error):
+                    print("\(error)")
+                }
             }
     }
     
@@ -43,9 +53,14 @@ class NetworkService {
             self.baseURL + endPoint,
             method: .get)
             .responseDecodable(of: ServerDataEpisode.self) { response in
-            guard let results = response.value else { return }
-            print(results)
-            completion(results)
+                switch response.result {
+                case .success:
+                    guard let results = response.value else { return }
+                    print(results)
+                    completion(results)
+                case .failure(let error):
+                    print("\(error)")
+                }
             }
     }
 }
