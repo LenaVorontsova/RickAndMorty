@@ -1,3 +1,10 @@
+//
+//  EpisodesViewController.swift
+//  RickAndMortyApp
+//
+//  Created by Lena Vorontsova on 17.08.2022.
+//
+
 import UIKit
 import Alamofire
 
@@ -15,11 +22,23 @@ class EpisodesViewController: UIViewController {
         tableView.dataSource = self
         searchBar.delegate = self
         
-        let service = Service(baseURL: "https://rickandmortyapi.com/api/")
-        service.getInfoEpisodes(endPoint: "episode") { result in
-            self.episodes = result.results!
-            self.episodesSearch = self.episodes
-            self.tableView.reloadData()
+        let networkService = NetworkService(baseURL: "https://rickandmortyapi.com/api/")
+        networkService.getInfoEpisodes(endPoint: "episode") { [weak self] result in
+            switch result {
+            case .success(let serverData):
+                guard let self = self else { return }
+                if let episode = serverData.results {
+                    self.episodes = episode
+                } else {
+                    self.episodes = []
+                }
+                self.episodesSearch = self.episodes
+                self.tableView.reloadData()
+            case .failure(let error):
+                let alert = UIAlertController(title: "Error", message: "\(error)", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self?.present(alert, animated: true)
+            }
         }
         
         self.title = "Episodes"
@@ -32,23 +51,34 @@ extension EpisodesViewController: UITableViewDataSource, UITableViewDelegate, UI
         return episodesSearch.count
     }
         
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "episodesCell") as! EpisodesTableViewCell
-
-            cell.nameLabel.text = episodesSearch[indexPath.row].name
-            cell.airDateLabel.text = "Air date: " + episodesSearch[indexPath.row].air_date!
-            
-            var season = ""
-            var episode = ""
-            if let range = episodesSearch[indexPath.row].episode?.range(of: "E") {
-                season = String(episodesSearch[indexPath.row].episode![..<range.lowerBound])
-                episode = String(episodesSearch[indexPath.row].episode![range.lowerBound...])
-            }
-            cell.seasonLabel.text = "Season: " + season
-            cell.episodeLabel.text = "Episode: " + episode
-            
-            return cell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "episodesCell",
+                                                       for: indexPath) as? EpisodesTableViewCell else {
+            return UITableViewCell()
         }
+
+        cell.nameLabel.text = episodesSearch[indexPath.row].name
+        if let airDateText = episodesSearch[indexPath.row].air_date {
+            cell.airDateLabel.text = "Air date: " + airDateText
+        } else {
+            cell.airDateLabel.text = "Air date: "
+        }
+                    
+        var season = ""
+        var episode = ""
+        if let range = episodesSearch[indexPath.row].episode?.range(of: "E"),
+                let episodeText = episodesSearch[indexPath.row].episode {
+            season = String(episodeText[..<range.lowerBound])
+            episode = String(episodeText[range.lowerBound...])
+        } else {
+            season = "number"
+            episode = "number"
+        }
+        cell.seasonLabel.text = "Season: " + season
+        cell.episodeLabel.text = "Episode: " + episode
+                    
+        return cell
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 125
@@ -58,11 +88,11 @@ extension EpisodesViewController: UITableViewDataSource, UITableViewDelegate, UI
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         episodesSearch = []
         
-        if searchText == "" {
+        if searchText.isEmpty {
             episodesSearch = episodes
         } else {
             for episode in episodes {
-                if ((episode.name!.lowercased().contains(searchText.lowercased()))) {
+                if episode.name!.lowercased().contains(searchText.lowercased()) {
                     episodesSearch.append(episode)
                 }
             }

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H2u-8Z-hdC">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -20,62 +21,63 @@
                                 <rect key="frame" x="20" y="141" width="374" height="210"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gxr-4g-muw">
-                                <rect key="frame" x="121" y="448" width="172" height="37"/>
+                                <rect key="frame" x="107" y="457" width="200" height="42"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="location.magnifyingglass" catalog="system" title="Locations">
-                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle2"/>
-                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Locations" image="location" catalog="system">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="locationButtonTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mpo-gv-vBh"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8g6-ka-dEP">
-                                <rect key="frame" x="121" y="505" width="172" height="37"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="play.rectangle" catalog="system" title="Episodes">
-                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle2"/>
-                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="episodeButtonTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ALW-7v-fk1"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="clk-LR-s0p">
-                                <rect key="frame" x="106" y="393" width="202" height="37"/>
+                                <rect key="frame" x="107" y="395" width="200" height="42"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="person.3" catalog="system" title="Characters">
-                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle2"/>
-                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="E9O-qS-BjV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Characters" image="person.3" catalog="system">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="characterButtonTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oE4-Xh-dxN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8g6-ka-dEP">
+                                <rect key="frame" x="107" y="522" width="200" height="42"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="Q9R-kG-zKG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Episodes" image="play.rectangle" catalog="system">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="episodeButtonTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ALW-7v-fk1"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.78431372549019607" green="0.96620899438858032" blue="0.92531046401307371" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="8g6-ka-dEP" secondAttribute="bottom" constant="320" id="0uW-LR-j94"/>
                             <constraint firstItem="Gxr-4g-muw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3sE-Vy-utv"/>
+                            <constraint firstItem="8g6-ka-dEP" firstAttribute="leading" secondItem="Gxr-4g-muw" secondAttribute="leading" id="5bp-aA-DW8"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="V4K-ZG-H1E" secondAttribute="trailing" constant="20" id="JTG-yn-joL"/>
-                            <constraint firstItem="8g6-ka-dEP" firstAttribute="top" secondItem="Gxr-4g-muw" secondAttribute="bottom" constant="20" id="JUR-18-eeC"/>
-                            <constraint firstItem="clk-LR-s0p" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="106" id="KEW-ko-eIA"/>
-                            <constraint firstItem="clk-LR-s0p" firstAttribute="top" secondItem="V4K-ZG-H1E" secondAttribute="bottom" constant="42" id="LzB-d9-91v"/>
+                            <constraint firstItem="8g6-ka-dEP" firstAttribute="top" secondItem="Gxr-4g-muw" secondAttribute="bottom" constant="23" id="PeV-aY-kEk"/>
+                            <constraint firstItem="8g6-ka-dEP" firstAttribute="leading" secondItem="clk-LR-s0p" secondAttribute="leading" id="VdK-a6-ie0"/>
                             <constraint firstItem="clk-LR-s0p" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Vts-zZ-yl5"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8g6-ka-dEP" secondAttribute="trailing" constant="121" id="Wuc-1e-eQg"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Gxr-4g-muw" secondAttribute="trailing" constant="121" id="ce5-6h-ACS"/>
-                            <constraint firstItem="Gxr-4g-muw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="121" id="fPb-uV-kY7"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="clk-LR-s0p" secondAttribute="trailing" constant="106" id="gnP-vi-amC"/>
-                            <constraint firstItem="8g6-ka-dEP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="121" id="iBV-To-ATd"/>
-                            <constraint firstItem="Gxr-4g-muw" firstAttribute="top" secondItem="clk-LR-s0p" secondAttribute="bottom" constant="18" id="jIj-yA-2wA"/>
-                            <constraint firstItem="Gxr-4g-muw" firstAttribute="top" secondItem="clk-LR-s0p" secondAttribute="bottom" constant="18" id="noe-m9-UR9"/>
-                            <constraint firstItem="8g6-ka-dEP" firstAttribute="top" secondItem="Gxr-4g-muw" secondAttribute="bottom" constant="20" id="rM1-gI-EQ3"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="8g6-ka-dEP" secondAttribute="bottom" constant="298" id="h9l-s6-HIy"/>
+                            <constraint firstItem="Gxr-4g-muw" firstAttribute="top" secondItem="clk-LR-s0p" secondAttribute="bottom" constant="20" id="oRT-tS-92Y"/>
                             <constraint firstItem="8g6-ka-dEP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rRs-m3-4Rq"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="V4K-ZG-H1E" secondAttribute="bottom" constant="511" id="uWC-gW-flf"/>
+                            <constraint firstItem="8g6-ka-dEP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="107" id="uYM-IK-5gF"/>
+                            <constraint firstItem="clk-LR-s0p" firstAttribute="top" secondItem="V4K-ZG-H1E" secondAttribute="bottom" constant="44" id="utU-TR-IlV"/>
                             <constraint firstItem="V4K-ZG-H1E" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="53" id="xyl-Yy-RK5"/>
                             <constraint firstItem="V4K-ZG-H1E" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="zFt-dX-pS3"/>
                         </constraints>
@@ -422,7 +424,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="location.magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="location" catalog="system" width="128" height="118"/>
         <image name="person.3" catalog="system" width="128" height="62"/>
         <image name="play.rectangle" catalog="system" width="128" height="93"/>
         <image name="rickAndMortyPreview" width="1500" height="1000"/>
