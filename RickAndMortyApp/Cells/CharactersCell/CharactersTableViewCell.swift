@@ -10,6 +10,7 @@ import SnapKit
 
 enum ConstantsCharactersCell {
     static let sizeAvatar = 103
+    static let topAvatar = 10
     static let leadAvatar = 10
     
     static let leadLabels = 20
@@ -71,12 +72,13 @@ class CharactersTableViewCell: UITableViewCell {
         
         avatarView.snp.makeConstraints { make in
             make.width.height.equalTo(ConstantsCharactersCell.sizeAvatar)
-            make.top.equalTo(contentView.safeAreaLayoutGuide.snp.top)
+            make.top.equalTo(contentView.safeAreaLayoutGuide.snp.top).offset(ConstantsCharactersCell.topAvatar)
             make.leading.equalTo(contentView.safeAreaLayoutGuide.snp.leading)
                 .offset(ConstantsCharactersCell.leadAvatar)
         }
         
         nameLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(ConstantsCharactersCell.topAvatar)
             make.leading.equalTo(avatarView.snp.trailing).offset(ConstantsCharactersCell.leadLabels)
             make.trailing.equalToSuperview().offset(ConstantsCharactersCell.trailLabels)
         }
