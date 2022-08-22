@@ -26,7 +26,6 @@ class CharactersTableViewCell: UITableViewCell {
     var avatarView: UIImageView = {
         let image: UIImageView = .init()
         return image
-        
     }()
     
     var nameLabel: UILabel = {

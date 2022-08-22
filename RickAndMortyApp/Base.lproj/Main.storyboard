@@ -147,12 +147,6 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.78251666399999997" green="0.96620899439999997" blue="0.92531046400000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <connections>
-                                            <outlet property="airDateLabel" destination="SQD-hV-VG0" id="ptL-zC-gKJ"/>
-                                            <outlet property="episodeLabel" destination="mBO-vX-y8Y" id="bPR-wM-aaZ"/>
-                                            <outlet property="nameLabel" destination="Kvd-5r-73s" id="mfz-cy-zxj"/>
-                                            <outlet property="seasonLabel" destination="QZq-x2-xK6" id="kwo-WT-IfU"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -175,10 +169,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="UCv-gX-00N"/>
-                    <connections>
-                        <outlet property="searchBar" destination="tIG-Mj-B9x" id="F3n-UF-lhy"/>
-                        <outlet property="tableView" destination="KMB-Yv-WiR" id="xNo-Dj-ZAL"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BdF-ff-gUe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

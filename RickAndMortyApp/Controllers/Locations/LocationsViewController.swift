@@ -7,6 +7,7 @@
 
 import UIKit
 import Alamofire
+import SnapKit
 
 class LocationsViewController: UIViewController {
     fileprivate var locations: [LocationInfo] = []

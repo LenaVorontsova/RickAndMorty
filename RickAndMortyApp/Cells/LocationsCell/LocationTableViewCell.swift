@@ -15,11 +15,6 @@ enum ConstantsLocationsCell {
 }
 
 class LocationTableViewCell: UITableViewCell {
-//
-//    @IBOutlet weak var nameLabel: UILabel!
-//    @IBOutlet weak var typeLabel: UILabel!
-//    @IBOutlet weak var dimensionLabel: UILabel!
-    
     var nameLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 28)

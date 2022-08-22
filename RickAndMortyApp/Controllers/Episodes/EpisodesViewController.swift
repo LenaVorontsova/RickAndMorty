@@ -7,13 +7,21 @@
 
 import UIKit
 import Alamofire
+import SnapKit
 
 class EpisodesViewController: UIViewController {
     fileprivate var episodes: [EpisodeInfo] = []
     fileprivate var episodesSearch: [EpisodeInfo] = []
     
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var tableView: UITableView!
+    private var tableView: UITableView = {
+        let table = UITableView()
+        return table
+    }()
+    
+    private var searchBar: UISearchBar = {
+        let search = UISearchBar()
+        return search
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +29,10 @@ class EpisodesViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
+        
+        configureConstraints()
+        
+        self.tableView.register(EpisodesTableViewCell.self, forCellReuseIdentifier: EpisodesTableViewCell.identifier)
         
         let networkService = NetworkService(baseURL: "https://rickandmortyapi.com/api/")
         networkService.getInfoEpisodes(endPoint: "episode") { [weak self] result in
@@ -42,6 +54,23 @@ class EpisodesViewController: UIViewController {
         }
         
         self.title = "Episodes"
+        view.backgroundColor = UIColor(red: 200 / 255, green: 246 / 255, blue: 236 / 255, alpha: 1)
+    }
+    
+    private func configureConstraints() {
+        view.addSubview(searchBar)
+        view.addSubview(tableView)
+        
+        searchBar.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.trailing.leading.equalToSuperview()
+        }
+        
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(searchBar.snp.bottom)
+            make.bottom.equalToSuperview()
+            make.trailing.leading.equalToSuperview()
+        }
     }
 }
 
@@ -52,7 +81,7 @@ extension EpisodesViewController: UITableViewDataSource, UITableViewDelegate, UI
     }
         
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "episodesCell",
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: EpisodesTableViewCell.identifier,
                                                        for: indexPath) as? EpisodesTableViewCell else {
             return UITableViewCell()
         }
