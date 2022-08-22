@@ -11,9 +11,16 @@ import Alamofire
 class LocationsViewController: UIViewController {
     fileprivate var locations: [LocationInfo] = []
     fileprivate var locationsSearch: [LocationInfo] = []
-
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
+    
+    private var tableView: UITableView = {
+        let table = UITableView()
+        return table
+    }()
+    
+    private var searchBar: UISearchBar = {
+        let search = UISearchBar()
+        return search
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +28,10 @@ class LocationsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
+        
+        configureConstraints()
+        
+        self.tableView.register(LocationTableViewCell.self, forCellReuseIdentifier: LocationTableViewCell.identifier)
         
         let networkService = NetworkService(baseURL: "https://rickandmortyapi.com/api/")
         networkService.getInfoLocations(endPoint: "location") { [weak self] result in
@@ -42,6 +53,23 @@ class LocationsViewController: UIViewController {
         }
         
         self.title = "Locations"
+        view.backgroundColor = UIColor(red: 200 / 255, green: 246 / 255, blue: 236 / 255, alpha: 1)
+    }
+    
+    private func configureConstraints() {
+        view.addSubview(searchBar)
+        view.addSubview(tableView)
+        
+        searchBar.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.trailing.leading.equalToSuperview()
+        }
+        
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(searchBar.snp.bottom)
+            make.bottom.equalToSuperview()
+            make.trailing.leading.equalToSuperview()
+        }
     }
 }
 
@@ -52,7 +80,7 @@ extension LocationsViewController: UITableViewDataSource, UITableViewDelegate, U
     }
         
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "locationsCell",
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: LocationTableViewCell.identifier,
                                                        for: indexPath) as? LocationTableViewCell else {
             return UITableViewCell()
         }
