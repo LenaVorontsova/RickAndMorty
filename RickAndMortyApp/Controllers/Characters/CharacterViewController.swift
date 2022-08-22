@@ -12,8 +12,15 @@ class CharacterViewController: UIViewController {
     fileprivate var characters: [Character] = []
     fileprivate var charactersSearch: [Character] = []
     
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
+    private var tableView: UITableView = {
+        let table = UITableView()
+        return table
+    }()
+    
+    private var searchBar: UISearchBar = {
+        let search = UISearchBar()
+        return search
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +28,10 @@ class CharacterViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
+        
+        configureConstraints()
+        
+        self.tableView.register(CharactersTableViewCell.self, forCellReuseIdentifier: CharactersTableViewCell.identifier)
         
         let networkService = NetworkService(baseURL: "https://rickandmortyapi.com/api/")
         networkService.getInfoCharacters(endPoint: "character") { [weak self] result in
@@ -42,6 +53,23 @@ class CharacterViewController: UIViewController {
         }
         
         self.title = "Characters"
+        view.backgroundColor = UIColor(red: 200 / 255, green: 246 / 255, blue: 236 / 255, alpha: 1)
+    }
+    
+    private func configureConstraints() {
+        view.addSubview(searchBar)
+        view.addSubview(tableView)
+        
+        searchBar.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.trailing.leading.equalToSuperview()
+        }
+        
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(searchBar.snp.bottom)
+            make.bottom.equalToSuperview()
+            make.trailing.leading.equalToSuperview()
+        }
     }
 }
 
@@ -52,7 +80,7 @@ extension CharacterViewController: UITableViewDataSource, UITableViewDelegate, U
     }
         
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterCell",
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CharactersTableViewCell.identifier,
                                                        for: indexPath) as? CharactersTableViewCell else {
             return UITableViewCell()
         }

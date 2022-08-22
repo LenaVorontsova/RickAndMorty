@@ -8,34 +8,111 @@
 import UIKit
 import SnapKit
 
-class MainViewController: UIViewController {
+enum Constants {
+    static let imageSize: CGFloat = 210
+    static let imageTop = 10
+    static let imageLeadTrail = 20
+    static let buttonHeight = 30
     
-    @IBOutlet private weak var charactersButton: UIButton!
-    @IBOutlet private weak var locationsButton: UIButton!
-    @IBOutlet private weak var episodesButton: UIButton!
+    static let characterTop = 44
+    static let buttonsTop = 20
+}
+
+class MainViewController: UIViewController {
+    private var imageView: UIImageView = {
+        let image: UIImageView = .init()
+        image.image = UIImage(named: "rickAndMortyPreview")
+        
+        return image
+    }()
+    
+    private var charactersButton: UIButton = {
+        let button: UIButton = .init()
+        button.backgroundColor = .clear
+        button.setTitle("Characters", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.setImage(UIImage(systemName: "person.3"), for: .normal)
+        
+        return button
+    }()
+    
+    private var episodesButton: UIButton = {
+        let button: UIButton = .init()
+        button.backgroundColor = .clear
+        button.setTitle("Episodes", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.setImage(UIImage(systemName: "play.rectangle"), for: .normal)
+        
+        return button
+    }()
+    
+    private var locationsButton: UIButton = {
+        let button: UIButton = .init()
+        button.backgroundColor = .clear
+        button.setTitle("Locations", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.setImage(UIImage(systemName: "location.magnifyingglass"), for: .normal)
+        
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-
-    @IBAction private func characterButtonTap(_ sender: Any) {
         
-        charactersButton.backgroundColor = UIColor.link
-        performSegue(withIdentifier: "characterVC", sender: nil)
-        charactersButton.backgroundColor = UIColor.clear
+        configureController()
+        configureConstraints()
     }
     
-    @IBAction private func locationButtonTap(_ sender: Any) {
-        
-        locationsButton.backgroundColor = UIColor.link
-        performSegue(withIdentifier: "locationVC", sender: nil)
-        locationsButton.backgroundColor = UIColor.clear
+    private func configureController() {
+        view.backgroundColor = UIColor(red: 200 / 255, green: 246 / 255, blue: 236 / 255, alpha: 1)
+        charactersButton.addTarget(self, action: #selector(didTapCharactersButton), for: .touchUpInside)
+        locationsButton.addTarget(self, action: #selector(didTapLocationsButton), for: .touchUpInside)
+        episodesButton.addTarget(self, action: #selector(didTapEpisodesButton), for: .touchUpInside)
     }
     
-    @IBAction private func episodeButtonTap(_ sender: Any) {
+    @objc
+    private func didTapCharactersButton() {
+        navigationController?.show(CharacterViewController(), sender: nil)
+    }
+    
+    @objc
+    private func didTapLocationsButton() {
+        navigationController?.show(LocationsViewController(), sender: nil)
+    }
+    
+    @objc
+    private func didTapEpisodesButton() {
+        navigationController?.show(EpisodesViewController(), sender: nil)
+    }
+    
+    private func configureConstraints() {
+        view.addSubview(imageView)
+        view.addSubview(charactersButton)
+        view.addSubview(locationsButton)
+        view.addSubview(episodesButton)
         
-        episodesButton.backgroundColor = UIColor.link
-        performSegue(withIdentifier: "episodeVC", sender: nil)
-        episodesButton.backgroundColor = UIColor.clear
+        imageView.snp.makeConstraints { make in
+            make.height.equalTo(Constants.imageSize)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(Constants.imageTop)
+            make.leading.trailing.equalToSuperview().inset(Constants.imageLeadTrail)
+        }
+        
+        charactersButton.snp.makeConstraints { make in
+            make.height.equalTo(Constants.buttonHeight)
+            make.top.equalTo(imageView.snp.bottom).offset(Constants.characterTop)
+            make.centerX.equalToSuperview()
+        }
+        
+        locationsButton.snp.makeConstraints { make in
+            make.height.equalTo(Constants.buttonHeight)
+            make.top.equalTo(charactersButton.snp.bottom).offset(Constants.buttonsTop)
+            make.centerX.equalToSuperview()
+        }
+        
+        episodesButton.snp.makeConstraints { make in
+            make.height.equalTo(Constants.buttonHeight)
+            make.top.equalTo(locationsButton.snp.bottom).offset(Constants.buttonsTop)
+            make.centerX.equalToSuperview()
+        }
     }
 }

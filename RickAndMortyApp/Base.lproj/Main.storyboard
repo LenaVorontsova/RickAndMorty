@@ -28,9 +28,6 @@
                                 <state key="normal" title="Locations" image="location" catalog="system">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <connections>
-                                    <action selector="locationButtonTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mpo-gv-vBh"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="clk-LR-s0p">
                                 <rect key="frame" x="107" y="395" width="200" height="42"/>
@@ -43,9 +40,6 @@
                                 <state key="normal" title="Characters" image="person.3" catalog="system">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <connections>
-                                    <action selector="characterButtonTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oE4-Xh-dxN"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8g6-ka-dEP">
                                 <rect key="frame" x="107" y="522" width="200" height="42"/>
@@ -58,9 +52,6 @@
                                 <state key="normal" title="Episodes" image="play.rectangle" catalog="system">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <connections>
-                                    <action selector="episodeButtonTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ALW-7v-fk1"/>
-                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -84,9 +75,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="HhK-KS-vlG"/>
                     <connections>
-                        <outlet property="charactersButton" destination="clk-LR-s0p" id="78S-cu-jt7"/>
-                        <outlet property="episodesButton" destination="8g6-ka-dEP" id="e8K-au-ErD"/>
-                        <outlet property="locationsButton" destination="Gxr-4g-muw" id="D0K-si-29E"/>
                         <segue destination="Oxh-VW-JDC" kind="show" identifier="characterVC" id="tQu-CS-yaO"/>
                         <segue destination="K8D-ja-4Av" kind="show" identifier="locationVC" id="2rc-nS-JqK"/>
                         <segue destination="acb-Qf-XLh" kind="show" identifier="episodeVC" id="fEq-Pp-zoh"/>
@@ -302,7 +290,7 @@
                                 <rect key="frame" x="0.0" y="163" width="414" height="699"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="CharacterCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CharacterCell" rowHeight="125" id="ik5-y6-GFQ" customClass="CharactersTableViewCell" customModule="RickAndMortyApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="CharacterCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="125" id="ik5-y6-GFQ">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="125"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ik5-y6-GFQ" id="wq7-gd-PGy">
@@ -317,8 +305,8 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hhV-S1-xiD">
-                                                    <rect key="frame" x="132" y="20" width="262" height="30"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                    <rect key="frame" x="132" y="16.5" width="262" height="33.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -362,19 +350,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.78251666399999997" green="0.96620899439999997" blue="0.92531046400000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <connections>
-                                            <outlet property="avatarView" destination="3nj-dE-7bT" id="gv5-tJ-lGI"/>
-                                            <outlet property="genderLabel" destination="7ZL-v3-kfB" id="m9j-EY-GgZ"/>
-                                            <outlet property="locationLabel" destination="6id-HL-8Gt" id="OSX-ck-nLn"/>
-                                            <outlet property="nameLabel" destination="hhV-S1-xiD" id="H7v-ei-2gM"/>
-                                            <outlet property="speciesLabel" destination="xWh-gw-iMG" id="blH-Po-bkn"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="Oxh-VW-JDC" id="kj1-IU-EWg"/>
-                                    <outlet property="delegate" destination="Oxh-VW-JDC" id="P4T-4k-qry"/>
-                                </connections>
                             </tableView>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="9aG-RZ-A7d">
                                 <rect key="frame" x="0.0" y="88" width="414" height="51"/>
@@ -395,10 +372,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Characters" id="kwp-Zm-bjM"/>
-                    <connections>
-                        <outlet property="searchBar" destination="9aG-RZ-A7d" id="CY4-3T-wkj"/>
-                        <outlet property="tableView" destination="fot-s7-8dP" id="JZj-IA-HRh"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Siw-TC-HSY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

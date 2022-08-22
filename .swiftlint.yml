@@ -174,12 +174,12 @@ custom_rules:
         message: "Используей SnapKit"
         severity: error
         
-    fonts_initialization:
-        name: "Использование шрифтов без AppFonts"
-        regex: "UIFont|systemFont"
-        message: "Используей AppFonts"
-        severity: error
-        excluded: AppFonts.swift
+#    fonts_initialization:
+#        name: "Использование шрифтов без AppFonts"
+#        regex: "UIFont|systemFont"
+#        message: "Используей AppFonts"
+#        severity: error
+#        excluded: AppFonts.swift
         
     ui_magic_numbers:
         name: "Константы без AppStyle"
