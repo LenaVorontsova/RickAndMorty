@@ -14,7 +14,7 @@ enum ConstantsLocationsCell {
     static let topLabels = 5
 }
 
-class LocationTableViewCell: UITableViewCell {
+final class LocationTableViewCell: UITableViewCell {
     var nameLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 28)

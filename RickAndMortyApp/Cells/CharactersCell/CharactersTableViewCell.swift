@@ -22,7 +22,7 @@ protocol ReusableView: AnyObject {
     static var identifier: String { get }
 }
 
-class CharactersTableViewCell: UITableViewCell {
+final class CharactersTableViewCell: UITableViewCell {
     
     var avatarView: UIImageView = {
         let image = UIImageView()

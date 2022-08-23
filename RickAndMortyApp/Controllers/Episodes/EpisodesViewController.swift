@@ -9,7 +9,7 @@ import UIKit
 import Alamofire
 import SnapKit
 
-class EpisodesViewController: UIViewController {
+final class EpisodesViewController: UIViewController {
     fileprivate var episodes: [EpisodeInfo] = []
     fileprivate var episodesSearch: [EpisodeInfo] = []
     

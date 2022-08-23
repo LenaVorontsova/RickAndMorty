@@ -18,7 +18,7 @@ enum Constants {
     static let buttonsTop = 20
 }
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
     private var imageView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "rickAndMortyPreview")

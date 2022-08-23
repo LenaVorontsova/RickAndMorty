@@ -14,7 +14,7 @@ enum ConstantsEpisodesCell {
     static let topLabels = 5
 }
 
-class EpisodesTableViewCell: UITableViewCell {
+final class EpisodesTableViewCell: UITableViewCell {
     var nameLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 28)

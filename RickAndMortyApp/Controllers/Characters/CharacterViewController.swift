@@ -8,7 +8,7 @@
 import UIKit
 import Alamofire
 
-class CharacterViewController: UIViewController {
+final class CharacterViewController: UIViewController {
     fileprivate var characters: [Character] = []
     fileprivate var charactersSearch: [Character] = []
     
