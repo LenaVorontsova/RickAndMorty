@@ -115,16 +115,7 @@ extension EpisodesViewController: UITableViewDataSource, UITableViewDelegate, UI
     // SearchBar
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         episodesSearch = []
-        
-        if searchText.isEmpty {
-            episodesSearch = episodes
-        } else {
-            for episode in episodes {
-                if episode.name!.lowercased().contains(searchText.lowercased()) {
-                    episodesSearch.append(episode)
-                }
-            }
-        }
+        episodesSearch = SearchService.shared.searchEpisode(fullArray: episodes, searchText: searchText)
         self.tableView.reloadData()
     }
 }

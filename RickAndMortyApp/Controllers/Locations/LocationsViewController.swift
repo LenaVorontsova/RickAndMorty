@@ -103,16 +103,7 @@ extension LocationsViewController: UITableViewDataSource, UITableViewDelegate, U
     // SearchBar
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         locationsSearch = []
-        
-        if searchText.isEmpty {
-            locationsSearch = locations
-        } else {
-            for location in locations {
-                if location.name!.lowercased().contains(searchText.lowercased()) {
-                    locationsSearch.append(location)
-                }
-            }
-        }
+        locationsSearch = SearchService.shared.searchLocation(fullArray: locations, searchText: searchText)
         self.tableView.reloadData()
     }
 }
