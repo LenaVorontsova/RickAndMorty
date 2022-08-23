@@ -9,9 +9,11 @@ import Foundation
 import Alamofire
 
 final class NetworkService {
-    fileprivate var baseURL = ""
+    var baseURL = ""
     
-    init(baseURL: String) {
+    static let shared = NetworkService(baseURL: "https://rickandmortyapi.com/api/")
+    
+    private init(baseURL: String) {
         self.baseURL = baseURL
     }
     

@@ -34,8 +34,7 @@ final class LocationsViewController: UIViewController {
         
         self.tableView.register(LocationTableViewCell.self, forCellReuseIdentifier: LocationTableViewCell.identifier)
         
-        let networkService = NetworkService(baseURL: "https://rickandmortyapi.com/api/")
-        networkService.getInfoLocations(endPoint: "location") { [weak self] result in
+        NetworkService.shared.getInfoLocations(endPoint: "location") { [weak self] result in
             switch result {
             case .success(let serverData):
                 guard let self = self else { return }
