@@ -22,19 +22,19 @@ class EpisodesTableViewCell: UITableViewCell {
     }()
     
     var airDateLabel: UILabel = {
-        let label: UILabel = .init()
+        let label = UILabel()
         label.font = .systemFont(ofSize: 17)
         return label
     }()
 
     var seasonLabel: UILabel = {
-        let label: UILabel = .init()
+        let label = UILabel()
         label.font = .systemFont(ofSize: 17)
         return label
     }()
 
     var episodeLabel: UILabel = {
-        let label: UILabel = .init()
+        let label = UILabel()
         label.font = .systemFont(ofSize: 17)
         return label
     }()

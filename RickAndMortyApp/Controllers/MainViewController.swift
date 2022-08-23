@@ -20,14 +20,14 @@ enum Constants {
 
 class MainViewController: UIViewController {
     private var imageView: UIImageView = {
-        let image: UIImageView = .init()
+        let image = UIImageView()
         image.image = UIImage(named: "rickAndMortyPreview")
         
         return image
     }()
     
     private var charactersButton: UIButton = {
-        let button: UIButton = .init()
+        let button = UIButton()
         button.backgroundColor = .clear
         button.setTitle("Characters", for: .normal)
         button.setTitleColor(.black, for: .normal)
@@ -37,7 +37,7 @@ class MainViewController: UIViewController {
     }()
     
     private var episodesButton: UIButton = {
-        let button: UIButton = .init()
+        let button = UIButton()
         button.backgroundColor = .clear
         button.setTitle("Episodes", for: .normal)
         button.setTitleColor(.black, for: .normal)
@@ -47,7 +47,7 @@ class MainViewController: UIViewController {
     }()
     
     private var locationsButton: UIButton = {
-        let button: UIButton = .init()
+        let button = UIButton()
         button.backgroundColor = .clear
         button.setTitle("Locations", for: .normal)
         button.setTitleColor(.black, for: .normal)

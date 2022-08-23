@@ -22,13 +22,13 @@ class LocationTableViewCell: UITableViewCell {
     }()
     
     var typeLabel: UILabel = {
-        let label: UILabel = .init()
+        let label = UILabel()
         label.font = .systemFont(ofSize: 17)
         return label
     }()
     
     var dimensionLabel: UILabel = {
-        let label: UILabel = .init()
+        let label = UILabel()
         label.font = .systemFont(ofSize: 17)
         return label
     }()

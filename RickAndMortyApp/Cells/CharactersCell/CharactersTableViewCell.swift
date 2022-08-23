@@ -25,7 +25,7 @@ protocol ReusableView: AnyObject {
 class CharactersTableViewCell: UITableViewCell {
     
     var avatarView: UIImageView = {
-        let image: UIImageView = .init()
+        let image = UIImageView()
         return image
     }()
     
@@ -36,19 +36,19 @@ class CharactersTableViewCell: UITableViewCell {
     }()
     
     var genderLabel: UILabel = {
-        let label: UILabel = .init()
+        let label = UILabel()
         label.font = .systemFont(ofSize: 17)
         return label
     }()
     
     var speciesLabel: UILabel = {
-        let label: UILabel = .init()
+        let label = UILabel()
         label.font = .systemFont(ofSize: 17)
         return label
     }()
     
     var locationLabel: UILabel = {
-        let label: UILabel = .init()
+        let label = UILabel()
         label.font = .systemFont(ofSize: 17)
         return label
     }()
