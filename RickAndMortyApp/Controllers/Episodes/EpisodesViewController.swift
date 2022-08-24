@@ -34,7 +34,7 @@ final class EpisodesViewController: UIViewController {
         
         self.tableView.register(EpisodesTableViewCell.self, forCellReuseIdentifier: EpisodesTableViewCell.identifier)
         
-        NetworkService.shared.getInfoEpisodes(endPoint: "episode") { [weak self] result in
+        NetworkService.shared.getInfoEpisodes(endPoint: EndPoints.episode.rawValue) { [weak self] result in
             switch result {
             case .success(let serverData):
                 guard let self = self else { return }

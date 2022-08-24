@@ -34,7 +34,7 @@ final class LocationsViewController: UIViewController {
         
         self.tableView.register(LocationTableViewCell.self, forCellReuseIdentifier: LocationTableViewCell.identifier)
         
-        NetworkService.shared.getInfoLocations(endPoint: "location") { [weak self] result in
+        NetworkService.shared.getInfoLocations(endPoint: EndPoints.location.rawValue) { [weak self] result in
             switch result {
             case .success(let serverData):
                 guard let self = self else { return }
