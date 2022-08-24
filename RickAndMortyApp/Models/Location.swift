@@ -12,7 +12,7 @@ struct ServerDataLocation: Decodable {
     let results: [LocationInfo]?
 }
 
-struct LocationInfo: Decodable {
+struct LocationInfo: Decodable, Namable {
     let name: String?
     let type: String?
     let dimension: String?

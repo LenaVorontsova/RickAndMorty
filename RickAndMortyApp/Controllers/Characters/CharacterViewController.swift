@@ -118,8 +118,7 @@ extension CharacterViewController: UITableViewDataSource, UITableViewDelegate, U
     
     // SearchBar
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        charactersSearch = []
-        charactersSearch = SearchService.shared.searchCharacter(fullArray: characters, searchText: searchText)
+        charactersSearch = SearchService.shared.search(namable: characters, searchText: searchText, type: Character.self)
         self.tableView.reloadData()
     }
 }

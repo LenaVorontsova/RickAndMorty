@@ -114,8 +114,7 @@ extension EpisodesViewController: UITableViewDataSource, UITableViewDelegate, UI
     
     // SearchBar
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        episodesSearch = []
-        episodesSearch = SearchService.shared.searchEpisode(fullArray: episodes, searchText: searchText)
+        episodesSearch = SearchService.shared.search(namable: episodes, searchText: searchText, type: EpisodeInfo.self)
         self.tableView.reloadData()
     }
 }

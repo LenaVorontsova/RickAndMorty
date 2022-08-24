@@ -7,52 +7,26 @@
 
 import Foundation
 
+protocol Namable {
+    var name: String? { get }
+}
+
 final class SearchService {
     static let shared = SearchService()
     private init() {}
     
-    func searchEpisode(fullArray: [EpisodeInfo], searchText: String) -> [EpisodeInfo] {
-        var emptyArray: [EpisodeInfo] = []
+    func search<T>(namable: [Namable], searchText: String, type: T.Type) -> [T] where T: Namable {
+        var emptyArray: [Namable] = []
         if searchText.isEmpty {
-            emptyArray = fullArray
-            return emptyArray
+            emptyArray = namable
+            return emptyArray as? [T] ?? []
         } else {
-            for element in fullArray {
+            for element in namable {
                 if element.name!.lowercased().contains(searchText.lowercased()) {
                     emptyArray.append(element)
                 }
             }
         }
-        return emptyArray
-    }
-    
-    func searchLocation(fullArray: [LocationInfo], searchText: String) -> [LocationInfo] {
-        var emptyArray: [LocationInfo] = []
-        if searchText.isEmpty {
-            emptyArray = fullArray
-            return emptyArray
-        } else {
-            for element in fullArray {
-                if element.name!.lowercased().contains(searchText.lowercased()) {
-                    emptyArray.append(element)
-                }
-            }
-        }
-        return emptyArray
-    }
-    
-    func searchCharacter(fullArray: [Character], searchText: String) -> [Character] {
-        var emptyArray: [Character] = []
-        if searchText.isEmpty {
-            emptyArray = fullArray
-            return emptyArray
-        } else {
-            for element in fullArray {
-                if element.name!.lowercased().contains(searchText.lowercased()) {
-                    emptyArray.append(element)
-                }
-            }
-        }
-        return emptyArray
+        return emptyArray as? [T] ?? []
     }
 }
