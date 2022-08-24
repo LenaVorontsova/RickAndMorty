@@ -38,11 +38,7 @@ final class EpisodesViewController: UIViewController {
             switch result {
             case .success(let serverData):
                 guard let self = self else { return }
-                if let episode = serverData.results {
-                    self.episodes = episode
-                } else {
-                    self.episodes = []
-                }
+                self.episodes = serverData.results
                 self.episodesSearch = self.episodes
                 self.tableView.reloadData()
             case .failure(let error):

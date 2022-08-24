@@ -8,10 +8,6 @@
 import Foundation
 import UIKit
 
-struct ServerDataLocation: Decodable {
-    let results: [LocationInfo]?
-}
-
 struct LocationInfo: Decodable, Namable {
     let name: String?
     let type: String?

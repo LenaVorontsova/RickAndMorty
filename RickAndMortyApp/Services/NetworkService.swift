@@ -18,29 +18,29 @@ final class NetworkService {
     }
     
     // get all info about character
-    func getInfoCharacters(endPoint: String, completion: @escaping (Result<ServerData, AFError>) -> Void) {
+    func getInfoCharacters(endPoint: String, completion: @escaping (Result<Response<[Character]>, AFError>) -> Void) {
         AF.request(
             self.baseURL + endPoint,
             method: .get)
-            .responseDecodable(of: ServerData.self) { response in
+            .responseDecodable(of: Response<[Character]>.self) { response in
                 completion(response.result)
             }
     }
     
-    func getInfoLocations(endPoint: String, completion: @escaping (Result<ServerDataLocation, AFError>) -> Void) {
+    func getInfoLocations(endPoint: String, completion: @escaping (Result<Response<[LocationInfo]>, AFError>) -> Void) {
         AF.request(
             self.baseURL + endPoint,
             method: .get)
-            .responseDecodable(of: ServerDataLocation.self) { response in
+            .responseDecodable(of: Response<[LocationInfo]>.self) { response in
                 completion(response.result)
             }
     }
-    
-    func getInfoEpisodes(endPoint: String, completion: @escaping (Result<ServerDataEpisode, AFError>) -> Void) {
+
+    func getInfoEpisodes(endPoint: String, completion: @escaping (Result<Response<[EpisodeInfo]>, AFError>) -> Void) {
         AF.request(
             self.baseURL + endPoint,
             method: .get)
-            .responseDecodable(of: ServerDataEpisode.self) { response in
+            .responseDecodable(of: Response<[EpisodeInfo]>.self) { response in
                 completion(response.result)
             }
     }

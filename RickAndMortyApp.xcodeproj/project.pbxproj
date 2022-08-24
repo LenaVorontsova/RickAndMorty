@@ -25,6 +25,7 @@
 		8400D3BE289E9ACD00C35767 /* EpisodesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D3BD289E9ACD00C35767 /* EpisodesTableViewCell.swift */; };
 		84A0022E28B552D700A233F1 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A0022D28B552D700A233F1 /* SearchService.swift */; };
 		84A0023028B6423500A233F1 /* EndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A0022F28B6423500A233F1 /* EndPoints.swift */; };
+		84A0023328B64AC400A233F1 /* NetworkService+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A0023228B64AC400A233F1 /* NetworkService+extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		8497F9F128ACFBE600C5BCD2 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		84A0022D28B552D700A233F1 /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
 		84A0022F28B6423500A233F1 /* EndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoints.swift; sourceTree = "<group>"; };
+		84A0023228B64AC400A233F1 /* NetworkService+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService+extension.swift"; sourceTree = "<group>"; };
 		8E616BEA614F5CAD2D1CBA76 /* Pods_RickAndMortyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RickAndMortyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F59EC1BC5AFB5B1247883102 /* Pods-RickAndMortyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RickAndMortyApp.debug.xcconfig"; path = "Target Support Files/Pods-RickAndMortyApp/Pods-RickAndMortyApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -95,6 +97,7 @@
 		8400D32C28991DD700C35767 /* RickAndMortyApp */ = {
 			isa = PBXGroup;
 			children = (
+				84A0023128B64A9700A233F1 /* Extensions */,
 				8400D3BF289EAE1E00C35767 /* Services */,
 				8400D3532899626F00C35767 /* Models */,
 				8400D34D28995F1000C35767 /* Cells */,
@@ -195,6 +198,14 @@
 				84A0022D28B552D700A233F1 /* SearchService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		84A0023128B64A9700A233F1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				84A0023228B64AC400A233F1 /* NetworkService+extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		CB60C1A6C2EF4564447BB26A /* Pods */ = {
@@ -350,6 +361,7 @@
 				8400D33028991DD700C35767 /* SceneDelegate.swift in Sources */,
 				84A0022E28B552D700A233F1 /* SearchService.swift in Sources */,
 				8400D3BC289E91BC00C35767 /* LocationTableViewCell.swift in Sources */,
+				84A0023328B64AC400A233F1 /* NetworkService+extension.swift in Sources */,
 				8400D367289ADAD400C35767 /* NetworkService.swift in Sources */,
 				8400D35228995F7200C35767 /* CharactersTableViewCell.swift in Sources */,
 				8400D34C28992FB000C35767 /* LocationsViewController.swift in Sources */,

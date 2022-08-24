@@ -33,16 +33,11 @@ final class CharacterViewController: UIViewController {
         
         self.tableView.register(CharactersTableViewCell.self, forCellReuseIdentifier: CharactersTableViewCell.identifier)
         
-        // let networkService = NetworkService(baseURL: "https://rickandmortyapi.com/api/")
         NetworkService.shared.getInfoCharacters(endPoint: EndPoints.character.rawValue) { [weak self] result in
             switch result {
             case .success(let serverData):
                 guard let self = self else { return }
-                if let character = serverData.results {
-                    self.characters = character
-                } else {
-                    self.characters = []
-                }
+                self.characters = serverData.results
                 self.charactersSearch = self.characters
                 self.tableView.reloadData()
             case .failure(let error):

@@ -8,10 +8,6 @@
 import Foundation
 import UIKit
 
-struct ServerData: Decodable {
-    let results: [Character]?
-}
-
 struct Character: Decodable, Namable {
     let name: String?
     let gender: String?

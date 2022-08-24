@@ -38,11 +38,7 @@ final class LocationsViewController: UIViewController {
             switch result {
             case .success(let serverData):
                 guard let self = self else { return }
-                if let location = serverData.results {
-                    self.locations = location
-                } else {
-                    self.locations = []
-                }
+                self.locations = serverData.results
                 self.locationsSearch = self.locations
                 self.tableView.reloadData()
             case .failure(let error):
