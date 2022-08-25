@@ -1,11 +1,14 @@
+//
+//  Character.swift
+//  RickAndMortyApp
+//
+//  Created by Lena Vorontsova on 17.08.2022.
+//
+
 import Foundation
 import UIKit
 
-struct ServerData: Decodable {
-    let results: [Character]?
-}
-
-struct Character: Decodable {
+struct Character: Decodable, Namable {
     let name: String?
     let gender: String?
     let species: String?

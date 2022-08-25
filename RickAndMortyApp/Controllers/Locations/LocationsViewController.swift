@@ -1,12 +1,27 @@
+//
+//  LocationsViewController.swift
+//  RickAndMortyApp
+//
+//  Created by Lena Vorontsova on 17.08.2022.
+//
+
 import UIKit
 import Alamofire
+import SnapKit
 
-class LocationsViewController: UIViewController {
+final class LocationsViewController: UIViewController {
     fileprivate var locations: [LocationInfo] = []
     fileprivate var locationsSearch: [LocationInfo] = []
-
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
+    
+    private var tableView: UITableView = {
+        let table = UITableView()
+        return table
+    }()
+    
+    private var searchBar: UISearchBar = {
+        let search = UISearchBar()
+        return search
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,16 +30,43 @@ class LocationsViewController: UIViewController {
         tableView.dataSource = self
         searchBar.delegate = self
         
-        let service = Service(baseURL: "https://rickandmortyapi.com/api/")
-        service.getInfoLocations(endPoint: "location") { result in
-            self.locations = result.results!
-            self.locationsSearch = self.locations
-            self.tableView.reloadData()
+        configureConstraints()
+        
+        self.tableView.register(LocationTableViewCell.self, forCellReuseIdentifier: LocationTableViewCell.identifier)
+        
+        NetworkService.shared.getInfoLocations(endPoint: EndPoints.location.rawValue) { [weak self] result in
+            switch result {
+            case .success(let serverData):
+                guard let self = self else { return }
+                self.locations = serverData.results
+                self.locationsSearch = self.locations
+                self.tableView.reloadData()
+            case .failure(let error):
+                let alert = UIAlertController(title: "Error", message: "\(error)", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self?.present(alert, animated: true)
+            }
         }
         
         self.title = "Locations"
+        view.backgroundColor = UIColor(red: 200 / 255, green: 246 / 255, blue: 236 / 255, alpha: 1)
     }
     
+    private func configureConstraints() {
+        view.addSubview(searchBar)
+        view.addSubview(tableView)
+        
+        searchBar.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.trailing.leading.equalToSuperview()
+        }
+        
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(searchBar.snp.bottom)
+            make.bottom.equalToSuperview()
+            make.trailing.leading.equalToSuperview()
+        }
+    }
 }
 
 extension LocationsViewController: UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
@@ -33,15 +75,22 @@ extension LocationsViewController: UITableViewDataSource, UITableViewDelegate, U
         return locationsSearch.count
     }
         
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "locationsCell") as! LocationTableViewCell
-
-            cell.nameLabel.text = locationsSearch[indexPath.row].name
-            cell.typeLabel.text = "Type: " + locationsSearch[indexPath.row].type!
-            cell.dimensionLabel.text = "Dimension: " + locationsSearch[indexPath.row].dimension!
-            
-            return cell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: LocationTableViewCell.identifier,
+                                                       for: indexPath) as? LocationTableViewCell else {
+            return UITableViewCell()
         }
+        
+        cell.nameLabel.text = locationsSearch[indexPath.row].name
+        
+        if let typeText = locationsSearch[indexPath.row].type,
+           let dimensionText = locationsSearch[indexPath.row].dimension {
+            cell.typeLabel.text = "Type: " + typeText
+            cell.dimensionLabel.text = "Dimension: " + dimensionText
+        }
+                    
+        return cell
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
@@ -49,17 +98,7 @@ extension LocationsViewController: UITableViewDataSource, UITableViewDelegate, U
     
     // SearchBar
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        locationsSearch = []
-        
-        if searchText == "" {
-            locationsSearch = locations
-        } else {
-            for location in locations {
-                if ((location.name!.lowercased().contains(searchText.lowercased()))) {
-                    locationsSearch.append(location)
-                }
-            }
-        }
+        locationsSearch = SearchService.shared.search(namable: locations, searchText: searchText, type: LocationInfo.self)
         self.tableView.reloadData()
     }
 }

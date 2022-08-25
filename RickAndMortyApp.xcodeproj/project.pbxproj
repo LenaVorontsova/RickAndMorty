@@ -11,7 +11,6 @@
 		8400D32E28991DD700C35767 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D32D28991DD700C35767 /* AppDelegate.swift */; };
 		8400D33028991DD700C35767 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D32F28991DD700C35767 /* SceneDelegate.swift */; };
 		8400D33228991DD700C35767 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D33128991DD700C35767 /* MainViewController.swift */; };
-		8400D33528991DD700C35767 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8400D33328991DD700C35767 /* Main.storyboard */; };
 		8400D33728991DDA00C35767 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8400D33628991DDA00C35767 /* Assets.xcassets */; };
 		8400D33A28991DDA00C35767 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8400D33828991DDA00C35767 /* LaunchScreen.storyboard */; };
 		8400D34528992F7700C35767 /* CharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D34428992F7700C35767 /* CharacterViewController.swift */; };
@@ -21,9 +20,12 @@
 		8400D3562899629600C35767 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D3552899629600C35767 /* Character.swift */; };
 		8400D358289962A700C35767 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D357289962A700C35767 /* Location.swift */; };
 		8400D35A289962BC00C35767 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D359289962BC00C35767 /* Episode.swift */; };
-		8400D367289ADAD400C35767 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D366289ADAD400C35767 /* Service.swift */; };
+		8400D367289ADAD400C35767 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D366289ADAD400C35767 /* NetworkService.swift */; };
 		8400D3BC289E91BC00C35767 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D3BB289E91BC00C35767 /* LocationTableViewCell.swift */; };
 		8400D3BE289E9ACD00C35767 /* EpisodesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D3BD289E9ACD00C35767 /* EpisodesTableViewCell.swift */; };
+		84A0022E28B552D700A233F1 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A0022D28B552D700A233F1 /* SearchService.swift */; };
+		84A0023028B6423500A233F1 /* EndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A0022F28B6423500A233F1 /* EndPoints.swift */; };
+		84A0023328B64AC400A233F1 /* NetworkService+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A0023228B64AC400A233F1 /* NetworkService+extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,7 +34,6 @@
 		8400D32D28991DD700C35767 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8400D32F28991DD700C35767 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8400D33128991DD700C35767 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		8400D33428991DD700C35767 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8400D33628991DDA00C35767 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8400D33928991DDA00C35767 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8400D33B28991DDA00C35767 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -43,9 +44,13 @@
 		8400D3552899629600C35767 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		8400D357289962A700C35767 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		8400D359289962BC00C35767 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
-		8400D366289ADAD400C35767 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		8400D366289ADAD400C35767 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		8400D3BB289E91BC00C35767 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 		8400D3BD289E9ACD00C35767 /* EpisodesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesTableViewCell.swift; sourceTree = "<group>"; };
+		8497F9F128ACFBE600C5BCD2 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		84A0022D28B552D700A233F1 /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
+		84A0022F28B6423500A233F1 /* EndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoints.swift; sourceTree = "<group>"; };
+		84A0023228B64AC400A233F1 /* NetworkService+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService+extension.swift"; sourceTree = "<group>"; };
 		8E616BEA614F5CAD2D1CBA76 /* Pods_RickAndMortyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RickAndMortyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F59EC1BC5AFB5B1247883102 /* Pods-RickAndMortyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RickAndMortyApp.debug.xcconfig"; path = "Target Support Files/Pods-RickAndMortyApp/Pods-RickAndMortyApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,6 +78,7 @@
 		8400D32128991DD700C35767 = {
 			isa = PBXGroup;
 			children = (
+				8497F9F128ACFBE600C5BCD2 /* .swiftlint.yml */,
 				8400D32C28991DD700C35767 /* RickAndMortyApp */,
 				8400D32B28991DD700C35767 /* Products */,
 				CB60C1A6C2EF4564447BB26A /* Pods */,
@@ -91,13 +97,13 @@
 		8400D32C28991DD700C35767 /* RickAndMortyApp */ = {
 			isa = PBXGroup;
 			children = (
-				8400D3BF289EAE1E00C35767 /* Network */,
+				84A0023128B64A9700A233F1 /* Extensions */,
+				8400D3BF289EAE1E00C35767 /* Services */,
 				8400D3532899626F00C35767 /* Models */,
 				8400D34D28995F1000C35767 /* Cells */,
 				8400D3432899283200C35767 /* Controllers */,
 				8400D32D28991DD700C35767 /* AppDelegate.swift */,
 				8400D32F28991DD700C35767 /* SceneDelegate.swift */,
-				8400D33328991DD700C35767 /* Main.storyboard */,
 				8400D33628991DDA00C35767 /* Assets.xcassets */,
 				8400D33828991DDA00C35767 /* LaunchScreen.storyboard */,
 				8400D33B28991DDA00C35767 /* Info.plist */,
@@ -180,16 +186,26 @@
 				8400D3552899629600C35767 /* Character.swift */,
 				8400D357289962A700C35767 /* Location.swift */,
 				8400D359289962BC00C35767 /* Episode.swift */,
+				84A0022F28B6423500A233F1 /* EndPoints.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		8400D3BF289EAE1E00C35767 /* Network */ = {
+		8400D3BF289EAE1E00C35767 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				8400D366289ADAD400C35767 /* Service.swift */,
+				8400D366289ADAD400C35767 /* NetworkService.swift */,
+				84A0022D28B552D700A233F1 /* SearchService.swift */,
 			);
-			path = Network;
+			path = Services;
+			sourceTree = "<group>";
+		};
+		84A0023128B64A9700A233F1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				84A0023228B64AC400A233F1 /* NetworkService+extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		CB60C1A6C2EF4564447BB26A /* Pods */ = {
@@ -213,6 +229,7 @@
 				8400D32728991DD700C35767 /* Frameworks */,
 				8400D32828991DD700C35767 /* Resources */,
 				8FC72793EEA71A40C3E556E8 /* [CP] Embed Pods Frameworks */,
+				8497F9F028ACC90100C5BCD2 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -263,13 +280,29 @@
 			files = (
 				8400D33A28991DDA00C35767 /* LaunchScreen.storyboard in Resources */,
 				8400D33728991DDA00C35767 /* Assets.xcassets in Resources */,
-				8400D33528991DD700C35767 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		8497F9F028ACC90100C5BCD2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
 		8FC72793EEA71A40C3E556E8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -317,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8400D3BE289E9ACD00C35767 /* EpisodesTableViewCell.swift in Sources */,
+				84A0023028B6423500A233F1 /* EndPoints.swift in Sources */,
 				8400D34A28992FA300C35767 /* EpisodesViewController.swift in Sources */,
 				8400D34528992F7700C35767 /* CharacterViewController.swift in Sources */,
 				8400D33228991DD700C35767 /* MainViewController.swift in Sources */,
@@ -325,8 +359,10 @@
 				8400D358289962A700C35767 /* Location.swift in Sources */,
 				8400D32E28991DD700C35767 /* AppDelegate.swift in Sources */,
 				8400D33028991DD700C35767 /* SceneDelegate.swift in Sources */,
+				84A0022E28B552D700A233F1 /* SearchService.swift in Sources */,
 				8400D3BC289E91BC00C35767 /* LocationTableViewCell.swift in Sources */,
-				8400D367289ADAD400C35767 /* Service.swift in Sources */,
+				84A0023328B64AC400A233F1 /* NetworkService+extension.swift in Sources */,
+				8400D367289ADAD400C35767 /* NetworkService.swift in Sources */,
 				8400D35228995F7200C35767 /* CharactersTableViewCell.swift in Sources */,
 				8400D34C28992FB000C35767 /* LocationsViewController.swift in Sources */,
 			);
@@ -335,14 +371,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		8400D33328991DD700C35767 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8400D33428991DD700C35767 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		8400D33828991DDA00C35767 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -405,7 +433,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -460,7 +488,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -483,9 +511,9 @@
 				INFOPLIST_FILE = RickAndMortyApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -512,9 +540,9 @@
 				INFOPLIST_FILE = RickAndMortyApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
