@@ -77,7 +77,7 @@ final class MainViewController: UIViewController {
     
     @objc
     private func didTapLocationsButton() {
-        navigationController?.show(LocationsViewController(), sender: nil)
+        navigationController?.show(LocationBuilder.build(), sender: nil)
     }
     
     @objc
