@@ -72,7 +72,7 @@ final class MainViewController: UIViewController {
     
     @objc
     private func didTapCharactersButton() {
-        navigationController?.show(CharacterViewController(), sender: nil)
+        navigationController?.show(CharacterBuilder.build(), sender: nil)
     }
     
     @objc

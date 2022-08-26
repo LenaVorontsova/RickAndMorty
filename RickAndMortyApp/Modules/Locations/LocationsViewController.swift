@@ -10,15 +10,15 @@ import Alamofire
 import SnapKit
 
 protocol ILocationsViewController: AnyObject {
-    var locations: [LocationInfo] { get set }
-    var locationsSearch: [LocationInfo] { get set }
+//    var locations: [LocationInfo] { get set }
+//    var locationsSearch: [LocationInfo] { get set }
     func showAlert(message: String)
     func reloadTable()
 }
 
 final class LocationsViewController: UIViewController, ILocationsViewController {
-    var locations: [LocationInfo] = []
-    var locationsSearch: [LocationInfo] = []
+//    var locations: [LocationInfo] = []
+//    var locationsSearch: [LocationInfo] = []
     
     private var tableView: UITableView = {
         let table = UITableView()
@@ -109,7 +109,7 @@ extension LocationsViewController: UITableViewDataSource, UITableViewDelegate, U
     
     // SearchBar
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        presenter.locationsSearch = SearchService.shared.search(namable: locations, searchText: searchText, type: LocationInfo.self)
+        presenter.locationsSearch = SearchService.shared.search(namable: presenter.locations, searchText: searchText, type: LocationInfo.self)
         self.tableView.reloadData()
     }
 }
