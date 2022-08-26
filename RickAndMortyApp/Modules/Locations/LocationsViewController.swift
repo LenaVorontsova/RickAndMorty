@@ -97,13 +97,8 @@ extension LocationsViewController: UITableViewDataSource, UITableViewDelegate, U
             return UITableViewCell()
         }
         
-        cell.nameLabel.text = presenter.locationsSearch[indexPath.row].name
-        
-        if let typeText = presenter.locationsSearch[indexPath.row].type,
-           let dimensionText = presenter.locationsSearch[indexPath.row].dimension {
-            cell.typeLabel.text = "Type: " + typeText
-            cell.dimensionLabel.text = "Dimension: " + dimensionText
-        }
+        let cellModel = LocationTableViewCellFactory.cellModel(presenter.locationsSearch[indexPath.row])
+        cell.config(with: cellModel)
                     
         return cell
     }
