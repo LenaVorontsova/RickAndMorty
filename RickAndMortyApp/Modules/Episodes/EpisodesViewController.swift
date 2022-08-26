@@ -9,9 +9,16 @@ import UIKit
 import Alamofire
 import SnapKit
 
-final class EpisodesViewController: UIViewController {
-    fileprivate var episodes: [EpisodeInfo] = []
-    fileprivate var episodesSearch: [EpisodeInfo] = []
+protocol IEpisodesViewController: AnyObject {
+    var episodes: [EpisodeInfo] { get set }
+    var episodesSearch: [EpisodeInfo] { get set }
+    func showAlert(message: String)
+    func reloadTable()
+}
+
+final class EpisodesViewController: UIViewController, IEpisodesViewController {
+    var episodes: [EpisodeInfo] = []
+    var episodesSearch: [EpisodeInfo] = []
     
     private var tableView: UITableView = {
         let table = UITableView()
@@ -23,6 +30,17 @@ final class EpisodesViewController: UIViewController {
         return search
     }()
     
+    private let presenter: EpisodePresenting
+    
+    init(_ presenter: EpisodePresenting) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,24 +50,22 @@ final class EpisodesViewController: UIViewController {
         
         configureConstraints()
         
-        self.tableView.register(EpisodesTableViewCell.self, forCellReuseIdentifier: EpisodesTableViewCell.identifier)
+        presenter.getInfoEpisodes()
         
-        NetworkService.shared.getInfoEpisodes(endPoint: EndPoints.episode.rawValue) { [weak self] result in
-            switch result {
-            case .success(let serverData):
-                guard let self = self else { return }
-                self.episodes = serverData.results
-                self.episodesSearch = self.episodes
-                self.tableView.reloadData()
-            case .failure(let error):
-                let alert = UIAlertController(title: "Error", message: "\(error)", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                self?.present(alert, animated: true)
-            }
-        }
+        self.tableView.register(EpisodesTableViewCell.self, forCellReuseIdentifier: EpisodesTableViewCell.identifier)
         
         self.title = "Episodes"
         view.backgroundColor = UIColor(red: 200 / 255, green: 246 / 255, blue: 236 / 255, alpha: 1)
+    }
+    
+    func showAlert(message: String) {
+        let alert = UIAlertController(title: "Error", message: "\(message)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
+    func reloadTable() {
+        self.tableView.reloadData()
     }
     
     private func configureConstraints() {
@@ -72,7 +88,7 @@ final class EpisodesViewController: UIViewController {
 extension EpisodesViewController: UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     // TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return episodesSearch.count
+        return presenter.episodesSearch.count
     }
         
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -81,8 +97,8 @@ extension EpisodesViewController: UITableViewDataSource, UITableViewDelegate, UI
             return UITableViewCell()
         }
 
-        cell.nameLabel.text = episodesSearch[indexPath.row].name
-        if let airDateText = episodesSearch[indexPath.row].air_date {
+        cell.nameLabel.text = presenter.episodesSearch[indexPath.row].name
+        if let airDateText = presenter.episodesSearch[indexPath.row].air_date {
             cell.airDateLabel.text = "Air date: " + airDateText
         } else {
             cell.airDateLabel.text = "Air date: "
@@ -90,8 +106,8 @@ extension EpisodesViewController: UITableViewDataSource, UITableViewDelegate, UI
                     
         var season = ""
         var episode = ""
-        if let range = episodesSearch[indexPath.row].episode?.range(of: "E"),
-                let episodeText = episodesSearch[indexPath.row].episode {
+        if let range = presenter.episodesSearch[indexPath.row].episode?.range(of: "E"),
+           let episodeText = presenter.episodesSearch[indexPath.row].episode {
             season = String(episodeText[..<range.lowerBound])
             episode = String(episodeText[range.lowerBound...])
         } else {

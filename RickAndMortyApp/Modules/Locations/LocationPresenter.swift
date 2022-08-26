@@ -9,8 +9,8 @@ import UIKit
 import Alamofire
 
 protocol LocationPresenting: AnyObject {
-    var locations: [LocationInfo] {get set}
-    var locationsSearch: [LocationInfo] {get set}
+    var locations: [LocationInfo] { get set }
+    var locationsSearch: [LocationInfo] { get set }
     func getInfoLocation()
 }
 

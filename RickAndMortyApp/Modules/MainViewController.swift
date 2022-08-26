@@ -82,7 +82,7 @@ final class MainViewController: UIViewController {
     
     @objc
     private func didTapEpisodesButton() {
-        navigationController?.show(EpisodesViewController(), sender: nil)
+        navigationController?.show(EpisodeBuilder.build(), sender: nil)
     }
     
     private func configureConstraints() {
