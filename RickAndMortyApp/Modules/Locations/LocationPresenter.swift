@@ -12,6 +12,7 @@ protocol LocationPresenting: AnyObject {
     var locations: [LocationInfo] { get set }
     var locationsSearch: [LocationInfo] { get set }
     func getInfoLocation()
+    func searchLocation(searchText: String)
 }
 
 final class LocationPresenter: LocationPresenting {
@@ -31,5 +32,12 @@ final class LocationPresenter: LocationPresenting {
                 self?.controller?.showAlert(message: error.localizedDescription)
             }
         }
+    }
+    
+    func searchLocation(searchText: String) {
+        locationsSearch = SearchService.shared.search(namable: locations,
+                                                      searchText: searchText,
+                                                      type: LocationInfo.self)
+        controller?.reloadTable()
     }
 }

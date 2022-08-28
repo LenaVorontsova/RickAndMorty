@@ -104,7 +104,6 @@ extension LocationsViewController: UITableViewDataSource, UITableViewDelegate, U
     
     // SearchBar
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        presenter.locationsSearch = SearchService.shared.search(namable: presenter.locations, searchText: searchText, type: LocationInfo.self)
-        self.tableView.reloadData()
+        presenter.searchLocation(searchText: searchText)
     }
 }
