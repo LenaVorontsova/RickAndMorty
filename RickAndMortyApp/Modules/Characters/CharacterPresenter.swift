@@ -12,6 +12,7 @@ protocol CharacterPresenting: AnyObject {
     var characters: [Character] { get set }
     var charactersSearch: [Character] { get set }
     func getInfoCharacter()
+    func searchCharacter(searchText: String)
 }
 
 final class CharacterPresenter: CharacterPresenting {
@@ -31,5 +32,12 @@ final class CharacterPresenter: CharacterPresenting {
                 self?.controller?.showAlert(message: error.localizedDescription)
             }
         }
+    }
+    
+    func searchCharacter(searchText: String) {
+        charactersSearch = SearchService.shared.search(namable: characters,
+                                                       searchText: searchText,
+                                                       type: Character.self)
+        controller?.reloadTable()
     }
 }
