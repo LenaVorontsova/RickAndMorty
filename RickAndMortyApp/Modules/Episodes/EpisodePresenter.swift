@@ -12,6 +12,7 @@ protocol EpisodePresenting: AnyObject {
     var episodes: [EpisodeInfo] { get set }
     var episodesSearch: [EpisodeInfo] { get set }
     func getInfoEpisodes()
+    func searchEpisode(searchText: String)
 }
 
 final class EpisodePresenter: EpisodePresenting {
@@ -31,5 +32,12 @@ final class EpisodePresenter: EpisodePresenting {
                 self?.controller?.showAlert(message: error.localizedDescription)
             }
         }
+    }
+    
+    func searchEpisode(searchText: String) {
+        episodesSearch = SearchService.shared.search(namable: episodes,
+                                                     searchText: searchText,
+                                                     type: EpisodeInfo.self)
+        controller?.reloadTable()
     }
 }

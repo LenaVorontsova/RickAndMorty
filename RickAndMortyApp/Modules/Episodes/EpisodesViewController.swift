@@ -10,16 +10,11 @@ import Alamofire
 import SnapKit
 
 protocol IEpisodesViewController: AnyObject {
-//    var episodes: [EpisodeInfo] { get set }
-//    var episodesSearch: [EpisodeInfo] { get set }
     func showAlert(message: String)
     func reloadTable()
 }
 
 final class EpisodesViewController: UIViewController, IEpisodesViewController {
-//    var episodes: [EpisodeInfo] = []
-//    var episodesSearch: [EpisodeInfo] = []
-    
     private var tableView: UITableView = {
         let table = UITableView()
         return table
@@ -108,7 +103,6 @@ extension EpisodesViewController: UITableViewDataSource, UITableViewDelegate, UI
     
     // SearchBar
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        presenter.episodesSearch = SearchService.shared.search(namable: presenter.episodes, searchText: searchText, type: EpisodeInfo.self)
-        self.tableView.reloadData()
+        presenter.searchEpisode(searchText: searchText)
     }
 }
