@@ -8,6 +8,22 @@
 import UIKit
 import SnapKit
 
+struct CharactersTableViewCellModel {
+    let name: String?
+    let gender: String?
+    let species: String?
+    let location: String?
+}
+
+enum CharactersTableViewCellFactory {
+    static func cellModel(_ inf: Character) -> CharactersTableViewCellModel {
+        CharactersTableViewCellModel(name: "Name: " + (inf.name ?? ""),
+                                     gender: "Gender: " + (inf.gender ?? ""),
+                                     species: "Location: " + (inf.species ?? ""),
+                                     location: "Species: " + (inf.location?.name ?? ""))
+    }
+}
+
 enum ConstantsCharactersCell {
     static let sizeAvatar = 103
     static let topAvatar = 10
@@ -61,6 +77,13 @@ final class CharactersTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func config(with model: CharactersTableViewCellModel) {
+        nameLabel.text = model.name
+        genderLabel.text = model.gender
+        speciesLabel.text = model.species
+        locationLabel.text = model.location
     }
     
     private func configureConstraints() {

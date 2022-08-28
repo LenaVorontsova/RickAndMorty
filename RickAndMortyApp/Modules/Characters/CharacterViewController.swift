@@ -104,21 +104,8 @@ extension CharacterViewController: UITableViewDataSource, UITableViewDelegate, U
                     cell.avatarView.image = UIImage(systemName: "person.circle.fill")
                 }
             
-        if let nameText = presenter.charactersSearch[indexPath.row].name,
-           let genderText = presenter.charactersSearch[indexPath.row].gender,
-           let speciesText = presenter.charactersSearch[indexPath.row].species,
-           let locationText = presenter.charactersSearch[indexPath.row].location,
-           let locationNameText = locationText.name {
-                cell.nameLabel.text = "Name: " + nameText
-                cell.genderLabel.text = "Gender: " + genderText
-                cell.locationLabel.text = "Location: " + locationNameText
-                cell.speciesLabel.text = "Species: " + speciesText
-        } else {
-            cell.nameLabel.text = "Name: "
-            cell.genderLabel.text = "Gender: "
-            cell.locationLabel.text = "Location: "
-            cell.speciesLabel.text = "Species: "
-        }
+        let cellModel = CharactersTableViewCellFactory.cellModel(presenter.charactersSearch[indexPath.row])
+        cell.config(with: cellModel)
             
         return cell
     }
