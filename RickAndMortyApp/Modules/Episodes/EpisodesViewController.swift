@@ -97,26 +97,8 @@ extension EpisodesViewController: UITableViewDataSource, UITableViewDelegate, UI
             return UITableViewCell()
         }
 
-        cell.nameLabel.text = presenter.episodesSearch[indexPath.row].name
-        if let airDateText = presenter.episodesSearch[indexPath.row].air_date {
-            cell.airDateLabel.text = "Air date: " + airDateText
-        } else {
-            cell.airDateLabel.text = "Air date: "
-        }
-                    
-        var season = ""
-        var episode = ""
-        if let range = presenter.episodesSearch[indexPath.row].episode?.range(of: "E"),
-           let episodeText = presenter.episodesSearch[indexPath.row].episode {
-            season = String(episodeText[..<range.lowerBound])
-            episode = String(episodeText[range.lowerBound...])
-        } else {
-            season = "number"
-            episode = "number"
-        }
-        cell.seasonLabel.text = "Season: " + season
-        cell.episodeLabel.text = "Episode: " + episode
-                    
+        let cellModel = EpisodesTableViewCellFactory.cellModel(presenter.episodesSearch[indexPath.row])
+        cell.config(with: cellModel)
         return cell
     }
     

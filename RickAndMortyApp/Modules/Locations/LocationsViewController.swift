@@ -10,16 +10,11 @@ import Alamofire
 import SnapKit
 
 protocol ILocationsViewController: AnyObject {
-//    var locations: [LocationInfo] { get set }
-//    var locationsSearch: [LocationInfo] { get set }
     func showAlert(message: String)
     func reloadTable()
 }
 
 final class LocationsViewController: UIViewController, ILocationsViewController {
-//    var locations: [LocationInfo] = []
-//    var locationsSearch: [LocationInfo] = []
-    
     private var tableView: UITableView = {
         let table = UITableView()
         return table
