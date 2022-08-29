@@ -9,16 +9,11 @@ import UIKit
 import Alamofire
 
 protocol ICharacterViewController: AnyObject {
-//    var characters: [Character] { get set }
-//    var charactersSearch: [Character] { get set }
     func showAlert(message: String)
     func reloadTable()
 }
 
 final class CharacterViewController: UIViewController, ICharacterViewController {
-//    var characters: [Character] = []
-//    var charactersSearch: [Character] = []
-    
     private var tableView: UITableView = {
         let table = UITableView()
         return table

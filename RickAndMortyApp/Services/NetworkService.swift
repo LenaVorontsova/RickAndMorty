@@ -17,7 +17,6 @@ final class NetworkService {
         self.baseURL = baseURL
     }
     
-    // get all info about character
     func getInfoCharacters(endPoint: String, completion: @escaping (Result<Response<[Character]>, AFError>) -> Void) {
         AF.request(
             self.baseURL + endPoint,
