@@ -18,7 +18,7 @@ protocol EpisodePresenting: AnyObject {
 final class EpisodePresenter: EpisodePresenting {
     var episodes: [EpisodeInfo] = []
     var episodesSearch: [EpisodeInfo] = []
-    weak var controller: (UIViewController & IEpisodesViewController)?
+    weak var controller: (UIViewController & IViewControllers)?
     
     func getInfoEpisodes() {
         NetworkService.shared.getInfoEpisodes(endPoint: EndPoints.episode.rawValue) { [weak self] result in

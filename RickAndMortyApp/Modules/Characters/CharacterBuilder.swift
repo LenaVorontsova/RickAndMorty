@@ -8,7 +8,7 @@
 import UIKit
 
 enum CharacterBuilder {
-    static func build() -> (UIViewController & ICharacterViewController) {
+    static func build() -> (UIViewController & IViewControllers) {
         let presenter = CharacterPresenter()
         let vc = CharacterViewController(presenter)
         presenter.controller = vc

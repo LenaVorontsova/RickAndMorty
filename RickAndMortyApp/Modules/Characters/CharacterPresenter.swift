@@ -18,7 +18,7 @@ protocol CharacterPresenting: AnyObject {
 final class CharacterPresenter: CharacterPresenting {
     var characters: [Character] = []
     var charactersSearch: [Character] = []
-    weak var controller: (UIViewController & ICharacterViewController)?
+    weak var controller: (UIViewController & IViewControllers)?
     
     func getInfoCharacter() {
         NetworkService.shared.getInfoCharacters(endPoint: EndPoints.character.rawValue) { [weak self] result in

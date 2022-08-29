@@ -8,7 +8,7 @@
 import UIKit
 
 enum EpisodeBuilder {
-    static func build() -> (UIViewController & IEpisodesViewController) {
+    static func build() -> (UIViewController & IViewControllers) {
         let presenter = EpisodePresenter()
         let vc = EpisodesViewController(presenter)
         presenter.controller = vc

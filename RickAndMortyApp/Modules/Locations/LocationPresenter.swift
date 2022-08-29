@@ -18,7 +18,7 @@ protocol LocationPresenting: AnyObject {
 final class LocationPresenter: LocationPresenting {
     var locations: [LocationInfo] = []
     var locationsSearch: [LocationInfo] = []
-    weak var controller: (UIViewController & ILocationsViewController)?
+    weak var controller: (UIViewController & IViewControllers)?
     
     func getInfoLocation() {
         NetworkService.shared.getInfoLocations(endPoint: EndPoints.location.rawValue) { [weak self] result in

@@ -8,7 +8,7 @@
 import UIKit
 
 enum LocationBuilder {
-    static func build() -> (UIViewController & ILocationsViewController) {
+    static func build() -> (UIViewController & IViewControllers) {
         let presenter = LocationPresenter()
         let vc = LocationsViewController(presenter)
         presenter.controller = vc

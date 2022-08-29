@@ -9,12 +9,7 @@ import UIKit
 import Alamofire
 import SnapKit
 
-protocol ILocationsViewController: AnyObject {
-    func showAlert(message: String)
-    func reloadTable()
-}
-
-final class LocationsViewController: UIViewController, ILocationsViewController {
+final class LocationsViewController: UIViewController, IViewControllers {
     private var tableView: UITableView = {
         let table = UITableView()
         return table
