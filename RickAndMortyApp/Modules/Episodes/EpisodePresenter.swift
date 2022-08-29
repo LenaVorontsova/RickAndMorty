@@ -29,8 +29,7 @@ final class EpisodePresenter: EpisodePresenting {
                 self.episodesSearch = self.episodes
                 self.controller?.reloadTable()
             case .failure(let error):
-                self?.controller?.showAlert(message: error.localizedDescription)
-            }
+                self?.controller?.showAlert(message: error.localizedDescription)            }
         }
     }
     

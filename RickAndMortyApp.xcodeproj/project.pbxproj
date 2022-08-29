@@ -32,6 +32,7 @@
 		84A0023B28B90E9000A233F1 /* EpisodeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A0023A28B90E9000A233F1 /* EpisodeBuilder.swift */; };
 		84A0023D28B9103300A233F1 /* CharacterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A0023C28B9103300A233F1 /* CharacterPresenter.swift */; };
 		84A0023F28B9104400A233F1 /* CharacterBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A0023E28B9104400A233F1 /* CharacterBuilder.swift */; };
+		84A0024128BCC74000A233F1 /* UIViewController+showAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A0024028BCC74000A233F1 /* UIViewController+showAlert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		84A0023A28B90E9000A233F1 /* EpisodeBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeBuilder.swift; sourceTree = "<group>"; };
 		84A0023C28B9103300A233F1 /* CharacterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterPresenter.swift; sourceTree = "<group>"; };
 		84A0023E28B9104400A233F1 /* CharacterBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterBuilder.swift; sourceTree = "<group>"; };
+		84A0024028BCC74000A233F1 /* UIViewController+showAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+showAlert.swift"; sourceTree = "<group>"; };
 		8E616BEA614F5CAD2D1CBA76 /* Pods_RickAndMortyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RickAndMortyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F59EC1BC5AFB5B1247883102 /* Pods-RickAndMortyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RickAndMortyApp.debug.xcconfig"; path = "Target Support Files/Pods-RickAndMortyApp/Pods-RickAndMortyApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -222,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				84A0023228B64AC400A233F1 /* NetworkService+extension.swift */,
+				84A0024028BCC74000A233F1 /* UIViewController+showAlert.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8400D3BE289E9ACD00C35767 /* EpisodesTableViewCell.swift in Sources */,
+				84A0024128BCC74000A233F1 /* UIViewController+showAlert.swift in Sources */,
 				84A0023F28B9104400A233F1 /* CharacterBuilder.swift in Sources */,
 				84A0023028B6423500A233F1 /* EndPoints.swift in Sources */,
 				8400D34A28992FA300C35767 /* EpisodesViewController.swift in Sources */,

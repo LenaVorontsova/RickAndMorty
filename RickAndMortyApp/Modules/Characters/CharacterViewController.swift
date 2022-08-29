@@ -52,12 +52,6 @@ final class CharacterViewController: UIViewController, ICharacterViewController 
         view.backgroundColor = UIColor(red: 200 / 255, green: 246 / 255, blue: 236 / 255, alpha: 1)
     }
     
-    func showAlert(message: String) {
-        let alert = UIAlertController(title: "Error", message: "\(message)", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        self.present(alert, animated: true)
-    }
-    
     func reloadTable() {
         self.tableView.reloadData()
     }
