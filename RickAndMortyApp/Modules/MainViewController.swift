@@ -72,17 +72,17 @@ final class MainViewController: UIViewController {
     
     @objc
     private func didTapCharactersButton() {
-        navigationController?.show(CharacterViewController(), sender: nil)
+        navigationController?.show(CharacterBuilder.build(), sender: nil)
     }
     
     @objc
     private func didTapLocationsButton() {
-        navigationController?.show(LocationsViewController(), sender: nil)
+        navigationController?.show(LocationBuilder.build(), sender: nil)
     }
     
     @objc
     private func didTapEpisodesButton() {
-        navigationController?.show(EpisodesViewController(), sender: nil)
+        navigationController?.show(EpisodeBuilder.build(), sender: nil)
     }
     
     private func configureConstraints() {

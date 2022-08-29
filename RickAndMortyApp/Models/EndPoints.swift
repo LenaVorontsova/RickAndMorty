@@ -8,7 +8,7 @@
 import Foundation
 
 enum EndPoints: String {
-    case character = "character"
-    case location = "location"
-    case episode = "episode"
+    case character
+    case location
+    case episode
 }

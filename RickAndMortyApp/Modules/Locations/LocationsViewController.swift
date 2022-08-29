@@ -9,10 +9,12 @@ import UIKit
 import Alamofire
 import SnapKit
 
-final class LocationsViewController: UIViewController {
-    fileprivate var locations: [LocationInfo] = []
-    fileprivate var locationsSearch: [LocationInfo] = []
-    
+protocol ILocationsViewController: AnyObject {
+    func showAlert(message: String)
+    func reloadTable()
+}
+
+final class LocationsViewController: UIViewController, ILocationsViewController {
     private var tableView: UITableView = {
         let table = UITableView()
         return table
@@ -23,6 +25,17 @@ final class LocationsViewController: UIViewController {
         return search
     }()
     
+    private let presenter: LocationPresenting
+    
+    init(_ presenter: LocationPresenting) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,26 +45,18 @@ final class LocationsViewController: UIViewController {
         
         configureConstraints()
         
-        self.tableView.register(LocationTableViewCell.self, forCellReuseIdentifier: LocationTableViewCell.identifier)
+        presenter.getInfoLocation()
         
-        NetworkService.shared.getInfoLocations(endPoint: EndPoints.location.rawValue) { [weak self] result in
-            switch result {
-            case .success(let serverData):
-                guard let self = self else { return }
-                self.locations = serverData.results
-                self.locationsSearch = self.locations
-                self.tableView.reloadData()
-            case .failure(let error):
-                let alert = UIAlertController(title: "Error", message: "\(error)", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                self?.present(alert, animated: true)
-            }
-        }
+        self.tableView.register(LocationTableViewCell.self, forCellReuseIdentifier: LocationTableViewCell.identifier)
         
         self.title = "Locations"
         view.backgroundColor = UIColor(red: 200 / 255, green: 246 / 255, blue: 236 / 255, alpha: 1)
     }
     
+    func reloadTable() {
+        self.tableView.reloadData()
+    }
+
     private func configureConstraints() {
         view.addSubview(searchBar)
         view.addSubview(tableView)
@@ -72,7 +77,7 @@ final class LocationsViewController: UIViewController {
 extension LocationsViewController: UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     // TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return locationsSearch.count
+        return presenter.locationsSearch.count
     }
         
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -81,13 +86,8 @@ extension LocationsViewController: UITableViewDataSource, UITableViewDelegate, U
             return UITableViewCell()
         }
         
-        cell.nameLabel.text = locationsSearch[indexPath.row].name
-        
-        if let typeText = locationsSearch[indexPath.row].type,
-           let dimensionText = locationsSearch[indexPath.row].dimension {
-            cell.typeLabel.text = "Type: " + typeText
-            cell.dimensionLabel.text = "Dimension: " + dimensionText
-        }
+        let cellModel = LocationTableViewCellFactory.cellModel(presenter.locationsSearch[indexPath.row])
+        cell.config(with: cellModel)
                     
         return cell
     }
@@ -98,7 +98,6 @@ extension LocationsViewController: UITableViewDataSource, UITableViewDelegate, U
     
     // SearchBar
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        locationsSearch = SearchService.shared.search(namable: locations, searchText: searchText, type: LocationInfo.self)
-        self.tableView.reloadData()
+        presenter.searchLocation(searchText: searchText)
     }
 }

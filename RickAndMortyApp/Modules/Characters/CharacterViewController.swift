@@ -8,10 +8,12 @@
 import UIKit
 import Alamofire
 
-final class CharacterViewController: UIViewController {
-    fileprivate var characters: [Character] = []
-    fileprivate var charactersSearch: [Character] = []
-    
+protocol ICharacterViewController: AnyObject {
+    func showAlert(message: String)
+    func reloadTable()
+}
+
+final class CharacterViewController: UIViewController, ICharacterViewController {
     private var tableView: UITableView = {
         let table = UITableView()
         return table
@@ -22,6 +24,17 @@ final class CharacterViewController: UIViewController {
         return search
     }()
     
+    private let presenter: CharacterPresenting
+    
+    init(_ presenter: CharacterPresenting) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,24 +44,16 @@ final class CharacterViewController: UIViewController {
         
         configureConstraints()
         
-        self.tableView.register(CharactersTableViewCell.self, forCellReuseIdentifier: CharactersTableViewCell.identifier)
+        presenter.getInfoCharacter()
         
-        NetworkService.shared.getInfoCharacters(endPoint: EndPoints.character.rawValue) { [weak self] result in
-            switch result {
-            case .success(let serverData):
-                guard let self = self else { return }
-                self.characters = serverData.results
-                self.charactersSearch = self.characters
-                self.tableView.reloadData()
-            case .failure(let error):
-                let alert = UIAlertController(title: "Error", message: "\(error)", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                self?.present(alert, animated: true)
-            }
-        }
+        self.tableView.register(CharactersTableViewCell.self, forCellReuseIdentifier: CharactersTableViewCell.identifier)
         
         self.title = "Characters"
         view.backgroundColor = UIColor(red: 200 / 255, green: 246 / 255, blue: 236 / 255, alpha: 1)
+    }
+    
+    func reloadTable() {
+        self.tableView.reloadData()
     }
     
     private func configureConstraints() {
@@ -71,7 +76,7 @@ final class CharacterViewController: UIViewController {
 extension CharacterViewController: UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     // TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return charactersSearch.count
+        return presenter.charactersSearch.count
     }
         
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -80,7 +85,7 @@ extension CharacterViewController: UITableViewDataSource, UITableViewDelegate, U
             return UITableViewCell()
         }
 
-        if let urlString = charactersSearch[indexPath.row].image,
+        if let urlString = presenter.charactersSearch[indexPath.row].image,
                    let url = URL(string: urlString),
                    let data = try? Data(contentsOf: url) {
                     cell.avatarView.image = UIImage(data: data)
@@ -88,21 +93,8 @@ extension CharacterViewController: UITableViewDataSource, UITableViewDelegate, U
                     cell.avatarView.image = UIImage(systemName: "person.circle.fill")
                 }
             
-        if let nameText = charactersSearch[indexPath.row].name,
-           let genderText = charactersSearch[indexPath.row].gender,
-           let speciesText = charactersSearch[indexPath.row].species,
-           let locationText = charactersSearch[indexPath.row].location,
-           let locationNameText = locationText.name {
-                cell.nameLabel.text = "Name: " + nameText
-                cell.genderLabel.text = "Gender: " + genderText
-                cell.locationLabel.text = "Location: " + locationNameText
-                cell.speciesLabel.text = "Species: " + speciesText
-        } else {
-            cell.nameLabel.text = "Name: "
-            cell.genderLabel.text = "Gender: "
-            cell.locationLabel.text = "Location: "
-            cell.speciesLabel.text = "Species: "
-        }
+        let cellModel = CharactersTableViewCellFactory.cellModel(presenter.charactersSearch[indexPath.row])
+        cell.config(with: cellModel)
             
         return cell
     }
@@ -113,7 +105,6 @@ extension CharacterViewController: UITableViewDataSource, UITableViewDelegate, U
     
     // SearchBar
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        charactersSearch = SearchService.shared.search(namable: characters, searchText: searchText, type: Character.self)
-        self.tableView.reloadData()
+        presenter.searchCharacter(searchText: searchText)
     }
 }

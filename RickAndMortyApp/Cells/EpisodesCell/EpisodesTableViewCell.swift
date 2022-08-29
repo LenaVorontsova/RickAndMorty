@@ -8,6 +8,32 @@
 import UIKit
 import SnapKit
 
+struct EpisodesTableViewCellModel {
+    let name: String?
+    let airDate: String?
+    let season: String?
+    let episode: String?
+}
+
+enum EpisodesTableViewCellFactory {
+    static func cellModel(_ inf: EpisodeInfo) -> EpisodesTableViewCellModel {
+        var season = ""
+        var episode = ""
+        if let range = inf.episode?.range(of: "E"),
+           let episodeText = inf.episode {
+            season = String(episodeText[..<range.lowerBound])
+            episode = String(episodeText[range.lowerBound...])
+        } else {
+            season = "number"
+            episode = "number"
+        }
+        return EpisodesTableViewCellModel(name: inf.name,
+                                          airDate: "Air date: " + (inf.air_date ?? ""),
+                                          season: "Season: " + season,
+                                          episode: "Episode: " + episode)
+    }
+}
+
 enum ConstantsEpisodesCell {
     static let leadLabels = 20
     static let trailLabels = -20
@@ -47,6 +73,13 @@ final class EpisodesTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func config(with model: EpisodesTableViewCellModel) {
+        nameLabel.text = model.name
+        airDateLabel.text = model.airDate
+        seasonLabel.text = model.season
+        episodeLabel.text = model.episode
     }
     
     private func configureConstraints() {
