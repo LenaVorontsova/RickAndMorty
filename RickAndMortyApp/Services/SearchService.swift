@@ -12,8 +12,8 @@ protocol Namable {
 }
 
 final class SearchService {
-    static let shared = SearchService()
-    private init() {}
+//    static let shared = SearchService()
+//    private init() {}
     
     func search<T>(namable: [Namable], searchText: String, type: T.Type) -> [T] where T: Namable {
         var emptyArray: [Namable] = []

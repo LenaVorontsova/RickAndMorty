@@ -19,6 +19,9 @@ enum Constants {
 }
 
 final class MainViewController: UIViewController {
+    let network: NetworkService
+    let search: SearchService
+    
     private var imageView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "rickAndMortyPreview")
@@ -56,6 +59,16 @@ final class MainViewController: UIViewController {
         return button
     }()
     
+    init(with network: NetworkService, search: SearchService) {
+        self.network = network
+        self.search = search
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -72,17 +85,17 @@ final class MainViewController: UIViewController {
     
     @objc
     private func didTapCharactersButton() {
-        navigationController?.show(CharacterBuilder.build(), sender: nil)
+        navigationController?.show(CharacterBuilder.build(network: network, search: search), sender: nil)
     }
     
     @objc
     private func didTapLocationsButton() {
-        navigationController?.show(LocationBuilder.build(), sender: nil)
+        navigationController?.show(LocationBuilder.build(network: network, search: search), sender: nil)
     }
     
     @objc
     private func didTapEpisodesButton() {
-        navigationController?.show(EpisodeBuilder.build(), sender: nil)
+        navigationController?.show(EpisodeBuilder.build(network: network, search: search), sender: nil)
     }
     
     private func configureConstraints() {

@@ -19,9 +19,16 @@ final class CharacterPresenter: CharacterPresenting {
     var characters: [Character] = []
     var charactersSearch: [Character] = []
     weak var controller: (UIViewController & IViewControllers)?
+    let network: NetworkService
+    let search: SearchService
+    
+    init(with network: NetworkService, search: SearchService) {
+        self.network = network
+        self.search = search
+    }
     
     func getInfoCharacter() {
-        NetworkService.shared.getInfoCharacters(endPoint: EndPoints.character.rawValue) { [weak self] result in
+        network.getInfoCharacters(endPoint: EndPoints.character.rawValue) { [weak self] result in
             switch result {
             case .success(let serverData):
                 guard let self = self else { return }
@@ -35,9 +42,9 @@ final class CharacterPresenter: CharacterPresenting {
     }
     
     func searchCharacter(searchText: String) {
-        charactersSearch = SearchService.shared.search(namable: characters,
-                                                       searchText: searchText,
-                                                       type: Character.self)
+        charactersSearch = search.search(namable: characters,
+                                         searchText: searchText,
+                                         type: Character.self)
         controller?.reloadTable()
     }
 }

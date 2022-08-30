@@ -9,13 +9,13 @@ import Foundation
 import Alamofire
 
 final class NetworkService {
-    var baseURL = ""
+    var baseURL = "https://rickandmortyapi.com/api/"
     
-    static let shared = NetworkService(baseURL: "https://rickandmortyapi.com/api/")
-    
-    private init(baseURL: String) {
-        self.baseURL = baseURL
-    }
+//    static let shared = NetworkService(baseURL: "https://rickandmortyapi.com/api/")
+//
+//    private init(baseURL: String) {
+//        self.baseURL = baseURL
+//    }
     
     func getInfoCharacters(endPoint: String, completion: @escaping (Result<Response<[Character]>, AFError>) -> Void) {
         AF.request(
