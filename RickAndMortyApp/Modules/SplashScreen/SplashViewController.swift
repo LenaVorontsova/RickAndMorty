@@ -18,6 +18,12 @@ final class SplashViewController: UIViewController {
         return image
     }()
     
+    private var tabBarVC: UITabBarController = {
+        let tabBar = UITabBarController()
+    
+        return tabBar
+    }()
+    
     init(with network: NetworkService, search: SearchService) {
         self.network = network
         self.search = search
@@ -35,7 +41,32 @@ final class SplashViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        navigationController?.show(CharacterBuilder.build(network: network, search: search), sender: nil)
+        let  characterVC = UINavigationController(rootViewController: CharacterBuilder.build(network: network,
+                                                                                             search: search))
+        let locationVC = UINavigationController(rootViewController: LocationBuilder.build(network: network,
+                                                                                          search: search))
+        let episodeVC = UINavigationController(rootViewController: EpisodeBuilder.build(network: network,
+                                                                                        search: search))
+        
+        characterVC.title = "Characters"
+        locationVC.title = "Locations"
+        episodeVC.title = "Episodes"
+        
+        tabBarVC.setViewControllers([characterVC, locationVC, episodeVC], animated: false)
+        
+        guard let items = tabBarVC.tabBar.items else {
+            return
+        }
+        
+        let imagesNames = ["person.3", "location.magnifyingglass", "play.rectangle"]
+        
+        for i in 0..<items.count {
+            items[i].image = UIImage(systemName: imagesNames[i])
+        }
+        
+        tabBarVC.modalPresentationStyle = .fullScreen
+        
+        present(tabBarVC, animated: false)
     }
     
     private func configureConstraints() {
