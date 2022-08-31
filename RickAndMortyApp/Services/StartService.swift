@@ -18,8 +18,10 @@ final class StartService {
     func configureWindow() {
         let network = NetworkService()
         let search = SearchService()
-        window!.rootViewController = UINavigationController(rootViewController: MainViewController(with: network,
-                                                                                                   search: search))
+        if let win = window {
+            win.rootViewController = UINavigationController(rootViewController: MainViewController(with: network,
+                                                                                            search: search))
+        }
         window!.makeKeyAndVisible()
     }
 }
