@@ -21,7 +21,7 @@ final class StartService {
         if let win = window {
             win.rootViewController = UINavigationController(rootViewController: MainViewController(with: network,
                                                                                             search: search))
+            win.makeKeyAndVisible()
         }
-        window!.makeKeyAndVisible()
     }
 }
