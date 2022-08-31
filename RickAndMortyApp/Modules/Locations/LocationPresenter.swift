@@ -18,10 +18,17 @@ protocol LocationPresenting: AnyObject {
 final class LocationPresenter: LocationPresenting {
     var locations: [LocationInfo] = []
     var locationsSearch: [LocationInfo] = []
-    weak var controller: (UIViewController & ILocationsViewController)?
+    weak var controller: (UIViewController & IViewControllers)?
+    let network: NetworkService
+    let search: SearchService
+    
+    init(network: NetworkService, search: SearchService) {
+        self.network = network
+        self.search = search
+    }
     
     func getInfoLocation() {
-        NetworkService.shared.getInfoLocations(endPoint: EndPoints.location.rawValue) { [weak self] result in
+        network.getInfoLocations(endPoint: EndPoints.location.rawValue) { [weak self] result in
             switch result {
             case .success(let serverData):
             guard let self = self else { return }
@@ -35,9 +42,9 @@ final class LocationPresenter: LocationPresenting {
     }
     
     func searchLocation(searchText: String) {
-        locationsSearch = SearchService.shared.search(namable: locations,
-                                                      searchText: searchText,
-                                                      type: LocationInfo.self)
+        locationsSearch = search.search(namable: locations,
+                                        searchText: searchText,
+                                        type: LocationInfo.self)
         controller?.reloadTable()
     }
 }

@@ -9,11 +9,7 @@ import UIKit
 import Alamofire
 import SnapKit
 
-protocol IEpisodesViewController: AnyObject {
-    func reloadTable()
-}
-
-final class EpisodesViewController: UIViewController, IEpisodesViewController {
+final class EpisodesViewController: UIViewController, IViewControllers {
     private var tableView: UITableView = {
         let table = UITableView()
         return table

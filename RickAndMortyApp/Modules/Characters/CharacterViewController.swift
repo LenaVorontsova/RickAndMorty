@@ -8,12 +8,7 @@
 import UIKit
 import Alamofire
 
-protocol ICharacterViewController: AnyObject {
-    func showAlert(message: String)
-    func reloadTable()
-}
-
-final class CharacterViewController: UIViewController, ICharacterViewController {
+final class CharacterViewController: UIViewController, IViewControllers {
     private var tableView: UITableView = {
         let table = UITableView()
         return table
