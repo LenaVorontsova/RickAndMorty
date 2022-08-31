@@ -19,8 +19,8 @@ final class StartService {
         let network = NetworkService()
         let search = SearchService()
         if let win = window {
-            win.rootViewController = UINavigationController(rootViewController: MainViewController(with: network,
-                                                                                            search: search))
+            win.rootViewController = UINavigationController(
+                rootViewController: SplashViewController(with: network, search: search))
             win.makeKeyAndVisible()
         }
     }
