@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		28A611332C5443C9E9F8AACF /* Pods_RickAndMortyApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E616BEA614F5CAD2D1CBA76 /* Pods_RickAndMortyApp.framework */; };
 		8400D32E28991DD700C35767 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D32D28991DD700C35767 /* AppDelegate.swift */; };
-		8400D33028991DD700C35767 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D32F28991DD700C35767 /* SceneDelegate.swift */; };
 		8400D33228991DD700C35767 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D33128991DD700C35767 /* MainViewController.swift */; };
 		8400D33728991DDA00C35767 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8400D33628991DDA00C35767 /* Assets.xcassets */; };
 		8400D33A28991DDA00C35767 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8400D33828991DDA00C35767 /* LaunchScreen.storyboard */; };
@@ -41,7 +40,6 @@
 		1DD5A2A4CFF94EFEEEC52C61 /* Pods-RickAndMortyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RickAndMortyApp.release.xcconfig"; path = "Target Support Files/Pods-RickAndMortyApp/Pods-RickAndMortyApp.release.xcconfig"; sourceTree = "<group>"; };
 		8400D32A28991DD700C35767 /* RickAndMortyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMortyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8400D32D28991DD700C35767 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8400D32F28991DD700C35767 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8400D33128991DD700C35767 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		8400D33628991DDA00C35767 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8400D33928991DDA00C35767 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -121,7 +119,6 @@
 				8400D34D28995F1000C35767 /* Cells */,
 				8400D3432899283200C35767 /* Modules */,
 				8400D32D28991DD700C35767 /* AppDelegate.swift */,
-				8400D32F28991DD700C35767 /* SceneDelegate.swift */,
 				8400D33628991DDA00C35767 /* Assets.xcassets */,
 				8400D33828991DDA00C35767 /* LaunchScreen.storyboard */,
 				8400D33B28991DDA00C35767 /* Info.plist */,
@@ -391,7 +388,6 @@
 				8400D3562899629600C35767 /* Character.swift in Sources */,
 				8400D358289962A700C35767 /* Location.swift in Sources */,
 				8400D32E28991DD700C35767 /* AppDelegate.swift in Sources */,
-				8400D33028991DD700C35767 /* SceneDelegate.swift in Sources */,
 				84A0022E28B552D700A233F1 /* SearchService.swift in Sources */,
 				84A0023728B8E16600A233F1 /* LocationBuilder.swift in Sources */,
 				8400D3BC289E91BC00C35767 /* LocationTableViewCell.swift in Sources */,

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class StartService {
+final class StartService {
     var window: UIWindow?
     
     init(window: UIWindow) {
