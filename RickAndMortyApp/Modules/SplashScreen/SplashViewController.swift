@@ -20,7 +20,7 @@ final class SplashViewController: UIViewController {
     
     private var tabBarVC: UITabBarController = {
         let tabBar = UITabBarController()
-    
+        
         return tabBar
     }()
     
@@ -41,6 +41,7 @@ final class SplashViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         let  characterVC = UINavigationController(rootViewController: CharacterBuilder.build(network: network,
                                                                                              search: search))
         let locationVC = UINavigationController(rootViewController: LocationBuilder.build(network: network,
