@@ -10,6 +10,7 @@ import UIKit
 final class SplashViewController: UIViewController {
     let network: NetworkService
     let search: SearchService
+    private let presenter: SplashScreenPresenting
     
     private var imageView: UIImageView = {
         let image = UIImageView()
@@ -18,8 +19,9 @@ final class SplashViewController: UIViewController {
         return image
     }()
     
-    init(with network: NetworkService, search: SearchService) {
+    init(with network: NetworkService, search: SearchService, presenter: SplashScreenPresenting) {
         self.network = network
+        self.presenter = presenter
         self.search = search
         super.init(nibName: nil, bundle: nil)
     }
@@ -36,11 +38,7 @@ final class SplashViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let tabBarVC = TabBarViewController(network: network, search: search)
-        
-        tabBarVC.modalPresentationStyle = .fullScreen
-        
-        present(tabBarVC, animated: false)
+        presenter.showTabBar()
     }
     
     private func configureConstraints() {
