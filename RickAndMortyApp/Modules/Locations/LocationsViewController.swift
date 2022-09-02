@@ -63,7 +63,7 @@ final class LocationsViewController: UIViewController, IViewControllers {
         
         tableView.snp.makeConstraints { make in
             make.top.equalTo(searchBar.snp.bottom)
-            make.bottom.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
             make.trailing.leading.equalToSuperview()
         }
     }
