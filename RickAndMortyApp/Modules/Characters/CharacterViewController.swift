@@ -79,14 +79,23 @@ extension CharacterViewController: UITableViewDataSource, UITableViewDelegate, U
                                                        for: indexPath) as? CharactersTableViewCell else {
             return UITableViewCell()
         }
+        
+        let queue = DispatchQueue.global(qos: .utility)
 
         if let urlString = presenter.charactersSearch[indexPath.row].image,
-                   let url = URL(string: urlString),
-                   let data = try? Data(contentsOf: url) {
-                    cell.avatarView.image = UIImage(data: data)
+           let url = URL(string: urlString) {
+            queue.async {
+                if let data = try? Data(contentsOf: url) {
+                    DispatchQueue.main.async {
+                        cell.avatarView.image = UIImage(data: data)
+                    }
                 } else {
-                    cell.avatarView.image = UIImage(systemName: "person.circle.fill")
+                    DispatchQueue.main.async {
+                        cell.avatarView.image = UIImage(systemName: "person.circle.fill")
+                    }
                 }
+            }
+        }
             
         let cellModel = CharactersTableViewCellFactory.cellModel(presenter.charactersSearch[indexPath.row])
         cell.config(with: cellModel)
