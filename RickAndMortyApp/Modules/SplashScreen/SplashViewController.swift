@@ -34,6 +34,7 @@ final class SplashViewController: UIViewController {
         super.viewDidLoad()
 
         configureConstraints()
+        presenter.getInfo()
     }
     
     override func viewDidAppear(_ animated: Bool) {
