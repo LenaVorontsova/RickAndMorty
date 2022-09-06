@@ -38,6 +38,7 @@
 		84A0024C28C0B7CB00A233F1 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A0024B28C0B7CB00A233F1 /* TabBarViewController.swift */; };
 		84A0025328C1027E00A233F1 /* SplashScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A0025228C1027E00A233F1 /* SplashScreenPresenter.swift */; };
 		84A0025528C115C800A233F1 /* SplashBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A0025428C115C800A233F1 /* SplashBuilder.swift */; };
+		84EBB02028C79166009D0DE0 /* RickAndMorty.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84EBB01E28C79165009D0DE0 /* RickAndMorty.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,7 @@
 		84A0024B28C0B7CB00A233F1 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		84A0025228C1027E00A233F1 /* SplashScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenPresenter.swift; sourceTree = "<group>"; };
 		84A0025428C115C800A233F1 /* SplashBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashBuilder.swift; sourceTree = "<group>"; };
+		84EBB01F28C79165009D0DE0 /* RickAndMorty.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RickAndMorty.xcdatamodel; sourceTree = "<group>"; };
 		8E616BEA614F5CAD2D1CBA76 /* Pods_RickAndMortyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RickAndMortyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F59EC1BC5AFB5B1247883102 /* Pods-RickAndMortyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RickAndMortyApp.debug.xcconfig"; path = "Target Support Files/Pods-RickAndMortyApp/Pods-RickAndMortyApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,6 +132,7 @@
 				8400D33628991DDA00C35767 /* Assets.xcassets */,
 				8400D33828991DDA00C35767 /* LaunchScreen.storyboard */,
 				8400D33B28991DDA00C35767 /* Info.plist */,
+				84EBB01E28C79165009D0DE0 /* RickAndMorty.xcdatamodeld */,
 			);
 			path = RickAndMortyApp;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 				8400D3BC289E91BC00C35767 /* LocationTableViewCell.swift in Sources */,
 				84A0023328B64AC400A233F1 /* NetworkService+extension.swift in Sources */,
 				84A0023B28B90E9000A233F1 /* EpisodeBuilder.swift in Sources */,
+				84EBB02028C79166009D0DE0 /* RickAndMorty.xcdatamodeld in Sources */,
 				84A0023928B90CD700A233F1 /* EpisodePresenter.swift in Sources */,
 				8400D367289ADAD400C35767 /* NetworkService.swift in Sources */,
 				8400D35228995F7200C35767 /* CharactersTableViewCell.swift in Sources */,
@@ -634,6 +638,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		84EBB01E28C79165009D0DE0 /* RickAndMorty.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				84EBB01F28C79165009D0DE0 /* RickAndMorty.xcdatamodel */,
+			);
+			currentVersion = 84EBB01F28C79165009D0DE0 /* RickAndMorty.xcdatamodel */;
+			path = RickAndMorty.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8400D32228991DD700C35767 /* Project object */;
 }
