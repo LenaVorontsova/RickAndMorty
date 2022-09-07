@@ -21,6 +21,7 @@ enum Constants {
 final class MainViewController: UIViewController {
     let network: NetworkService
     let search: SearchService
+    let coreData: CoreDataService
     
     private var imageView: UIImageView = {
         let image = UIImageView()
@@ -59,9 +60,10 @@ final class MainViewController: UIViewController {
         return button
     }()
     
-    init(with network: NetworkService, search: SearchService) {
+    init(with network: NetworkService, search: SearchService, coreData: CoreDataService) {
         self.network = network
         self.search = search
+        self.coreData = coreData
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -85,7 +87,9 @@ final class MainViewController: UIViewController {
     
     @objc
     private func didTapCharactersButton() {
-        navigationController?.show(CharacterBuilder.build(network: network, search: search), sender: nil)
+        navigationController?.show(CharacterBuilder.build(
+            coreData: coreData,
+            search: search), sender: nil)
     }
     
     @objc

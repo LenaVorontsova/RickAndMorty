@@ -18,10 +18,19 @@ final class StartService {
     func configureWindow() {
         let network = NetworkService()
         let search = SearchService()
-        let presenter: SplashScreenPresenting = SplashScreenPresenter(network: network, search: search)
+        let coreData = CoreDataService()
+        let presenter: SplashScreenPresenting = SplashScreenPresenter(
+            network: network,
+            search: search,
+            coreData: coreData
+        )
         if let win = window {
             win.rootViewController = UINavigationController(
-                rootViewController: SplashBuilder.build(network: network, search: search, presenter: presenter)) 
+                rootViewController: SplashBuilder.build(
+                    network: network,
+                    search: search,
+                    presenter: presenter,
+                    coreData: coreData)) 
             win.makeKeyAndVisible()
         }
     }

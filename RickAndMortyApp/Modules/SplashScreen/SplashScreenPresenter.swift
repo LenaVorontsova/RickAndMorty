@@ -16,11 +16,14 @@ protocol SplashScreenPresenting: AnyObject {
 final class SplashScreenPresenter: SplashScreenPresenting {
     let network: NetworkService
     let search: SearchService
+    let coreData: CoreDataService
+    
     weak var controller: UIViewController?
     
-    init(network: NetworkService, search: SearchService) {
+    init(network: NetworkService, search: SearchService, coreData: CoreDataService) {
         self.network = network
         self.search = search
+        self.coreData = coreData
     }
     
     func getInfo() {
@@ -29,22 +32,49 @@ final class SplashScreenPresenter: SplashScreenPresenting {
         let queue2 = DispatchQueue.global(qos: .utility)
         let queue3 = DispatchQueue.global(qos: .utility)
         
-        let episodes = EpisodePresenter(network: network, search: search)
-        let characters = CharacterPresenter(with: network, search: search)
-        let locations = LocationPresenter(network: network, search: search)
+//        let episodes = EpisodePresenter(network: network, search: search)
+//        let characters = CharacterPresenter(with: network, search: search)
+//        let locations = LocationPresenter(network: network, search: search)
         
         queue1.async(group: infoGroup) {
-            characters.getInfoCharacter()
+            self.network.getInfoCharacters(endPoint: EndPoints.character.rawValue) { [weak self] result in
+                switch result {
+                case .success(let serverData):
+                    guard let self = self else { return }
+                    self.coreData.saveToCoreDataCharacter(charactersArray: serverData.results)
+                    // self.controllers?.reloadTable()
+                case .failure(let error):
+                    self?.controller?.showAlert(message: error.localizedDescription)
+                }
+            }
             print("get characters")
         }
         
         queue2.async(group: infoGroup) {
-            locations.getInfoLocation()
+            self.network.getInfoLocations(endPoint: EndPoints.location.rawValue) { [weak self] result in
+                switch result {
+                case .success(let serverData):
+                    guard let self = self else { return }
+                    self.coreData.saveToCoreDataLocation(locationsArray: serverData.results)
+                    // self.controllers?.reloadTable()
+                case .failure(let error):
+                    self?.controller?.showAlert(message: error.localizedDescription)
+                }
+            }
             print("get locations")
         }
         
         queue3.async(group: infoGroup) {
-            episodes.getInfoEpisodes()
+            self.network.getInfoEpisodes(endPoint: EndPoints.episode.rawValue) { [weak self] result in
+                switch result {
+                case .success(let serverData):
+                    guard let self = self else { return }
+                    self.coreData.saveToCoreDataEpisodes(episodesArray: serverData.results)
+                    // self.controllers?.reloadTable()
+                case .failure(let error):
+                    self?.controller?.showAlert(message: error.localizedDescription)
+                }
+            }
             print("get episodes")
         }
         
@@ -54,7 +84,7 @@ final class SplashScreenPresenter: SplashScreenPresenting {
     }
     
     func showTabBar() {
-        let tabBarVC = TabBarViewController(network: network, search: search)
+        let tabBarVC = TabBarViewController(network: network, search: search, coreData: coreData)
         tabBarVC.modalPresentationStyle = .fullScreen
         controller?.present(tabBarVC, animated: false)
     }

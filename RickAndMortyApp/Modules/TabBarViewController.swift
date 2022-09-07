@@ -10,10 +10,12 @@ import UIKit
 final class TabBarViewController: UITabBarController {
     private var network: NetworkService
     private var search: SearchService
+    private var coreData: CoreDataService
     
-    init(network: NetworkService, search: SearchService) {
+    init(network: NetworkService, search: SearchService, coreData: CoreDataService) {
         self.network = network
         self.search = search
+        self.coreData = coreData
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -27,7 +29,7 @@ final class TabBarViewController: UITabBarController {
     }
     
     private func createTabBar() {
-        let  characterVC = UINavigationController(rootViewController: CharacterBuilder.build(network: network,
+        let  characterVC = UINavigationController(rootViewController: CharacterBuilder.build(coreData: coreData,
                                                                                              search: search))
         let locationVC = UINavigationController(rootViewController: LocationBuilder.build(network: network,
                                                                                           search: search))

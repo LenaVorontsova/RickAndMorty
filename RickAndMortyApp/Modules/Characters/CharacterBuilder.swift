@@ -8,8 +8,8 @@
 import UIKit
 
 enum CharacterBuilder {
-    static func build(network: NetworkService, search: SearchService) -> (UIViewController & IViewControllers) {
-        let presenter = CharacterPresenter(with: network, search: search)
+    static func build(coreData: CoreDataService, search: SearchService) -> (UIViewController & IViewControllers) {
+        let presenter = CharacterPresenter(with: coreData, search: search)
         let vc = CharacterViewController(presenter)
         presenter.controller = vc
         return vc
