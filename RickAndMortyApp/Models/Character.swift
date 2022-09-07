@@ -9,14 +9,14 @@ import Foundation
 import UIKit
 
 struct Character: Decodable, Namable {
-    let name: String?
-    let gender: String?
-    let species: String?
-    let location: Location?
-    let image: String?
+    var name: String?
+    var gender: String?
+    var species: String?
+    // var location: Location?
+    var image: String?
 }
-
-struct Location: Decodable {
-    let name: String?
-    let url: String?
-}
+// отношения, структура в структуре
+// struct Location: Decodable {
+//    var name: String?
+//    var url: String?
+// }

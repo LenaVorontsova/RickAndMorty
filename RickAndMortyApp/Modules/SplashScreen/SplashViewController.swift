@@ -39,7 +39,7 @@ final class SplashViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        presenter.showTabBar()
+        // presenter.showTabBar()
     }
     
     private func configureConstraints() {

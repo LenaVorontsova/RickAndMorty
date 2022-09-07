@@ -32,17 +32,14 @@ final class SplashScreenPresenter: SplashScreenPresenting {
         let queue2 = DispatchQueue.global(qos: .utility)
         let queue3 = DispatchQueue.global(qos: .utility)
         
-//        let episodes = EpisodePresenter(network: network, search: search)
-//        let characters = CharacterPresenter(with: network, search: search)
-//        let locations = LocationPresenter(network: network, search: search)
-        
         queue1.async(group: infoGroup) {
+            infoGroup.enter()
             self.network.getInfoCharacters(endPoint: EndPoints.character.rawValue) { [weak self] result in
                 switch result {
                 case .success(let serverData):
                     guard let self = self else { return }
                     self.coreData.saveToCoreDataCharacter(charactersArray: serverData.results)
-                    // self.controllers?.reloadTable()
+                    infoGroup.leave()
                 case .failure(let error):
                     self?.controller?.showAlert(message: error.localizedDescription)
                 }
@@ -51,12 +48,13 @@ final class SplashScreenPresenter: SplashScreenPresenting {
         }
         
         queue2.async(group: infoGroup) {
+            infoGroup.enter()
             self.network.getInfoLocations(endPoint: EndPoints.location.rawValue) { [weak self] result in
                 switch result {
                 case .success(let serverData):
                     guard let self = self else { return }
                     self.coreData.saveToCoreDataLocation(locationsArray: serverData.results)
-                    // self.controllers?.reloadTable()
+                    infoGroup.leave()
                 case .failure(let error):
                     self?.controller?.showAlert(message: error.localizedDescription)
                 }
@@ -65,12 +63,13 @@ final class SplashScreenPresenter: SplashScreenPresenting {
         }
         
         queue3.async(group: infoGroup) {
+            infoGroup.enter()
             self.network.getInfoEpisodes(endPoint: EndPoints.episode.rawValue) { [weak self] result in
                 switch result {
                 case .success(let serverData):
                     guard let self = self else { return }
                     self.coreData.saveToCoreDataEpisodes(episodesArray: serverData.results)
-                    // self.controllers?.reloadTable()
+                    infoGroup.leave()
                 case .failure(let error):
                     self?.controller?.showAlert(message: error.localizedDescription)
                 }
@@ -80,6 +79,7 @@ final class SplashScreenPresenter: SplashScreenPresenting {
         
         infoGroup.notify(queue: DispatchQueue.main) {
             print("all tasks executed")
+            self.showTabBar()
         }
     }
     

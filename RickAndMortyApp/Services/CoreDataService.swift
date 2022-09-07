@@ -14,6 +14,8 @@ final class CoreDataService {
     var arrEpisodes: [NSManagedObject] = []
     
     func saveToCoreDataCharacter(charactersArray: [Character]) {
+        deleteAllData("CharacterData")
+        
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -22,13 +24,12 @@ final class CoreDataService {
           
         let entity = NSEntityDescription.entity(forEntityName: "CharacterData", in: managedContext)!
           
-        let character = NSManagedObject(entity: entity, insertInto: managedContext)
-          
         for element in charactersArray {
+            let character = NSManagedObject(entity: entity, insertInto: managedContext)
             character.setValue(element.name, forKeyPath: "name")
             character.setValue(element.gender, forKeyPath: "gender")
             character.setValue(element.species, forKeyPath: "species")
-            character.setValue(element.location, forKeyPath: "location")
+            // character.setValue(element.location, forKeyPath: "location")
             character.setValue(element.image, forKeyPath: "image")
             
             do {
@@ -41,6 +42,8 @@ final class CoreDataService {
     }
     
     func saveToCoreDataLocation(locationsArray: [LocationInfo]) {
+        deleteAllData("LocationData")
+        
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -49,9 +52,8 @@ final class CoreDataService {
           
         let entity = NSEntityDescription.entity(forEntityName: "LocationData", in: managedContext)!
           
-        let location = NSManagedObject(entity: entity, insertInto: managedContext)
-          
         for element in locationsArray {
+            let location = NSManagedObject(entity: entity, insertInto: managedContext)
             location.setValue(element.name, forKeyPath: "name")
             location.setValue(element.type, forKeyPath: "type")
             location.setValue(element.dimension, forKeyPath: "dimension")
@@ -65,6 +67,8 @@ final class CoreDataService {
     }
     
     func saveToCoreDataEpisodes(episodesArray: [EpisodeInfo]) {
+        deleteAllData("EpisodeData")
+        
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -72,10 +76,9 @@ final class CoreDataService {
         let managedContext = appDelegate.persistentContainer.viewContext
           
         let entity = NSEntityDescription.entity(forEntityName: "EpisodeData", in: managedContext)!
-          
-        let episode = NSManagedObject(entity: entity, insertInto: managedContext)
-          
+        
         for element in episodesArray {
+            let episode = NSManagedObject(entity: entity, insertInto: managedContext)
             episode.setValue(element.name, forKeyPath: "name")
             episode.setValue(element.air_date, forKeyPath: "air_date")
             episode.setValue(element.episode, forKeyPath: "episode")
@@ -99,8 +102,15 @@ final class CoreDataService {
         
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CharacterData")
         do {
-            if let newArr = try managedContext.fetch(fetchRequest) as? [Character] {
-                arr = newArr
+            let newArr = try managedContext.fetch(fetchRequest)
+            print(newArr)
+            for element in newArr {
+                var character = Character(name: nil, gender: nil, species: nil, image: nil)
+                character.name = element.value(forKey: "name") as? String
+                character.gender = element.value(forKey: "gender") as? String
+                character.species = element.value(forKey: "species") as? String
+                character.image = element.value(forKey: "image") as? String
+                arr.append(character)
             }
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
@@ -121,8 +131,14 @@ final class CoreDataService {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "LocationData")
         
         do {
-            if let newArr = try managedContext.fetch(fetchRequest) as? [LocationInfo] {
-                arr = newArr
+            let newArr = try managedContext.fetch(fetchRequest)
+            print(newArr)
+            for element in newArr {
+                var location = LocationInfo(name: nil, type: nil, dimension: nil)
+                location.name = element.value(forKey: "name") as? String
+                location.type = element.value(forKey: "type") as? String
+                location.dimension = element.value(forKey: "dimension") as? String
+                arr.append(location)
             }
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
@@ -143,13 +159,33 @@ final class CoreDataService {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "EpisodeData")
         
         do {
-            if let newArr = try managedContext.fetch(fetchRequest) as? [EpisodeInfo] {
-                arr = newArr
+            let newArr = try managedContext.fetch(fetchRequest)
+            print(newArr)
+            for element in newArr {
+                var episode = EpisodeInfo(name: nil, air_date: nil, episode: nil)
+                episode.name = element.value(forKey: "name") as? String
+                episode.air_date = element.value(forKey: "air_date") as? String
+                episode.episode = element.value(forKey: "episode") as? String
+                arr.append(episode)
             }
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
         
         return arr
+    }
+    
+    func deleteAllData(_ entity: String) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        do {
+            try managedContext.execute(batchDeleteRequest)
+        } catch {
+            print(error)
+        }
     }
 }

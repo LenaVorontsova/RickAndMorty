@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 struct LocationInfo: Decodable, Namable {
-    let name: String?
-    let type: String?
-    let dimension: String?
+    var name: String?
+    var type: String?
+    var dimension: String?
 }

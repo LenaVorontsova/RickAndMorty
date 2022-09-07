@@ -20,7 +20,6 @@ final class CharacterPresenter: CharacterPresenting {
     var charactersSearch: [Character] = []
     weak var controller: (UIViewController & IViewControllers)?
     let coreData: CoreDataService
-    // let network: NetworkService
     let search: SearchService
     
     init(with coreData: CoreDataService, search: SearchService) {
@@ -29,18 +28,6 @@ final class CharacterPresenter: CharacterPresenting {
     }
     
     func getInfoCharacter() {
-//        characters = fetchCha
-//        network.getInfoCharacters(endPoint: EndPoints.character.rawValue) { [weak self] result in
-//            switch result {
-//            case .success(let serverData):
-//                guard let self = self else { return }
-//                self.characters = serverData.results
-//                self.charactersSearch = self.characters
-//                self.controller?.reloadTable()
-//            case .failure(let error):
-//                self?.controller?.showAlert(message: error.localizedDescription)
-//            }
-//        }
         
         self.characters = self.coreData.fetchCharactersFromCoreData()
         self.charactersSearch = self.characters
