@@ -31,9 +31,9 @@ final class TabBarViewController: UITabBarController {
     private func createTabBar() {
         let  characterVC = UINavigationController(rootViewController: CharacterBuilder.build(coreData: coreData,
                                                                                              search: search))
-        let locationVC = UINavigationController(rootViewController: LocationBuilder.build(network: network,
+        let locationVC = UINavigationController(rootViewController: LocationBuilder.build(coreData: coreData,
                                                                                           search: search))
-        let episodeVC = UINavigationController(rootViewController: EpisodeBuilder.build(network: network,
+        let episodeVC = UINavigationController(rootViewController: EpisodeBuilder.build(coreData: coreData, 
                                                                                         search: search))
         
         characterVC.title = "Characters"

@@ -22,14 +22,18 @@ final class CoreDataService {
           
         let managedContext = appDelegate.persistentContainer.viewContext
           
-        let entity = NSEntityDescription.entity(forEntityName: "CharacterData", in: managedContext)!
+        let entityCharacters = NSEntityDescription.entity(forEntityName: "CharacterData", in: managedContext)!
+        let entityLocation = NSEntityDescription.entity(forEntityName: "CharactersLocationData",
+                                                        in: managedContext)!
           
         for element in charactersArray {
-            let character = NSManagedObject(entity: entity, insertInto: managedContext)
+            let character = NSManagedObject(entity: entityCharacters, insertInto: managedContext)
+            let location = NSManagedObject(entity: entityLocation, insertInto: managedContext)
             character.setValue(element.name, forKeyPath: "name")
             character.setValue(element.gender, forKeyPath: "gender")
             character.setValue(element.species, forKeyPath: "species")
-            // character.setValue(element.location, forKeyPath: "location")
+            location.setValue(element.location?.name, forKey: "name")
+            character.setValue(location, forKey: "location")
             character.setValue(element.image, forKeyPath: "image")
             
             do {
@@ -105,11 +109,15 @@ final class CoreDataService {
             let newArr = try managedContext.fetch(fetchRequest)
             print(newArr)
             for element in newArr {
-                var character = Character(name: nil, gender: nil, species: nil, image: nil)
-                character.name = element.value(forKey: "name") as? String
-                character.gender = element.value(forKey: "gender") as? String
-                character.species = element.value(forKey: "species") as? String
-                character.image = element.value(forKey: "image") as? String
+                let characterData = element as? CharacterData
+                var character = Character(name: nil, gender: nil, species: nil, location: nil, image: nil)
+                let location = Location(name: nil, url: nil)
+                character.name = characterData?.name
+                character.gender = characterData?.gender
+                character.location = location
+                character.species = characterData?.species
+                character.location?.name = characterData?.location?.name
+                character.image = characterData?.image
                 arr.append(character)
             }
         } catch let error as NSError {

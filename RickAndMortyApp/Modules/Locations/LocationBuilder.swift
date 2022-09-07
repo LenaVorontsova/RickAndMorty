@@ -8,8 +8,8 @@
 import UIKit
 
 enum LocationBuilder {
-    static func build(network: NetworkService, search: SearchService) -> (UIViewController & IViewControllers) {
-        let presenter = LocationPresenter(network: network, search: search)
+    static func build(coreData: CoreDataService, search: SearchService) -> (UIViewController & IViewControllers) {
+        let presenter = LocationPresenter(coreData: coreData, search: search)
         let vc = LocationsViewController(presenter)
         presenter.controller = vc
         return vc

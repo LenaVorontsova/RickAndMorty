@@ -12,15 +12,15 @@ struct CharactersTableViewCellModel {
     let name: String?
     let gender: String?
     let species: String?
-//    let location: String?
+    let location: String?
 }
 
 enum CharactersTableViewCellFactory {
     static func cellModel(_ inf: Character) -> CharactersTableViewCellModel {
         CharactersTableViewCellModel(name: "Name: " + (inf.name ?? ""),
                                      gender: "Gender: " + (inf.gender ?? ""),
-                                     species: "Species: " + (inf.species ?? ""))
-//                                     location: "Location: " + (inf.location?.name ?? ""))
+                                     species: "Species: " + (inf.species ?? ""),
+                                     location: "Location: " + (inf.location?.name ?? ""))
     }
 }
 
@@ -83,7 +83,7 @@ final class CharactersTableViewCell: UITableViewCell {
         nameLabel.text = model.name
         genderLabel.text = model.gender
         speciesLabel.text = model.species
-//        locationLabel.text = model.location
+        locationLabel.text = model.location
     }
     
     private func configureConstraints() {

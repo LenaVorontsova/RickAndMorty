@@ -12,11 +12,11 @@ struct Character: Decodable, Namable {
     var name: String?
     var gender: String?
     var species: String?
-    // var location: Location?
+    var location: Location?
     var image: String?
 }
-// отношения, структура в структуре
-// struct Location: Decodable {
-//    var name: String?
-//    var url: String?
-// }
+
+struct Location: Decodable {
+    var name: String?
+    var url: String?
+}

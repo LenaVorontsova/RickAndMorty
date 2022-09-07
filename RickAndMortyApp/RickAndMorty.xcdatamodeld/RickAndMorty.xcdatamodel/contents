@@ -5,6 +5,12 @@
         <attribute name="image" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="species" optional="YES" attributeType="String"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CharactersLocationData" inverseName="character" inverseEntity="CharactersLocationData"/>
+    </entity>
+    <entity name="CharactersLocationData" representedClassName="CharactersLocationData" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+        <relationship name="character" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CharacterData" inverseName="location" inverseEntity="CharacterData"/>
     </entity>
     <entity name="EpisodeData" representedClassName="EpisodeData" syncable="YES" codeGenerationType="class">
         <attribute name="air_date" optional="YES" attributeType="String"/>
@@ -17,8 +23,9 @@
         <attribute name="type" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="CharacterData" positionX="-36" positionY="9" width="128" height="89"/>
-        <element name="LocationData" positionX="0" positionY="81" width="128" height="74"/>
-        <element name="EpisodeData" positionX="27" positionY="117" width="128" height="74"/>
+        <element name="CharacterData" positionX="-328.26953125" positionY="40.97265625" width="128" height="118"/>
+        <element name="CharactersLocationData" positionX="-157.3984375" positionY="207.49609375" width="128" height="88"/>
+        <element name="EpisodeData" positionX="22.02734375" positionY="44.40625" width="128" height="74"/>
+        <element name="LocationData" positionX="-164.015625" positionY="46.6328125" width="128" height="74"/>
     </elements>
 </model>
