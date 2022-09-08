@@ -17,7 +17,7 @@ struct CharactersTableViewCellModel {
 
 enum CharactersTableViewCellFactory {
     static func cellModel(_ inf: Character) -> CharactersTableViewCellModel {
-        CharactersTableViewCellModel(name: "Name: " + (inf.name ?? ""),
+        CharactersTableViewCellModel(name: R.string.characterModule.name(inf.name ?? ""),
                                      gender: "Gender: " + (inf.gender ?? ""),
                                      species: "Species: " + (inf.species ?? ""),
                                      location: "Location: " + (inf.location?.name ?? ""))

@@ -1,0 +1,24 @@
+/* 
+  networkServ.strings
+  RickAndMortyApp
+
+  Created by Lena Vorontsova on 08.09.2022.
+  
+*/
+
+"baseUrl" = "https://rickandmortyapi.com/api/";
+
+"characterData" = "CharacterData";
+"characterLocData" = "CharactersLocationData";
+"locationData" = "LocationData";
+"episodeData" = "EpisodeData";
+
+"name" = "name";
+"gender" = "gender";
+"species" = "species";
+"location" = "location";
+"image" = "image";
+"type" = "type";
+"dimension" = "dimension";
+"air_date" = "air_date";
+"episode" = "episode";

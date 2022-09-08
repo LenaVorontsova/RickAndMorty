@@ -1,0 +1,9 @@
+/* 
+  characterModule.strings
+  RickAndMortyApp
+
+  Created by Lena Vorontsova on 08.09.2022.
+  
+*/
+
+"name" = "Name: %@";

@@ -1,0 +1,10 @@
+/* 
+  alertMessages.strings
+  RickAndMortyApp
+
+  Created by Lena Vorontsova on 08.09.2022.
+  
+*/
+
+"errorTitle" = "Error";
+"okTitle" = "OK";

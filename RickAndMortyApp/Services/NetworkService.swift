@@ -7,9 +7,10 @@
 
 import Foundation
 import Alamofire
+import Rswift
 
 final class NetworkService {
-    var baseURL = "https://rickandmortyapi.com/api/"
+    var baseURL = R.string.services.baseUrl()
     
     func getInfoCharacters(endPoint: String, completion: @escaping (Result<Response<[Character]>, AFError>) -> Void) {
         AF.request(
