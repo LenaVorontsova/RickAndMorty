@@ -28,7 +28,7 @@ final class EpisodesViewController: UIViewController, IViewControllers {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(R.string.modules.fatalError())
     }
     
     override func viewDidLoad() {
@@ -44,7 +44,7 @@ final class EpisodesViewController: UIViewController, IViewControllers {
         
         self.tableView.register(EpisodesTableViewCell.self, forCellReuseIdentifier: EpisodesTableViewCell.identifier)
         
-        self.title = "Episodes"
+        self.title = R.string.modules.episodeTitle()
         view.backgroundColor = UIColor(red: 200 / 255, green: 246 / 255, blue: 236 / 255, alpha: 1)
     }
     
