@@ -272,6 +272,7 @@
 			buildConfigurationList = 8400D33E28991DDA00C35767 /* Build configuration list for PBXNativeTarget "RickAndMortyApp" */;
 			buildPhases = (
 				B28B343541CD2659390353B4 /* [CP] Check Pods Manifest.lock */,
+				84EBB03828C9FD5E009D0DE0 /* ShellScript */,
 				8400D32628991DD700C35767 /* Sources */,
 				8400D32728991DD700C35767 /* Frameworks */,
 				8400D32828991DD700C35767 /* Resources */,
@@ -349,6 +350,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		84EBB03828C9FD5E009D0DE0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/$SRCROOT/R.generated.swift ",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
 		};
 		8FC72793EEA71A40C3E556E8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
