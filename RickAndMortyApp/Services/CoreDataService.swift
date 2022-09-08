@@ -9,9 +9,6 @@ import UIKit
 import CoreData
 
 final class CoreDataService {
-    var arrCharacters: [NSManagedObject] = []
-    var arrLocations: [NSManagedObject] = []
-    var arrEpisodes: [NSManagedObject] = []
     
     func saveToCoreDataCharacter(charactersArray: [Character]) {
         deleteAllData("CharacterData")
@@ -38,7 +35,6 @@ final class CoreDataService {
             
             do {
                 try managedContext.save()
-                arrCharacters.append(character)
             } catch let error as NSError {
                 print("Could not save. \(error), \(error.userInfo)")
             }
@@ -63,7 +59,6 @@ final class CoreDataService {
             location.setValue(element.dimension, forKeyPath: "dimension")
             do {
                 try managedContext.save()
-                arrLocations.append(location)
             } catch let error as NSError {
                 print("Could not save. \(error), \(error.userInfo)")
             }
@@ -88,7 +83,6 @@ final class CoreDataService {
             episode.setValue(element.episode, forKeyPath: "episode")
             do {
                 try managedContext.save()
-                arrEpisodes.append(episode)
             } catch let error as NSError {
                 print("Could not save. \(error), \(error.userInfo)")
             }
@@ -104,10 +98,8 @@ final class CoreDataService {
         
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CharacterData")
         do {
-            let newArr = try managedContext.fetch(fetchRequest)
-            print(newArr)
+            let newArr = try managedContext.fetch(CharacterData.fetchRequest())
             for element in newArr {
                 let characterData = element as? CharacterData
                 var character = Character(name: nil, gender: nil, species: nil, location: nil, image: nil)
@@ -136,16 +128,14 @@ final class CoreDataService {
         
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "LocationData")
-        
         do {
-            let newArr = try managedContext.fetch(fetchRequest)
-            print(newArr)
+            let newArr = try managedContext.fetch(LocationData.fetchRequest())
             for element in newArr {
+                let locationData = element as? LocationData
                 var location = LocationInfo(name: nil, type: nil, dimension: nil)
-                location.name = element.value(forKey: "name") as? String
-                location.type = element.value(forKey: "type") as? String
-                location.dimension = element.value(forKey: "dimension") as? String
+                location.name = locationData?.name
+                location.type = locationData?.type
+                location.dimension = locationData?.dimension
                 arr.append(location)
             }
         } catch let error as NSError {
@@ -164,16 +154,14 @@ final class CoreDataService {
         
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "EpisodeData")
-        
         do {
-            let newArr = try managedContext.fetch(fetchRequest)
-            print(newArr)
+            let newArr = try managedContext.fetch(EpisodeData.fetchRequest())
             for element in newArr {
+                let episodeData = element as? EpisodeData
                 var episode = EpisodeInfo(name: nil, air_date: nil, episode: nil)
-                episode.name = element.value(forKey: "name") as? String
-                episode.air_date = element.value(forKey: "air_date") as? String
-                episode.episode = element.value(forKey: "episode") as? String
+                episode.name = episodeData?.name
+                episode.air_date = episodeData?.air_date
+                episode.episode = episodeData?.episode
                 arr.append(episode)
             }
         } catch let error as NSError {

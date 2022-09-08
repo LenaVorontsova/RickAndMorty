@@ -44,7 +44,6 @@ final class SplashScreenPresenter: SplashScreenPresenting {
                     self?.controller?.showAlert(message: error.localizedDescription)
                 }
             }
-            print("get characters")
         }
         
         queue2.async(group: infoGroup) {
@@ -59,7 +58,6 @@ final class SplashScreenPresenter: SplashScreenPresenting {
                     self?.controller?.showAlert(message: error.localizedDescription)
                 }
             }
-            print("get locations")
         }
         
         queue3.async(group: infoGroup) {
@@ -74,17 +72,15 @@ final class SplashScreenPresenter: SplashScreenPresenting {
                     self?.controller?.showAlert(message: error.localizedDescription)
                 }
             }
-            print("get episodes")
         }
         
         infoGroup.notify(queue: DispatchQueue.main) {
-            print("all tasks executed")
             self.showTabBar()
         }
     }
     
     func showTabBar() {
-        let tabBarVC = TabBarViewController(network: network, search: search, coreData: coreData)
+        let tabBarVC = TabBarViewController(search: search, coreData: coreData)
         tabBarVC.modalPresentationStyle = .fullScreen
         controller?.present(tabBarVC, animated: false)
     }

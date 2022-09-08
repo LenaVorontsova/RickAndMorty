@@ -8,12 +8,10 @@
 import UIKit
 
 final class TabBarViewController: UITabBarController {
-    private var network: NetworkService
     private var search: SearchService
     private var coreData: CoreDataService
     
-    init(network: NetworkService, search: SearchService, coreData: CoreDataService) {
-        self.network = network
+    init(search: SearchService, coreData: CoreDataService) {
         self.search = search
         self.coreData = coreData
         super.init(nibName: nil, bundle: nil)
