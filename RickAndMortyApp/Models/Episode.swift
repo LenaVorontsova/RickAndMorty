@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 struct EpisodeInfo: Decodable, Namable {
-    let name: String?
-    let air_date: String?
-    let episode: String?
+    var name: String?
+    var air_date: String?
+    var episode: String?
 }

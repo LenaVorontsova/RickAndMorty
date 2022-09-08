@@ -19,26 +19,18 @@ final class LocationPresenter: LocationPresenting {
     var locations: [LocationInfo] = []
     var locationsSearch: [LocationInfo] = []
     weak var controller: (UIViewController & IViewControllers)?
-    let network: NetworkService
+    let coreData: CoreDataService
     let search: SearchService
     
-    init(network: NetworkService, search: SearchService) {
-        self.network = network
+    init(coreData: CoreDataService, search: SearchService) {
+        self.coreData = coreData
         self.search = search
     }
     
     func getInfoLocation() {
-        network.getInfoLocations(endPoint: EndPoints.location.rawValue) { [weak self] result in
-            switch result {
-            case .success(let serverData):
-            guard let self = self else { return }
-                self.locations = serverData.results
-                self.locationsSearch = self.locations
-                self.controller?.reloadTable()
-            case .failure(let error):
-                self?.controller?.showAlert(message: error.localizedDescription)
-            }
-        }
+        self.locations = self.coreData.fetchLocationsFromCoreData()
+        self.locationsSearch = self.locations
+        self.controller?.reloadTable()
     }
     
     func searchLocation(searchText: String) {

@@ -19,8 +19,8 @@ enum CharactersTableViewCellFactory {
     static func cellModel(_ inf: Character) -> CharactersTableViewCellModel {
         CharactersTableViewCellModel(name: "Name: " + (inf.name ?? ""),
                                      gender: "Gender: " + (inf.gender ?? ""),
-                                     species: "Location: " + (inf.species ?? ""),
-                                     location: "Species: " + (inf.location?.name ?? ""))
+                                     species: "Species: " + (inf.species ?? ""),
+                                     location: "Location: " + (inf.location?.name ?? ""))
     }
 }
 

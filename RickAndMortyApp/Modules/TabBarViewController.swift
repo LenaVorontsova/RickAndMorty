@@ -8,12 +8,12 @@
 import UIKit
 
 final class TabBarViewController: UITabBarController {
-    private var network: NetworkService
     private var search: SearchService
+    private var coreData: CoreDataService
     
-    init(network: NetworkService, search: SearchService) {
-        self.network = network
+    init(search: SearchService, coreData: CoreDataService) {
         self.search = search
+        self.coreData = coreData
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -27,11 +27,11 @@ final class TabBarViewController: UITabBarController {
     }
     
     private func createTabBar() {
-        let  characterVC = UINavigationController(rootViewController: CharacterBuilder.build(network: network,
+        let  characterVC = UINavigationController(rootViewController: CharacterBuilder.build(coreData: coreData,
                                                                                              search: search))
-        let locationVC = UINavigationController(rootViewController: LocationBuilder.build(network: network,
+        let locationVC = UINavigationController(rootViewController: LocationBuilder.build(coreData: coreData,
                                                                                           search: search))
-        let episodeVC = UINavigationController(rootViewController: EpisodeBuilder.build(network: network,
+        let episodeVC = UINavigationController(rootViewController: EpisodeBuilder.build(coreData: coreData, 
                                                                                         search: search))
         
         characterVC.title = "Characters"
