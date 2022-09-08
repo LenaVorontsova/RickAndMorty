@@ -19,18 +19,18 @@ enum EpisodesTableViewCellFactory {
     static func cellModel(_ inf: EpisodeInfo) -> EpisodesTableViewCellModel {
         var season = ""
         var episode = ""
-        if let range = inf.episode?.range(of: "E"),
+        if let range = inf.episode?.range(of: R.string.cells.e()),
            let episodeText = inf.episode {
             season = String(episodeText[..<range.lowerBound])
             episode = String(episodeText[range.lowerBound...])
         } else {
-            season = "number"
-            episode = "number"
+            season = R.string.cells.number()
+            episode = R.string.cells.number()
         }
         return EpisodesTableViewCellModel(name: inf.name,
-                                          airDate: "Air date: " + (inf.air_date ?? ""),
-                                          season: "Season: " + season,
-                                          episode: "Episode: " + episode)
+                                          airDate: R.string.cells.airData(inf.air_date ?? ""),
+                                          season: R.string.cells.season(season),
+                                          episode: R.string.cells.episode(episode))
     }
 }
 
@@ -72,7 +72,7 @@ final class EpisodesTableViewCell: UITableViewCell {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(R.string.cells.fatalError())
     }
     
     func config(with model: EpisodesTableViewCellModel) {
@@ -115,6 +115,6 @@ final class EpisodesTableViewCell: UITableViewCell {
 
 extension EpisodesTableViewCell: ReusableView {
     static var identifier: String {
-            return "episodesCell"
+            return R.string.cells.episodesCell()
     }
 }
