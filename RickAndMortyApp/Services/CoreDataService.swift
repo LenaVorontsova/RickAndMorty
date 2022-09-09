@@ -10,23 +10,19 @@ import CoreData
 
 final class CoreDataService {
     
+    private let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+    
     func saveToCoreDataCharacter(charactersArray: [Character]) {
         deleteAllData(R.string.services.characterData())
-        
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-          
-        let managedContext = appDelegate.persistentContainer.viewContext
           
         let entityCharacters = NSEntityDescription.entity(forEntityName: R.string.services.characterData(),
-                                                          in: managedContext)!
+                                                          in: self.context!)!
         let entityLocation = NSEntityDescription.entity(forEntityName: R.string.services.characterLocData(),
-                                                        in: managedContext)!
+                                                        in: self.context!)!
           
         for element in charactersArray {
-            let character = NSManagedObject(entity: entityCharacters, insertInto: managedContext)
-            let location = NSManagedObject(entity: entityLocation, insertInto: managedContext)
+            let character = NSManagedObject(entity: entityCharacters, insertInto: self.context)
+            let location = NSManagedObject(entity: entityLocation, insertInto: self.context)
             character.setValue(element.name, forKeyPath: R.string.services.name())
             character.setValue(element.gender, forKeyPath: R.string.services.gender())
             character.setValue(element.species, forKeyPath: R.string.services.species())
@@ -35,7 +31,7 @@ final class CoreDataService {
             character.setValue(element.image, forKeyPath: R.string.services.image())
             
             do {
-                try managedContext.save()
+                try self.context!.save()
             } catch let error as NSError {
                 print("Could not save. \(error), \(error.userInfo)")
             }
@@ -44,22 +40,16 @@ final class CoreDataService {
     
     func saveToCoreDataLocation(locationsArray: [LocationInfo]) {
         deleteAllData(R.string.services.locationData())
-        
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
           
-        let managedContext = appDelegate.persistentContainer.viewContext
-          
-        let entity = NSEntityDescription.entity(forEntityName: R.string.services.locationData(), in: managedContext)!
+        let entity = NSEntityDescription.entity(forEntityName: R.string.services.locationData(), in: self.context!)!
           
         for element in locationsArray {
-            let location = NSManagedObject(entity: entity, insertInto: managedContext)
+            let location = NSManagedObject(entity: entity, insertInto: self.context)
             location.setValue(element.name, forKeyPath: R.string.services.name())
             location.setValue(element.type, forKeyPath: R.string.services.type())
             location.setValue(element.dimension, forKeyPath: R.string.services.dimension())
             do {
-                try managedContext.save()
+                try self.context!.save()
             } catch let error as NSError {
                 print("Could not save. \(error), \(error.userInfo)")
             }
@@ -68,22 +58,16 @@ final class CoreDataService {
     
     func saveToCoreDataEpisodes(episodesArray: [EpisodeInfo]) {
         deleteAllData(R.string.services.episodeData())
-        
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
           
-        let managedContext = appDelegate.persistentContainer.viewContext
-          
-        let entity = NSEntityDescription.entity(forEntityName: R.string.services.episodeData(), in: managedContext)!
+        let entity = NSEntityDescription.entity(forEntityName: R.string.services.episodeData(), in: self.context!)!
         
         for element in episodesArray {
-            let episode = NSManagedObject(entity: entity, insertInto: managedContext)
+            let episode = NSManagedObject(entity: entity, insertInto: self.context)
             episode.setValue(element.name, forKeyPath: R.string.services.name())
             episode.setValue(element.air_date, forKeyPath: R.string.services.air_date())
             episode.setValue(element.episode, forKeyPath: R.string.services.episode())
             do {
-                try managedContext.save()
+                try self.context!.save()
             } catch let error as NSError {
                 print("Could not save. \(error), \(error.userInfo)")
             }
