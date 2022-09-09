@@ -13,7 +13,7 @@ final class SplashViewController: UIViewController {
     
     private var imageView: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "splash")
+        image.image = R.image.splash()
         
         return image
     }()
@@ -25,7 +25,7 @@ final class SplashViewController: UIViewController {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(R.string.modules.fatalError())
     }
     
     override func viewDidLoad() {

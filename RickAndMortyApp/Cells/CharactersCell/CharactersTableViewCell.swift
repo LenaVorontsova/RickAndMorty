@@ -17,10 +17,10 @@ struct CharactersTableViewCellModel {
 
 enum CharactersTableViewCellFactory {
     static func cellModel(_ inf: Character) -> CharactersTableViewCellModel {
-        CharactersTableViewCellModel(name: "Name: " + (inf.name ?? ""),
-                                     gender: "Gender: " + (inf.gender ?? ""),
-                                     species: "Species: " + (inf.species ?? ""),
-                                     location: "Location: " + (inf.location?.name ?? ""))
+        CharactersTableViewCellModel(name: R.string.cells.name(inf.name ?? ""),
+                                     gender: R.string.cells.gender(inf.gender ?? ""),
+                                     species: R.string.cells.species(inf.species ?? ""),
+                                     location: R.string.cells.location(inf.location?.name ?? ""))
     }
 }
 
@@ -76,7 +76,7 @@ final class CharactersTableViewCell: UITableViewCell {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(R.string.cells.fatalError())
     }
     
     func config(with model: CharactersTableViewCellModel) {
@@ -125,6 +125,6 @@ final class CharactersTableViewCell: UITableViewCell {
 
 extension CharactersTableViewCell: ReusableView {
     static var identifier: String {
-            return "CharacterCell"
+        return R.string.cells.characterCell()
     }
 }

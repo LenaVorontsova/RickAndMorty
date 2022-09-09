@@ -21,6 +21,11 @@
 		8400D367289ADAD400C35767 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D366289ADAD400C35767 /* NetworkService.swift */; };
 		8400D3BC289E91BC00C35767 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D3BB289E91BC00C35767 /* LocationTableViewCell.swift */; };
 		8400D3BE289E9ACD00C35767 /* EpisodesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D3BD289E9ACD00C35767 /* EpisodesTableViewCell.swift */; };
+		848DAFE628CA0DE600FA8D82 /* modules.strings in Resources */ = {isa = PBXBuildFile; fileRef = 848DAFE528CA0DE600FA8D82 /* modules.strings */; };
+		848DAFE828CA0E6B00FA8D82 /* alertMessages.strings in Resources */ = {isa = PBXBuildFile; fileRef = 848DAFE728CA0E6B00FA8D82 /* alertMessages.strings */; };
+		848DAFEC28CA194900FA8D82 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848DAFEB28CA194900FA8D82 /* R.generated.swift */; };
+		848DAFEE28CA263800FA8D82 /* services.strings in Resources */ = {isa = PBXBuildFile; fileRef = 848DAFED28CA263800FA8D82 /* services.strings */; };
+		848DAFF028CA29F700FA8D82 /* cells.strings in Resources */ = {isa = PBXBuildFile; fileRef = 848DAFEF28CA29F700FA8D82 /* cells.strings */; };
 		84A0022E28B552D700A233F1 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A0022D28B552D700A233F1 /* SearchService.swift */; };
 		84A0023028B6423500A233F1 /* EndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A0022F28B6423500A233F1 /* EndPoints.swift */; };
 		84A0023328B64AC400A233F1 /* NetworkService+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A0023228B64AC400A233F1 /* NetworkService+extension.swift */; };
@@ -58,6 +63,11 @@
 		8400D366289ADAD400C35767 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		8400D3BB289E91BC00C35767 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 		8400D3BD289E9ACD00C35767 /* EpisodesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesTableViewCell.swift; sourceTree = "<group>"; };
+		848DAFE528CA0DE600FA8D82 /* modules.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = modules.strings; sourceTree = "<group>"; };
+		848DAFE728CA0E6B00FA8D82 /* alertMessages.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = alertMessages.strings; sourceTree = "<group>"; };
+		848DAFEB28CA194900FA8D82 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		848DAFED28CA263800FA8D82 /* services.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = services.strings; sourceTree = "<group>"; };
+		848DAFEF28CA29F700FA8D82 /* cells.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = cells.strings; sourceTree = "<group>"; };
 		8497F9F128ACFBE600C5BCD2 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		84A0022D28B552D700A233F1 /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
 		84A0022F28B6423500A233F1 /* EndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoints.swift; sourceTree = "<group>"; };
@@ -104,6 +114,7 @@
 		8400D32128991DD700C35767 = {
 			isa = PBXGroup;
 			children = (
+				848DAFEB28CA194900FA8D82 /* R.generated.swift */,
 				8497F9F128ACFBE600C5BCD2 /* .swiftlint.yml */,
 				8400D32C28991DD700C35767 /* RickAndMortyApp */,
 				8400D32B28991DD700C35767 /* Products */,
@@ -123,6 +134,7 @@
 		8400D32C28991DD700C35767 /* RickAndMortyApp */ = {
 			isa = PBXGroup;
 			children = (
+				848DAFE428CA0B7500FA8D82 /* Localization */,
 				84A0023128B64A9700A233F1 /* Extensions */,
 				8400D3BF289EAE1E00C35767 /* Services */,
 				8400D3532899626F00C35767 /* Models */,
@@ -236,6 +248,17 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		848DAFE428CA0B7500FA8D82 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				848DAFE528CA0DE600FA8D82 /* modules.strings */,
+				848DAFE728CA0E6B00FA8D82 /* alertMessages.strings */,
+				848DAFED28CA263800FA8D82 /* services.strings */,
+				848DAFEF28CA29F700FA8D82 /* cells.strings */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
 		84A0023128B64A9700A233F1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -272,6 +295,7 @@
 			buildConfigurationList = 8400D33E28991DDA00C35767 /* Build configuration list for PBXNativeTarget "RickAndMortyApp" */;
 			buildPhases = (
 				B28B343541CD2659390353B4 /* [CP] Check Pods Manifest.lock */,
+				84EBB03828C9FD5E009D0DE0 /* ShellScript */,
 				8400D32628991DD700C35767 /* Sources */,
 				8400D32728991DD700C35767 /* Frameworks */,
 				8400D32828991DD700C35767 /* Resources */,
@@ -325,7 +349,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				848DAFF028CA29F700FA8D82 /* cells.strings in Resources */,
+				848DAFEE28CA263800FA8D82 /* services.strings in Resources */,
 				8400D33A28991DDA00C35767 /* LaunchScreen.storyboard in Resources */,
+				848DAFE828CA0E6B00FA8D82 /* alertMessages.strings in Resources */,
+				848DAFE628CA0DE600FA8D82 /* modules.strings in Resources */,
 				8400D33728991DDA00C35767 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -349,6 +377,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		84EBB03828C9FD5E009D0DE0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/$SRCROOT/R.generated.swift ",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
 		};
 		8FC72793EEA71A40C3E556E8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -413,6 +460,7 @@
 				8400D35A289962BC00C35767 /* Episode.swift in Sources */,
 				8400D3562899629600C35767 /* Character.swift in Sources */,
 				8400D358289962A700C35767 /* Location.swift in Sources */,
+				848DAFEC28CA194900FA8D82 /* R.generated.swift in Sources */,
 				8400D32E28991DD700C35767 /* AppDelegate.swift in Sources */,
 				84A0022E28B552D700A233F1 /* SearchService.swift in Sources */,
 				84A0023728B8E16600A233F1 /* LocationBuilder.swift in Sources */,

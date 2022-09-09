@@ -11,7 +11,7 @@ import CoreData
 final class CoreDataService {
     
     func saveToCoreDataCharacter(charactersArray: [Character]) {
-        deleteAllData("CharacterData")
+        deleteAllData(R.string.services.characterData())
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -19,19 +19,20 @@ final class CoreDataService {
           
         let managedContext = appDelegate.persistentContainer.viewContext
           
-        let entityCharacters = NSEntityDescription.entity(forEntityName: "CharacterData", in: managedContext)!
-        let entityLocation = NSEntityDescription.entity(forEntityName: "CharactersLocationData",
+        let entityCharacters = NSEntityDescription.entity(forEntityName: R.string.services.characterData(),
+                                                          in: managedContext)!
+        let entityLocation = NSEntityDescription.entity(forEntityName: R.string.services.characterLocData(),
                                                         in: managedContext)!
           
         for element in charactersArray {
             let character = NSManagedObject(entity: entityCharacters, insertInto: managedContext)
             let location = NSManagedObject(entity: entityLocation, insertInto: managedContext)
-            character.setValue(element.name, forKeyPath: "name")
-            character.setValue(element.gender, forKeyPath: "gender")
-            character.setValue(element.species, forKeyPath: "species")
-            location.setValue(element.location?.name, forKey: "name")
-            character.setValue(location, forKey: "location")
-            character.setValue(element.image, forKeyPath: "image")
+            character.setValue(element.name, forKeyPath: R.string.services.name())
+            character.setValue(element.gender, forKeyPath: R.string.services.gender())
+            character.setValue(element.species, forKeyPath: R.string.services.species())
+            location.setValue(element.location?.name, forKey: R.string.services.name())
+            character.setValue(location, forKey: R.string.services.location())
+            character.setValue(element.image, forKeyPath: R.string.services.image())
             
             do {
                 try managedContext.save()
@@ -42,7 +43,7 @@ final class CoreDataService {
     }
     
     func saveToCoreDataLocation(locationsArray: [LocationInfo]) {
-        deleteAllData("LocationData")
+        deleteAllData(R.string.services.locationData())
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -50,13 +51,13 @@ final class CoreDataService {
           
         let managedContext = appDelegate.persistentContainer.viewContext
           
-        let entity = NSEntityDescription.entity(forEntityName: "LocationData", in: managedContext)!
+        let entity = NSEntityDescription.entity(forEntityName: R.string.services.locationData(), in: managedContext)!
           
         for element in locationsArray {
             let location = NSManagedObject(entity: entity, insertInto: managedContext)
-            location.setValue(element.name, forKeyPath: "name")
-            location.setValue(element.type, forKeyPath: "type")
-            location.setValue(element.dimension, forKeyPath: "dimension")
+            location.setValue(element.name, forKeyPath: R.string.services.name())
+            location.setValue(element.type, forKeyPath: R.string.services.type())
+            location.setValue(element.dimension, forKeyPath: R.string.services.dimension())
             do {
                 try managedContext.save()
             } catch let error as NSError {
@@ -66,7 +67,7 @@ final class CoreDataService {
     }
     
     func saveToCoreDataEpisodes(episodesArray: [EpisodeInfo]) {
-        deleteAllData("EpisodeData")
+        deleteAllData(R.string.services.episodeData())
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -74,13 +75,13 @@ final class CoreDataService {
           
         let managedContext = appDelegate.persistentContainer.viewContext
           
-        let entity = NSEntityDescription.entity(forEntityName: "EpisodeData", in: managedContext)!
+        let entity = NSEntityDescription.entity(forEntityName: R.string.services.episodeData(), in: managedContext)!
         
         for element in episodesArray {
             let episode = NSManagedObject(entity: entity, insertInto: managedContext)
-            episode.setValue(element.name, forKeyPath: "name")
-            episode.setValue(element.air_date, forKeyPath: "air_date")
-            episode.setValue(element.episode, forKeyPath: "episode")
+            episode.setValue(element.name, forKeyPath: R.string.services.name())
+            episode.setValue(element.air_date, forKeyPath: R.string.services.air_date())
+            episode.setValue(element.episode, forKeyPath: R.string.services.episode())
             do {
                 try managedContext.save()
             } catch let error as NSError {

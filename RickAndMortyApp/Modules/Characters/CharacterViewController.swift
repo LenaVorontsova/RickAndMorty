@@ -27,7 +27,7 @@ final class CharacterViewController: UIViewController, IViewControllers {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(R.string.modules.fatalError())
     }
     
     override func viewDidLoad() {
@@ -43,7 +43,7 @@ final class CharacterViewController: UIViewController, IViewControllers {
         
         self.tableView.register(CharactersTableViewCell.self, forCellReuseIdentifier: CharactersTableViewCell.identifier)
         
-        self.title = "Characters"
+        self.title = R.string.modules.charTitle()
         view.backgroundColor = UIColor(red: 200 / 255, green: 246 / 255, blue: 236 / 255, alpha: 1)
     }
     
@@ -91,7 +91,7 @@ extension CharacterViewController: UITableViewDataSource, UITableViewDelegate, U
                     }
                 } else {
                     DispatchQueue.main.async {
-                        cell.avatarView.image = UIImage(systemName: "person.circle.fill")
+                        cell.avatarView.image = UIImage(systemName: R.string.modules.imageSystemName())
                     }
                 }
             }

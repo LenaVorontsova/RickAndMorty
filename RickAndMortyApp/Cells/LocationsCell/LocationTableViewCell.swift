@@ -17,8 +17,8 @@ struct LocationTableViewCellModel {
 enum LocationTableViewCellFactory {
     static func cellModel(_ inf: LocationInfo) -> LocationTableViewCellModel {
         LocationTableViewCellModel(name: inf.name,
-                                   type: "Type: " + (inf.type ?? ""),
-                                   dimension: "Dimension: " + (inf.dimension ?? ""))
+                                   type: R.string.cells.type(inf.type ?? ""),
+                                   dimension: R.string.cells.dimension(inf.dimension ?? ""))
     }
 }
 
@@ -60,7 +60,7 @@ final class LocationTableViewCell: UITableViewCell {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(R.string.cells.fatalError())
     }
     
     private func configureConstraints() {
@@ -89,6 +89,6 @@ final class LocationTableViewCell: UITableViewCell {
 
 extension LocationTableViewCell: ReusableView {
     static var identifier: String {
-            return "locationsCell"
+            return R.string.cells.locationsCell()
     }
 }

@@ -5,4 +5,5 @@ target 'RickAndMortyApp' do
 pod 'Alamofire'
 pod 'SnapKit'
 pod 'SwiftLint'
+pod 'R.swift'
 end

@@ -142,7 +142,7 @@ included: # paths to include during linting. `--path` is ignored if present.
   - RickAndMortyApp
 excluded: # paths to ignore during linting. Takes precedence over `included`.
 #- LoyaltyApp/Extensions/DateHelper.swift
-#- LoyaltyApp/R.generated.swift
+- RickAndMortyApp/R.generated.swift
  - RickAndMortyApp/SceneDelegate.swift
 
 custom_rules:

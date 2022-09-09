@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import Rswift
 
 extension UIViewController {
     func showAlert(message: String) {
-        let alert = UIAlertController(title: "Error", message: "\(message)", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        let alert = UIAlertController(title: R.string.alertMessages.errorTitle(), message: "\(message)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: R.string.alertMessages.okTitle(), style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
 }

@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         startService = StartService(window: window)
         return true
     }
-    
+
     // MARK: - Core Data stack
 
     func applicationWillTerminate(_ application: UIApplication) {
