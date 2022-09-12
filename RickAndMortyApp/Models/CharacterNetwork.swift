@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct Character: Decodable, Namable {
+struct CharacterNetwork: Decodable, Namable {
     var name: String?
     var gender: String?
     var species: String?
@@ -19,4 +19,12 @@ struct Character: Decodable, Namable {
 struct Location: Decodable {
     var name: String?
     var url: String?
+}
+
+struct Character: Decodable, Namable {
+    var name: String?
+    var gender: String?
+    var species: String?
+    var location: Location?
+    var image: UIImage?
 }

@@ -12,7 +12,7 @@ final class CoreDataService {
     
     private let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     
-    func saveToCoreDataCharacter(charactersArray: [Character]) {
+    func saveToCoreDataCharacter(charactersArray: [CharacterNetwork]) {
         deleteAllData(R.string.services.characterData())
           
         let entityCharacters = NSEntityDescription.entity(forEntityName: R.string.services.characterData(),
@@ -74,14 +74,14 @@ final class CoreDataService {
         }
     }
     
-    func fetchCharactersFromCoreData() -> [Character] {
-        var arr: [Character] = []
+    func fetchCharactersFromCoreData() -> [CharacterNetwork] {
+        var arr: [CharacterNetwork] = []
         
         do {
             let newArr = try context!.fetch(CharacterData.fetchRequest())
             for element in newArr {
                 let characterData = element as? CharacterData
-                var character = Character(name: nil, gender: nil, species: nil, location: nil, image: nil)
+                var character = CharacterNetwork(name: nil, gender: nil, species: nil, location: nil, image: nil)
                 let location = Location(name: nil, url: nil)
                 
                 character.name = characterData?.name

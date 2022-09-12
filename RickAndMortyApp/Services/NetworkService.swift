@@ -12,11 +12,11 @@ import Rswift
 final class NetworkService {
     var baseURL = R.string.services.baseUrl()
     
-    func getInfoCharacters(endPoint: String, completion: @escaping (Result<Response<[Character]>, AFError>) -> Void) {
+    func getInfoCharacters(endPoint: String, completion: @escaping (Result<Response<[CharacterNetwork]>, AFError>) -> Void) {
         AF.request(
             self.baseURL + endPoint,
             method: .get)
-            .responseDecodable(of: Response<[Character]>.self) { response in
+            .responseDecodable(of: Response<[CharacterNetwork]>.self) { response in
                 completion(response.result)
             }
     }

@@ -15,7 +15,7 @@
 		8400D34A28992FA300C35767 /* EpisodesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D34928992FA300C35767 /* EpisodesViewController.swift */; };
 		8400D34C28992FB000C35767 /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D34B28992FB000C35767 /* LocationsViewController.swift */; };
 		8400D35228995F7200C35767 /* CharactersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D35128995F7200C35767 /* CharactersTableViewCell.swift */; };
-		8400D3562899629600C35767 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D3552899629600C35767 /* Character.swift */; };
+		8400D3562899629600C35767 /* CharacterNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D3552899629600C35767 /* CharacterNetwork.swift */; };
 		8400D358289962A700C35767 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D357289962A700C35767 /* Location.swift */; };
 		8400D35A289962BC00C35767 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D359289962BC00C35767 /* Episode.swift */; };
 		8400D367289ADAD400C35767 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D366289ADAD400C35767 /* NetworkService.swift */; };
@@ -58,7 +58,7 @@
 		8400D34928992FA300C35767 /* EpisodesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesViewController.swift; sourceTree = "<group>"; };
 		8400D34B28992FB000C35767 /* LocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
 		8400D35128995F7200C35767 /* CharactersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersTableViewCell.swift; sourceTree = "<group>"; };
-		8400D3552899629600C35767 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		8400D3552899629600C35767 /* CharacterNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterNetwork.swift; sourceTree = "<group>"; };
 		8400D357289962A700C35767 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		8400D359289962BC00C35767 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		8400D366289ADAD400C35767 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -231,7 +231,7 @@
 		8400D3532899626F00C35767 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				8400D3552899629600C35767 /* Character.swift */,
+				8400D3552899629600C35767 /* CharacterNetwork.swift */,
 				8400D357289962A700C35767 /* Location.swift */,
 				8400D359289962BC00C35767 /* Episode.swift */,
 				84A0022F28B6423500A233F1 /* EndPoints.swift */,
@@ -462,7 +462,7 @@
 				84A0025528C115C800A233F1 /* SplashBuilder.swift in Sources */,
 				84A0023D28B9103300A233F1 /* CharacterPresenter.swift in Sources */,
 				8400D35A289962BC00C35767 /* Episode.swift in Sources */,
-				8400D3562899629600C35767 /* Character.swift in Sources */,
+				8400D3562899629600C35767 /* CharacterNetwork.swift in Sources */,
 				8400D358289962A700C35767 /* Location.swift in Sources */,
 				848DAFEC28CA194900FA8D82 /* R.generated.swift in Sources */,
 				8400D32E28991DD700C35767 /* AppDelegate.swift in Sources */,
