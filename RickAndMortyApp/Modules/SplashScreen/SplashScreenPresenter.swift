@@ -41,6 +41,7 @@ final class SplashScreenPresenter: SplashScreenPresenting {
                     self.coreData.saveToCoreDataCharacter(charactersArray: serverData.results)
                     infoGroup.leave()
                 case .failure(let error):
+                    infoGroup.leave()
                     self?.controller?.showAlert(message: error.localizedDescription)
                 }
             }
@@ -55,6 +56,7 @@ final class SplashScreenPresenter: SplashScreenPresenting {
                     self.coreData.saveToCoreDataLocation(locationsArray: serverData.results)
                     infoGroup.leave()
                 case .failure(let error):
+                    infoGroup.leave()
                     self?.controller?.showAlert(message: error.localizedDescription)
                 }
             }
@@ -69,6 +71,7 @@ final class SplashScreenPresenter: SplashScreenPresenting {
                     self.coreData.saveToCoreDataEpisodes(episodesArray: serverData.results)
                     infoGroup.leave()
                 case .failure(let error):
+                    infoGroup.leave()
                     self?.controller?.showAlert(message: error.localizedDescription)
                 }
             }
