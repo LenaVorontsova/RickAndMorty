@@ -82,8 +82,7 @@ extension CharacterViewController: UITableViewDataSource, UITableViewDelegate, U
         
         let queue = DispatchQueue.global(qos: .utility)
 
-        if let urlString = presenter.charactersSearch[indexPath.row].image,
-           let url = URL(string: urlString) {
+        if let urlString = presenter.charactersSearch[indexPath.row].image, let url = URL(string: urlString) {
             queue.async {
                 if let data = try? Data(contentsOf: url) {
                     DispatchQueue.main.async {
@@ -91,12 +90,14 @@ extension CharacterViewController: UITableViewDataSource, UITableViewDelegate, U
                     }
                 } else {
                     DispatchQueue.main.async {
-                        cell.avatarView.image = UIImage(systemName: R.string.modules.imageSystemName())
+                        if let data = self.presenter.images[indexPath.row].imageData {
+                            cell.avatarView.image = UIImage(data: data)
+                        }
                     }
                 }
             }
         }
-            
+        
         let cellModel = CharactersTableViewCellFactory.cellModel(presenter.charactersSearch[indexPath.row])
         cell.config(with: cellModel)
             

@@ -11,6 +11,7 @@ import Alamofire
 protocol CharacterPresenting: AnyObject {
     var characters: [Character] { get set }
     var charactersSearch: [Character] { get set }
+    var images: [ImageOfCharacter] { get set }
     func getInfoCharacter()
     func searchCharacter(searchText: String)
 }
@@ -18,6 +19,7 @@ protocol CharacterPresenting: AnyObject {
 final class CharacterPresenter: CharacterPresenting {
     var characters: [Character] = []
     var charactersSearch: [Character] = []
+    var images: [ImageOfCharacter] = []
     weak var controller: (UIViewController & IViewControllers)?
     let coreData: CoreDataService
     let search: SearchService
@@ -28,9 +30,9 @@ final class CharacterPresenter: CharacterPresenting {
     }
     
     func getInfoCharacter() {
-        
         self.characters = self.coreData.fetchCharactersFromCoreData()
         self.charactersSearch = self.characters
+        self.images = self.coreData.fetchImage()
         self.controller?.reloadTable()
     }
     

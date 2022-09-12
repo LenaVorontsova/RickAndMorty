@@ -19,7 +19,7 @@ final class CoreDataService {
                                                           in: self.context!)!
         let entityLocation = NSEntityDescription.entity(forEntityName: R.string.services.characterLocData(),
                                                         in: self.context!)!
-          
+        
         for element in charactersArray {
             let character = NSManagedObject(entity: entityCharacters, insertInto: self.context)
             let location = NSManagedObject(entity: entityLocation, insertInto: self.context)
@@ -77,25 +77,44 @@ final class CoreDataService {
     func fetchCharactersFromCoreData() -> [Character] {
         var arr: [Character] = []
         
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-              return arr
-        }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
         do {
-            let newArr = try managedContext.fetch(CharacterData.fetchRequest())
+            let newArr = try context!.fetch(CharacterData.fetchRequest())
             for element in newArr {
                 let characterData = element as? CharacterData
                 var character = Character(name: nil, gender: nil, species: nil, location: nil, image: nil)
                 let location = Location(name: nil, url: nil)
+                
                 character.name = characterData?.name
                 character.gender = characterData?.gender
                 character.location = location
                 character.species = characterData?.species
                 character.location?.name = characterData?.location?.name
                 character.image = characterData?.image
+                
                 arr.append(character)
+            }
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        
+        return arr
+    }
+    
+    func fetchImage() -> [ImageOfCharacter] {
+        var arr: [ImageOfCharacter] = []
+        do {
+            let newArr = try context!.fetch(CharacterData.fetchRequest())
+            for element in newArr {
+                let characterData = element as? CharacterData
+                var imageOfCharacter = ImageOfCharacter(imageData: nil)
+                
+                if let urlString = characterData?.image,
+                   let url = URL(string: urlString),
+                   let data = try? Data(contentsOf: url) {
+                    imageOfCharacter.imageData = data
+                }
+                
+                arr.append(imageOfCharacter)
             }
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
@@ -107,14 +126,8 @@ final class CoreDataService {
     func fetchLocationsFromCoreData() -> [LocationInfo] {
         var arr: [LocationInfo] = []
         
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return arr
-        }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
         do {
-            let newArr = try managedContext.fetch(LocationData.fetchRequest())
+            let newArr = try context!.fetch(LocationData.fetchRequest())
             for element in newArr {
                 let locationData = element as? LocationData
                 var location = LocationInfo(name: nil, type: nil, dimension: nil)
@@ -133,14 +146,8 @@ final class CoreDataService {
     func fetchEpisodesFromCoreData() -> [EpisodeInfo] {
         var arr: [EpisodeInfo] = []
         
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-              return arr
-        }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
         do {
-            let newArr = try managedContext.fetch(EpisodeData.fetchRequest())
+            let newArr = try context!.fetch(EpisodeData.fetchRequest())
             for element in newArr {
                 let episodeData = element as? EpisodeData
                 var episode = EpisodeInfo(name: nil, air_date: nil, episode: nil)
@@ -157,14 +164,11 @@ final class CoreDataService {
     }
     
     func deleteAllData(_ entity: String) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
         let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         do {
-            try managedContext.execute(batchDeleteRequest)
+            try context!.execute(batchDeleteRequest)
         } catch {
             print(error)
         }
