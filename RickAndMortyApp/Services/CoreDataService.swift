@@ -28,7 +28,12 @@ final class CoreDataService {
             character.setValue(element.species, forKeyPath: R.string.services.species())
             location.setValue(element.location?.name, forKey: R.string.services.name())
             character.setValue(location, forKey: R.string.services.location())
-            character.setValue(element.image, forKeyPath: R.string.services.image())
+            
+            if let urlString = element.image,
+               let url = URL(string: urlString),
+               let data = try? Data(contentsOf: url) {
+                character.setValue(data, forKey: R.string.services.image())
+            }
             
             do {
                 try self.context!.save()
@@ -74,47 +79,25 @@ final class CoreDataService {
         }
     }
     
-    func fetchCharactersFromCoreData() -> [CharacterNetwork] {
-        var arr: [CharacterNetwork] = []
+    func fetchCharactersFromCoreData() -> [Character] {
+        var arr: [Character] = []
         
         do {
             let newArr = try context!.fetch(CharacterData.fetchRequest())
             for element in newArr {
-                let characterData = element as? CharacterData
-                var character = CharacterNetwork(name: nil, gender: nil, species: nil, location: nil, image: nil)
+                var character = Character(name: nil, gender: nil, species: nil, location: nil, image: nil)
                 let location = Location(name: nil, url: nil)
                 
-                character.name = characterData?.name
-                character.gender = characterData?.gender
+                character.name = element.name
+                character.gender = element.gender
                 character.location = location
-                character.species = characterData?.species
-                character.location?.name = characterData?.location?.name
-                character.image = characterData?.image
-                
-                arr.append(character)
-            }
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
-        
-        return arr
-    }
-    
-    func fetchImage() -> [ImageOfCharacter] {
-        var arr: [ImageOfCharacter] = []
-        do {
-            let newArr = try context!.fetch(CharacterData.fetchRequest())
-            for element in newArr {
-                let characterData = element as? CharacterData
-                var imageOfCharacter = ImageOfCharacter(imageData: nil)
-                
-                if let urlString = characterData?.image,
-                   let url = URL(string: urlString),
-                   let data = try? Data(contentsOf: url) {
-                    imageOfCharacter.imageData = data
+                character.species = element.species
+                character.location?.name = element.location?.name
+                if let data = element.image {
+                    character.image = UIImage(data: data)
                 }
                 
-                arr.append(imageOfCharacter)
+                arr.append(character)
             }
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
@@ -129,11 +112,10 @@ final class CoreDataService {
         do {
             let newArr = try context!.fetch(LocationData.fetchRequest())
             for element in newArr {
-                let locationData = element as? LocationData
                 var location = LocationInfo(name: nil, type: nil, dimension: nil)
-                location.name = locationData?.name
-                location.type = locationData?.type
-                location.dimension = locationData?.dimension
+                location.name = element.name
+                location.type = element.type
+                location.dimension = element.dimension
                 arr.append(location)
             }
         } catch let error as NSError {
@@ -149,11 +131,10 @@ final class CoreDataService {
         do {
             let newArr = try context!.fetch(EpisodeData.fetchRequest())
             for element in newArr {
-                let episodeData = element as? EpisodeData
                 var episode = EpisodeInfo(name: nil, air_date: nil, episode: nil)
-                episode.name = episodeData?.name
-                episode.air_date = episodeData?.air_date
-                episode.episode = episodeData?.episode
+                episode.name = element.name
+                episode.air_date = element.air_date
+                episode.episode = element.episode
                 arr.append(episode)
             }
         } catch let error as NSError {

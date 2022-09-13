@@ -21,7 +21,7 @@ struct Location: Decodable {
     var url: String?
 }
 
-struct Character: Decodable, Namable {
+struct Character: Namable {
     var name: String?
     var gender: String?
     var species: String?
