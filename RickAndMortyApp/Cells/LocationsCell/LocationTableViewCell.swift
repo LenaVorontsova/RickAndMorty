@@ -29,19 +29,19 @@ enum ConstantsLocationsCell {
 }
 
 final class LocationTableViewCell: UITableViewCell {
-    private var nameLabel: UILabel = {
+    private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 28)
         return label
     }()
     
-    private var typeLabel: UILabel = {
+    private lazy var typeLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17)
         return label
     }()
     
-    private var dimensionLabel: UILabel = {
+    private lazy var dimensionLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17)
         return label

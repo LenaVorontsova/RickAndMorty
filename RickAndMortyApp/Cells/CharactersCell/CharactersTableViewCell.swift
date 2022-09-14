@@ -40,30 +40,30 @@ protocol ReusableView: AnyObject {
 
 final class CharactersTableViewCell: UITableViewCell {
     
-    var avatarView: UIImageView = {
+    private lazy var avatarView: UIImageView = {
         let image = UIImageView()
         return image
     }()
     
-    var nameLabel: UILabel = {
+    private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 28)
         return label
     }()
     
-    var genderLabel: UILabel = {
+    private lazy var genderLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17)
         return label
     }()
     
-    var speciesLabel: UILabel = {
+    private lazy var speciesLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17)
         return label
     }()
     
-    var locationLabel: UILabel = {
+    private lazy var locationLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17)
         return label
