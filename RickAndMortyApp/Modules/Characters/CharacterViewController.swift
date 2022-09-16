@@ -91,6 +91,10 @@ extension CharacterViewController: UITableViewDataSource, UITableViewDelegate, U
         return 125
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.openDetails(indexPath: indexPath)
+    }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         presenter.searchCharacter(searchText: searchText)
     }

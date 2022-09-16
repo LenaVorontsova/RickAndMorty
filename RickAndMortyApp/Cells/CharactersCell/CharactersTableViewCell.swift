@@ -40,7 +40,7 @@ protocol ReusableView: AnyObject {
 
 final class CharactersTableViewCell: UITableViewCell {
     
-    private lazy var avatarView: UIImageView = {
+    lazy var avatarView: UIImageView = {
         let image = UIImageView()
         return image
     }()

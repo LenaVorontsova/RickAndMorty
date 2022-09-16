@@ -13,6 +13,7 @@ protocol CharacterPresenting: AnyObject {
     var charactersSearch: [Character] { get set }
     func getInfoCharacter()
     func searchCharacter(searchText: String)
+    func openDetails(indexPath: IndexPath)
 }
 
 final class CharacterPresenter: CharacterPresenting {
@@ -38,5 +39,10 @@ final class CharacterPresenter: CharacterPresenting {
                                          searchText: searchText,
                                          type: Character.self)
         controller?.reloadTable()
+    }
+    
+    func openDetails(indexPath: IndexPath) {
+        let detailViewController = DetailViewController()
+        controller?.navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
