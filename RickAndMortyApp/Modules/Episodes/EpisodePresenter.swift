@@ -13,6 +13,7 @@ protocol EpisodePresenting: AnyObject {
     var episodesSearch: [EpisodeInfo] { get set }
     func getInfoEpisodes()
     func searchEpisode(searchText: String)
+    func openDetails(indexPath: IndexPath)
 }
 
 final class EpisodePresenter: EpisodePresenting {
@@ -38,5 +39,10 @@ final class EpisodePresenter: EpisodePresenting {
                                        searchText: searchText,
                                        type: EpisodeInfo.self)
         controller?.reloadTable()
+    }
+    
+    func openDetails(indexPath: IndexPath) {
+        let detailViewController = DetailViewController()
+        controller?.navigationController?.pushViewController(detailViewController, animated: true)
     }
 }

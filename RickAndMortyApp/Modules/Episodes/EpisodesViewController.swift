@@ -70,7 +70,6 @@ final class EpisodesViewController: UIViewController, IViewControllers {
 }
 
 extension EpisodesViewController: UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
-    // TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.episodesSearch.count
     }
@@ -90,7 +89,10 @@ extension EpisodesViewController: UITableViewDataSource, UITableViewDelegate, UI
         return 125
     }
     
-    // SearchBar
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.openDetails(indexPath: indexPath)
+    }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         presenter.searchEpisode(searchText: searchText)
     }
