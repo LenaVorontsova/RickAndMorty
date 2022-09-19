@@ -8,13 +8,14 @@
 import UIKit
 
 enum ConstantsDetail {
-    static let sizeAvatar = 200
+    static let sizeAvatar = 150
     static let topAvatar = 10
     static let leadAvatar = 20
+    static let trailAvatar = -20
     
-    static let leadLabels = 20
-    static let trailLabels = -20
-    static let topLabels = 5
+    static let leadStack = 20
+    static let topStack = 10
+    static let spacingStack = 5
 }
 
 final class DetailViewController: UIViewController {
@@ -23,30 +24,44 @@ final class DetailViewController: UIViewController {
         return image
     }()
     
-    private var titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 30)
-        return label
+    private var stackView: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.spacing = CGFloat(ConstantsDetail.spacingStack)
+        return stack
     }()
     
-    private var subtitleLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 28)
-        return label
-    }()
+    var viewModel: DetailViewModelProtocol! {
+        didSet {
+            if let image = viewModel.image {
+                avatarView.image = image
+            } else {
+                avatarView.image = UIImage(systemName: "person.3")
+            }
+            self.addTitle()
+        }
+    }
+    
+     init(viewModel: DetailViewModelProtocol) {
+         self.viewModel = viewModel
+         super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureConstraints()
-        
+
         view.backgroundColor = UIColor(red: 200 / 255, green: 246 / 255, blue: 236 / 255, alpha: 1)
     }
     
     private func configureConstraints() {
         view.addSubview(avatarView)
-        view.addSubview(titleLabel)
-        view.addSubview(subtitleLabel)
+        view.addSubview(stackView)
         
         avatarView.snp.makeConstraints {
             $0.width.height.equalTo(ConstantsDetail.sizeAvatar)
@@ -54,19 +69,22 @@ final class DetailViewController: UIViewController {
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading)
                 .offset(ConstantsDetail.leadAvatar)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
-                .offset(ConstantsDetail.leadAvatar)
+                .offset(ConstantsDetail.trailAvatar)
         }
         
-        titleLabel.snp.makeConstraints {
-            $0.top.equalTo(avatarView.snp.bottom).offset(ConstantsDetail.topAvatar)
-            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(ConstantsDetail.leadLabels)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(ConstantsDetail.trailLabels)
+        stackView.snp.makeConstraints {
+            $0.top.equalTo(avatarView.snp.bottom).offset(ConstantsDetail.topStack)
+            $0.leading.trailing.equalToSuperview().offset(ConstantsDetail.leadStack)
         }
-        
-        subtitleLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(ConstantsDetail.topLabels)
-            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(ConstantsDetail.leadLabels)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(ConstantsDetail.trailLabels)
+    }
+    
+    private func addTitle() {
+        guard let labels = viewModel.titleLabel else { return }
+        for text in labels {
+            let label = UILabel()
+            label.text = text
+            label.font = .systemFont(ofSize: 28)
+            stackView.addArrangedSubview(label)
         }
     }
 }

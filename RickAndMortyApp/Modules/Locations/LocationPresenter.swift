@@ -13,7 +13,6 @@ protocol LocationPresenting: AnyObject {
     var locationsSearch: [LocationInfo] { get set }
     func getInfoLocation()
     func searchLocation(searchText: String)
-    func openDetails(indexPath: IndexPath)
 }
 
 final class LocationPresenter: LocationPresenting {
@@ -39,10 +38,5 @@ final class LocationPresenter: LocationPresenting {
                                         searchText: searchText,
                                         type: LocationInfo.self)
         controller?.reloadTable()
-    }
-    
-    func openDetails(indexPath: IndexPath) {
-        let detailViewController = DetailViewController()
-        controller?.navigationController?.pushViewController(detailViewController, animated: true)
     }
 }

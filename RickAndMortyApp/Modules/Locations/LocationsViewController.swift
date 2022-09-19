@@ -51,6 +51,10 @@ final class LocationsViewController: UIViewController, IViewControllers {
     func reloadTable() {
         self.tableView.reloadData()
     }
+    
+    func pathLocationViewModel(indexPath: IndexPath) -> DetailViewModelProtocol {
+        return LocationViewModel(location: presenter.locationsSearch[indexPath.row])
+    }
 
     private func configureConstraints() {
         view.addSubview(searchBar)
@@ -91,7 +95,9 @@ extension LocationsViewController: UITableViewDataSource, UITableViewDelegate, U
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter.openDetails(indexPath: indexPath)
+        let viewModel = pathLocationViewModel(indexPath: indexPath)
+        let controller = DetailViewController(viewModel: viewModel)
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
