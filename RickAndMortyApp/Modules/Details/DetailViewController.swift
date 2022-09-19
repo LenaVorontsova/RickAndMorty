@@ -8,10 +8,9 @@
 import UIKit
 
 enum ConstantsDetail {
-    static let sizeAvatar = 150
+    static let sizeAvatar = 250
     static let topAvatar = 10
     static let leadAvatar = 20
-    static let trailAvatar = -20
     
     static let leadStack = 20
     static let topStack = 10
@@ -31,28 +30,26 @@ final class DetailViewController: UIViewController {
         return stack
     }()
     
-    var viewModel: DetailViewModelProtocol! {
-        didSet {
-            if let image = viewModel.image {
-                avatarView.image = image
-            } else {
-                avatarView.image = UIImage(systemName: "person.3")
-            }
-            self.addTitle()
-        }
-    }
+    let viewModel: DetailViewModelProtocol
     
-     init(viewModel: DetailViewModelProtocol) {
-         self.viewModel = viewModel
-         super.init(nibName: nil, bundle: nil)
+    init(viewModel: DetailViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let image = viewModel.image {
+            avatarView.image = image
+        } else {
+            avatarView.image = UIImage(systemName: "person.3")
+        }
+        self.addTitle()
         
         configureConstraints()
 
@@ -68,8 +65,6 @@ final class DetailViewController: UIViewController {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(ConstantsDetail.topAvatar)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading)
                 .offset(ConstantsDetail.leadAvatar)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
-                .offset(ConstantsDetail.trailAvatar)
         }
         
         stackView.snp.makeConstraints {
