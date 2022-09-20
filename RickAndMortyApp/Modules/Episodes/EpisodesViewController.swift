@@ -52,10 +52,6 @@ final class EpisodesViewController: UIViewController, IViewControllers {
         self.tableView.reloadData()
     }
     
-    func pathEpisodeViewModel(indexPath: IndexPath) -> DetailViewModelProtocol {
-        return EpisodeViewModel(episode: presenter.episodesSearch[indexPath.row])
-    }
-    
     private func configureConstraints() {
         view.addSubview(searchBar)
         view.addSubview(tableView)
@@ -94,7 +90,7 @@ extension EpisodesViewController: UITableViewDataSource, UITableViewDelegate, UI
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let viewModel = pathEpisodeViewModel(indexPath: indexPath)
+        let viewModel = presenter.pathEpisodeViewModel(indexPath: indexPath)
         let controller = DetailViewController(viewModel: viewModel)
         self.navigationController?.pushViewController(controller, animated: true)
     }

@@ -13,6 +13,7 @@ protocol CharacterPresenting: AnyObject {
     var charactersSearch: [Character] { get set }
     func getInfoCharacter()
     func searchCharacter(searchText: String)
+    func pathCharacterViewModel(indexPath: IndexPath) -> DetailViewModelProtocol
 }
 
 final class CharacterPresenter: CharacterPresenting {
@@ -38,5 +39,9 @@ final class CharacterPresenter: CharacterPresenting {
                                          searchText: searchText,
                                          type: Character.self)
         controller?.reloadTable()
+    }
+    
+    func pathCharacterViewModel(indexPath: IndexPath) -> DetailViewModelProtocol {
+        return CharacterViewModel(character: charactersSearch[indexPath.row])
     }
 }

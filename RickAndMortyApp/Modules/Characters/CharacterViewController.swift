@@ -51,10 +51,6 @@ final class CharacterViewController: UIViewController, IViewControllers {
         self.tableView.reloadData()
     }
     
-    func pathCharacterViewModel(indexPath: IndexPath) -> DetailViewModelProtocol {
-        return CharacterViewModel(character: presenter.charactersSearch[indexPath.row])
-    }
-    
     private func configureConstraints() {
         view.addSubview(searchBar)
         view.addSubview(tableView)
@@ -96,7 +92,7 @@ extension CharacterViewController: UITableViewDataSource, UITableViewDelegate, U
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let viewModel = pathCharacterViewModel(indexPath: indexPath)
+        let viewModel = presenter.pathCharacterViewModel(indexPath: indexPath)
         let controller = DetailViewController(viewModel: viewModel)
         self.navigationController?.pushViewController(controller, animated: true)
     }
