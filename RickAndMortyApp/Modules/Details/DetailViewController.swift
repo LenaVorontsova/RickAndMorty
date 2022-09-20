@@ -44,16 +44,30 @@ final class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupImage()
+        addTitle()
+        
+        configureConstraints()
+
+        view.backgroundColor = UIColor(red: 200 / 255, green: 246 / 255, blue: 236 / 255, alpha: 1)
+    }
+    
+    private func setupImage() {
         if let image = viewModel.image {
             avatarView.image = image
         } else {
             avatarView.image = UIImage(systemName: "person.3")
         }
-        self.addTitle()
-        
-        configureConstraints()
-
-        view.backgroundColor = UIColor(red: 200 / 255, green: 246 / 255, blue: 236 / 255, alpha: 1)
+    }
+    
+    private func addTitle() {
+        guard let labels = viewModel.titleLabel else { return }
+        for text in labels {
+            let label = UILabel()
+            label.text = text
+            label.font = .systemFont(ofSize: 28)
+            stackView.addArrangedSubview(label)
+        }
     }
     
     private func configureConstraints() {
@@ -70,16 +84,6 @@ final class DetailViewController: UIViewController {
         stackView.snp.makeConstraints {
             $0.top.equalTo(avatarView.snp.bottom).offset(ConstantsDetail.topStack)
             $0.leading.trailing.equalToSuperview().offset(ConstantsDetail.leadStack)
-        }
-    }
-    
-    private func addTitle() {
-        guard let labels = viewModel.titleLabel else { return }
-        for text in labels {
-            let label = UILabel()
-            label.text = text
-            label.font = .systemFont(ofSize: 28)
-            stackView.addArrangedSubview(label)
         }
     }
 }
