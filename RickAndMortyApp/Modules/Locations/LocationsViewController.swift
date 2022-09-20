@@ -70,7 +70,6 @@ final class LocationsViewController: UIViewController, IViewControllers {
 }
 
 extension LocationsViewController: UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
-    // TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.locationsSearch.count
     }
@@ -91,7 +90,12 @@ extension LocationsViewController: UITableViewDataSource, UITableViewDelegate, U
         return 100
     }
     
-    // SearchBar
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let viewModel = presenter.pathLocationViewModel(indexPath: indexPath)
+        let controller = DetailViewController(viewModel: viewModel)
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         presenter.searchLocation(searchText: searchText)
     }

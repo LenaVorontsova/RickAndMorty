@@ -41,25 +41,25 @@ enum ConstantsEpisodesCell {
 }
 
 final class EpisodesTableViewCell: UITableViewCell {
-    var nameLabel: UILabel = {
+    private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 28)
         return label
     }()
     
-    var airDateLabel: UILabel = {
+    private lazy var airDateLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17)
         return label
     }()
 
-    var seasonLabel: UILabel = {
+    private lazy var seasonLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17)
         return label
     }()
 
-    var episodeLabel: UILabel = {
+    private lazy var episodeLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17)
         return label

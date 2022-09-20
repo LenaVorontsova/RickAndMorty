@@ -12,12 +12,14 @@
 "characterLocData" = "CharactersLocationData";
 "locationData" = "LocationData";
 "episodeData" = "EpisodeData";
+"imageData" = "ImageData";
 
 "name" = "name";
 "gender" = "gender";
 "species" = "species";
 "location" = "location";
 "image" = "image";
+"imageDataNew" = "imageData";
 "type" = "type";
 "dimension" = "dimension";
 "air_date" = "air_date";

@@ -69,7 +69,6 @@ final class CharacterViewController: UIViewController, IViewControllers {
 }
 
 extension CharacterViewController: UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
-    // TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.charactersSearch.count
     }
@@ -79,27 +78,12 @@ extension CharacterViewController: UITableViewDataSource, UITableViewDelegate, U
                                                        for: indexPath) as? CharactersTableViewCell else {
             return UITableViewCell()
         }
-        
-        let queue = DispatchQueue.global(qos: .utility)
-
-        if let urlString = presenter.charactersSearch[indexPath.row].image,
-           let url = URL(string: urlString) {
-            queue.async {
-                if let data = try? Data(contentsOf: url) {
-                    DispatchQueue.main.async {
-                        cell.avatarView.image = UIImage(data: data)
-                    }
-                } else {
-                    DispatchQueue.main.async {
-                        cell.avatarView.image = UIImage(systemName: R.string.modules.imageSystemName())
-                    }
-                }
-            }
-        }
             
         let cellModel = CharactersTableViewCellFactory.cellModel(presenter.charactersSearch[indexPath.row])
         cell.config(with: cellModel)
-            
+        
+        cell.avatarView.image = presenter.charactersSearch[indexPath.row].image
+
         return cell
     }
     
@@ -107,7 +91,12 @@ extension CharacterViewController: UITableViewDataSource, UITableViewDelegate, U
         return 125
     }
     
-    // SearchBar
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let viewModel = presenter.pathCharacterViewModel(indexPath: indexPath)
+        let controller = DetailViewController(viewModel: viewModel)
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         presenter.searchCharacter(searchText: searchText)
     }

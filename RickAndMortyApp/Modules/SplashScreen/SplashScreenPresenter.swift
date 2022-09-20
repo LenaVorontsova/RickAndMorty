@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 protocol SplashScreenPresenting: AnyObject {
     var controller: UIViewController? { get set }
@@ -26,6 +27,24 @@ final class SplashScreenPresenter: SplashScreenPresenting {
         self.coreData = coreData
     }
     
+    func showAlert(with error: AFError) {
+        var topWindow: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
+        topWindow?.rootViewController = UIViewController()
+        topWindow?.windowLevel = UIWindow.Level.alert + 1
+        
+        let alert = UIAlertController(title: R.string.alertMessages.errorTitle(),
+                                      message: error.localizedDescription,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: R.string.alertMessages.okTitle(),
+                                      style: .cancel) { _ in
+            topWindow?.isHidden = true
+            topWindow = nil
+        })
+        
+        topWindow?.makeKeyAndVisible()
+        topWindow?.rootViewController?.present(alert, animated: true, completion: nil)
+    }
+    
     func getInfo() {
         let infoGroup = DispatchGroup()
         let queue1 = DispatchQueue.global(qos: .utility)
@@ -41,7 +60,8 @@ final class SplashScreenPresenter: SplashScreenPresenting {
                     self.coreData.saveToCoreDataCharacter(charactersArray: serverData.results)
                     infoGroup.leave()
                 case .failure(let error):
-                    self?.controller?.showAlert(message: error.localizedDescription)
+                    infoGroup.leave()
+                    self!.showAlert(with: error)
                 }
             }
         }
@@ -55,7 +75,8 @@ final class SplashScreenPresenter: SplashScreenPresenting {
                     self.coreData.saveToCoreDataLocation(locationsArray: serverData.results)
                     infoGroup.leave()
                 case .failure(let error):
-                    self?.controller?.showAlert(message: error.localizedDescription)
+                    infoGroup.leave()
+                    self!.showAlert(with: error)
                 }
             }
         }
@@ -69,7 +90,8 @@ final class SplashScreenPresenter: SplashScreenPresenting {
                     self.coreData.saveToCoreDataEpisodes(episodesArray: serverData.results)
                     infoGroup.leave()
                 case .failure(let error):
-                    self?.controller?.showAlert(message: error.localizedDescription)
+                    infoGroup.leave()
+                    self!.showAlert(with: error)
                 }
             }
         }

@@ -13,6 +13,7 @@ protocol EpisodePresenting: AnyObject {
     var episodesSearch: [EpisodeInfo] { get set }
     func getInfoEpisodes()
     func searchEpisode(searchText: String)
+    func pathEpisodeViewModel(indexPath: IndexPath) -> DetailViewModelProtocol
 }
 
 final class EpisodePresenter: EpisodePresenting {
@@ -38,5 +39,9 @@ final class EpisodePresenter: EpisodePresenting {
                                        searchText: searchText,
                                        type: EpisodeInfo.self)
         controller?.reloadTable()
+    }
+    
+    func pathEpisodeViewModel(indexPath: IndexPath) -> DetailViewModelProtocol {
+        return EpisodeViewModel(episode: episodesSearch[indexPath.row])
     }
 }

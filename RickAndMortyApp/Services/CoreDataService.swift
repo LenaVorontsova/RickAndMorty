@@ -10,32 +10,33 @@ import CoreData
 
 final class CoreDataService {
     
-    func saveToCoreDataCharacter(charactersArray: [Character]) {
+    private let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+    
+    func saveToCoreDataCharacter(charactersArray: [CharacterNetwork]) {
         deleteAllData(R.string.services.characterData())
-        
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-          
-        let managedContext = appDelegate.persistentContainer.viewContext
           
         let entityCharacters = NSEntityDescription.entity(forEntityName: R.string.services.characterData(),
-                                                          in: managedContext)!
+                                                          in: self.context!)!
         let entityLocation = NSEntityDescription.entity(forEntityName: R.string.services.characterLocData(),
-                                                        in: managedContext)!
-          
+                                                        in: self.context!)!
+        
         for element in charactersArray {
-            let character = NSManagedObject(entity: entityCharacters, insertInto: managedContext)
-            let location = NSManagedObject(entity: entityLocation, insertInto: managedContext)
+            let character = NSManagedObject(entity: entityCharacters, insertInto: self.context)
+            let location = NSManagedObject(entity: entityLocation, insertInto: self.context)
             character.setValue(element.name, forKeyPath: R.string.services.name())
             character.setValue(element.gender, forKeyPath: R.string.services.gender())
             character.setValue(element.species, forKeyPath: R.string.services.species())
             location.setValue(element.location?.name, forKey: R.string.services.name())
             character.setValue(location, forKey: R.string.services.location())
-            character.setValue(element.image, forKeyPath: R.string.services.image())
+            
+            if let urlString = element.image,
+               let url = URL(string: urlString),
+               let data = try? Data(contentsOf: url) {
+                character.setValue(data, forKey: R.string.services.image())
+            }
             
             do {
-                try managedContext.save()
+                try self.context!.save()
             } catch let error as NSError {
                 print("Could not save. \(error), \(error.userInfo)")
             }
@@ -44,22 +45,16 @@ final class CoreDataService {
     
     func saveToCoreDataLocation(locationsArray: [LocationInfo]) {
         deleteAllData(R.string.services.locationData())
-        
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
           
-        let managedContext = appDelegate.persistentContainer.viewContext
-          
-        let entity = NSEntityDescription.entity(forEntityName: R.string.services.locationData(), in: managedContext)!
+        let entity = NSEntityDescription.entity(forEntityName: R.string.services.locationData(), in: self.context!)!
           
         for element in locationsArray {
-            let location = NSManagedObject(entity: entity, insertInto: managedContext)
+            let location = NSManagedObject(entity: entity, insertInto: self.context)
             location.setValue(element.name, forKeyPath: R.string.services.name())
             location.setValue(element.type, forKeyPath: R.string.services.type())
             location.setValue(element.dimension, forKeyPath: R.string.services.dimension())
             do {
-                try managedContext.save()
+                try self.context!.save()
             } catch let error as NSError {
                 print("Could not save. \(error), \(error.userInfo)")
             }
@@ -68,22 +63,16 @@ final class CoreDataService {
     
     func saveToCoreDataEpisodes(episodesArray: [EpisodeInfo]) {
         deleteAllData(R.string.services.episodeData())
-        
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
           
-        let managedContext = appDelegate.persistentContainer.viewContext
-          
-        let entity = NSEntityDescription.entity(forEntityName: R.string.services.episodeData(), in: managedContext)!
+        let entity = NSEntityDescription.entity(forEntityName: R.string.services.episodeData(), in: self.context!)!
         
         for element in episodesArray {
-            let episode = NSManagedObject(entity: entity, insertInto: managedContext)
+            let episode = NSManagedObject(entity: entity, insertInto: self.context)
             episode.setValue(element.name, forKeyPath: R.string.services.name())
             episode.setValue(element.air_date, forKeyPath: R.string.services.air_date())
             episode.setValue(element.episode, forKeyPath: R.string.services.episode())
             do {
-                try managedContext.save()
+                try self.context!.save()
             } catch let error as NSError {
                 print("Could not save. \(error), \(error.userInfo)")
             }
@@ -93,24 +82,21 @@ final class CoreDataService {
     func fetchCharactersFromCoreData() -> [Character] {
         var arr: [Character] = []
         
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-              return arr
-        }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
         do {
-            let newArr = try managedContext.fetch(CharacterData.fetchRequest())
+            let newArr = try context!.fetch(CharacterData.fetchRequest())
             for element in newArr {
-                let characterData = element as? CharacterData
                 var character = Character(name: nil, gender: nil, species: nil, location: nil, image: nil)
                 let location = Location(name: nil, url: nil)
-                character.name = characterData?.name
-                character.gender = characterData?.gender
+                
+                character.name = element.name
+                character.gender = element.gender
                 character.location = location
-                character.species = characterData?.species
-                character.location?.name = characterData?.location?.name
-                character.image = characterData?.image
+                character.species = element.species
+                character.location?.name = element.location?.name
+                if let data = element.image {
+                    character.image = UIImage(data: data)
+                }
+                
                 arr.append(character)
             }
         } catch let error as NSError {
@@ -123,20 +109,13 @@ final class CoreDataService {
     func fetchLocationsFromCoreData() -> [LocationInfo] {
         var arr: [LocationInfo] = []
         
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return arr
-        }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
         do {
-            let newArr = try managedContext.fetch(LocationData.fetchRequest())
+            let newArr = try context!.fetch(LocationData.fetchRequest())
             for element in newArr {
-                let locationData = element as? LocationData
                 var location = LocationInfo(name: nil, type: nil, dimension: nil)
-                location.name = locationData?.name
-                location.type = locationData?.type
-                location.dimension = locationData?.dimension
+                location.name = element.name
+                location.type = element.type
+                location.dimension = element.dimension
                 arr.append(location)
             }
         } catch let error as NSError {
@@ -149,20 +128,13 @@ final class CoreDataService {
     func fetchEpisodesFromCoreData() -> [EpisodeInfo] {
         var arr: [EpisodeInfo] = []
         
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-              return arr
-        }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
         do {
-            let newArr = try managedContext.fetch(EpisodeData.fetchRequest())
+            let newArr = try context!.fetch(EpisodeData.fetchRequest())
             for element in newArr {
-                let episodeData = element as? EpisodeData
                 var episode = EpisodeInfo(name: nil, air_date: nil, episode: nil)
-                episode.name = episodeData?.name
-                episode.air_date = episodeData?.air_date
-                episode.episode = episodeData?.episode
+                episode.name = element.name
+                episode.air_date = element.air_date
+                episode.episode = element.episode
                 arr.append(episode)
             }
         } catch let error as NSError {
@@ -173,14 +145,11 @@ final class CoreDataService {
     }
     
     func deleteAllData(_ entity: String) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
         let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         do {
-            try managedContext.execute(batchDeleteRequest)
+            try context!.execute(batchDeleteRequest)
         } catch {
             print(error)
         }
