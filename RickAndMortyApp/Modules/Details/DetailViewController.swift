@@ -18,11 +18,6 @@ enum ConstantsDetail {
 }
 
 final class DetailViewController: UIViewController {
-    private var avatarView: UIImageView = {
-        let image = UIImageView()
-        return image
-    }()
-    
     private var stackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
@@ -47,7 +42,6 @@ final class DetailViewController: UIViewController {
         
         createChildViewController(childVC: childVC)
         
-//        setupImage()
         addTitle()
         
         configureConstraints()
@@ -73,14 +67,6 @@ final class DetailViewController: UIViewController {
         }
     }
     
-//    private func setupImage() {
-//        if let image = viewModel.image {
-//            avatarView.image = image
-//        } else {
-//            avatarView.image = UIImage(systemName: "person.3")
-//        }
-//    }
-    
     private func addTitle() {
         guard let labels = viewModel.titleLabel else { return }
         for text in labels {
@@ -92,15 +78,7 @@ final class DetailViewController: UIViewController {
     }
     
     private func configureConstraints() {
-//        childVC.view.addSubview(avatarView)
         self.view.addSubview(stackView)
-        
-//        avatarView.snp.makeConstraints {
-//            $0.width.height.equalTo(ConstantsDetail.sizeAvatar)
-//            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(ConstantsDetail.topAvatar)
-//            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading)
-//                .offset(ConstantsDetail.leadAvatar)
-//        }
         
         stackView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(ConstantsDetail.topStack)
