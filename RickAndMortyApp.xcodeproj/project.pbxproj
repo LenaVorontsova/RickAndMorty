@@ -29,6 +29,7 @@
 		848DAFF928D34B3700FA8D82 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848DAFF828D34B3700FA8D82 /* DetailViewController.swift */; };
 		848DAFFB28D4975300FA8D82 /* DetailsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848DAFFA28D4975300FA8D82 /* DetailsProtocols.swift */; };
 		848DAFFD28D497A100FA8D82 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848DAFFC28D497A100FA8D82 /* DetailsViewModel.swift */; };
+		848DB02028DB553000FA8D82 /* CarouselViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848DB01F28DB553000FA8D82 /* CarouselViewController.swift */; };
 		84A0022E28B552D700A233F1 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A0022D28B552D700A233F1 /* SearchService.swift */; };
 		84A0023028B6423500A233F1 /* EndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A0022F28B6423500A233F1 /* EndPoints.swift */; };
 		84A0023328B64AC400A233F1 /* NetworkService+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A0023228B64AC400A233F1 /* NetworkService+extension.swift */; };
@@ -74,6 +75,7 @@
 		848DAFF828D34B3700FA8D82 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		848DAFFA28D4975300FA8D82 /* DetailsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsProtocols.swift; sourceTree = "<group>"; };
 		848DAFFC28D497A100FA8D82 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
+		848DB01F28DB553000FA8D82 /* CarouselViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselViewController.swift; sourceTree = "<group>"; };
 		8497F9F128ACFBE600C5BCD2 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		84A0022D28B552D700A233F1 /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
 		84A0022F28B6423500A233F1 /* EndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoints.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 		8400D3432899283200C35767 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				848DB01E28DB54F400FA8D82 /* Scroll */,
 				848DAFF728D34B1E00FA8D82 /* Details */,
 				84A0024828BF99E400A233F1 /* SplashScreen */,
 				8400D34828992F8E00C35767 /* Episodes */,
@@ -274,6 +277,14 @@
 				848DAFFC28D497A100FA8D82 /* DetailsViewModel.swift */,
 			);
 			path = Details;
+			sourceTree = "<group>";
+		};
+		848DB01E28DB54F400FA8D82 /* Scroll */ = {
+			isa = PBXGroup;
+			children = (
+				848DB01F28DB553000FA8D82 /* CarouselViewController.swift */,
+			);
+			path = Scroll;
 			sourceTree = "<group>";
 		};
 		84A0023128B64A9700A233F1 /* Extensions */ = {
@@ -464,6 +475,7 @@
 				84A0024128BCC74000A233F1 /* UIViewController+showAlert.swift in Sources */,
 				84A0023F28B9104400A233F1 /* CharacterBuilder.swift in Sources */,
 				848DAFFB28D4975300FA8D82 /* DetailsProtocols.swift in Sources */,
+				848DB02028DB553000FA8D82 /* CarouselViewController.swift in Sources */,
 				84A0023028B6423500A233F1 /* EndPoints.swift in Sources */,
 				84A0024328BD01EB00A233F1 /* IViewControllers.swift in Sources */,
 				8400D34A28992FA300C35767 /* EpisodesViewController.swift in Sources */,
