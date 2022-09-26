@@ -17,6 +17,7 @@ final class GalaryCollectionView: UICollectionView, UICollectionViewDelegate,
         layout.scrollDirection = .horizontal
         super.init(frame: .zero, collectionViewLayout: layout)
         
+        self.showsHorizontalScrollIndicator = false
         delegate = self
         dataSource = self
         
@@ -33,7 +34,7 @@ final class GalaryCollectionView: UICollectionView, UICollectionViewDelegate,
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cells.count
+        return 500
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -42,7 +43,7 @@ final class GalaryCollectionView: UICollectionView, UICollectionViewDelegate,
             for: indexPath) as? GalaryCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.collectionImageView.image = cells[indexPath.row]
+        cell.collectionImageView.image = cells[indexPath.row % cells.count]
         return cell
     }
     
