@@ -11,6 +11,7 @@ import UIKit
 final class GalaryCollectionView: UICollectionView, UICollectionViewDelegate,
                                     UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     var cells = [UIImage]()
+    let numberOfItems = 1000
     
     init() {
         let layout = UICollectionViewFlowLayout()
@@ -34,7 +35,7 @@ final class GalaryCollectionView: UICollectionView, UICollectionViewDelegate,
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 500
+        return numberOfItems
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

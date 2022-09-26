@@ -24,6 +24,13 @@ final class CarouselViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let indexPath = IndexPath(row: gallaryCollectionView.numberOfItems / 2, section: 0)
+        gallaryCollectionView.scrollToItem(at: indexPath, at: .left, animated: false)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
