@@ -21,6 +21,8 @@
 		8400D367289ADAD400C35767 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D366289ADAD400C35767 /* NetworkService.swift */; };
 		8400D3BC289E91BC00C35767 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D3BB289E91BC00C35767 /* LocationTableViewCell.swift */; };
 		8400D3BE289E9ACD00C35767 /* EpisodesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400D3BD289E9ACD00C35767 /* EpisodesTableViewCell.swift */; };
+		848A225228E1A13200ABC301 /* GalaryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A225128E1A13200ABC301 /* GalaryCollectionView.swift */; };
+		848A225428E1A4A800ABC301 /* GalaryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A225328E1A4A800ABC301 /* GalaryCollectionViewCell.swift */; };
 		848DAFE628CA0DE600FA8D82 /* modules.strings in Resources */ = {isa = PBXBuildFile; fileRef = 848DAFE528CA0DE600FA8D82 /* modules.strings */; };
 		848DAFE828CA0E6B00FA8D82 /* alertMessages.strings in Resources */ = {isa = PBXBuildFile; fileRef = 848DAFE728CA0E6B00FA8D82 /* alertMessages.strings */; };
 		848DAFEC28CA194900FA8D82 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848DAFEB28CA194900FA8D82 /* R.generated.swift */; };
@@ -67,6 +69,8 @@
 		8400D366289ADAD400C35767 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		8400D3BB289E91BC00C35767 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 		8400D3BD289E9ACD00C35767 /* EpisodesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesTableViewCell.swift; sourceTree = "<group>"; };
+		848A225128E1A13200ABC301 /* GalaryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalaryCollectionView.swift; sourceTree = "<group>"; };
+		848A225328E1A4A800ABC301 /* GalaryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalaryCollectionViewCell.swift; sourceTree = "<group>"; };
 		848DAFE528CA0DE600FA8D82 /* modules.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = modules.strings; sourceTree = "<group>"; };
 		848DAFE728CA0E6B00FA8D82 /* alertMessages.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = alertMessages.strings; sourceTree = "<group>"; };
 		848DAFEB28CA194900FA8D82 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
@@ -283,6 +287,8 @@
 			isa = PBXGroup;
 			children = (
 				848DB01F28DB553000FA8D82 /* CarouselViewController.swift */,
+				848A225128E1A13200ABC301 /* GalaryCollectionView.swift */,
+				848A225328E1A4A800ABC301 /* GalaryCollectionViewCell.swift */,
 			);
 			path = Scroll;
 			sourceTree = "<group>";
@@ -482,6 +488,7 @@
 				84A0023528B8DC5D00A233F1 /* LocationPresenter.swift in Sources */,
 				84A0024528BE434E00A233F1 /* StartService.swift in Sources */,
 				84A0025328C1027E00A233F1 /* SplashScreenPresenter.swift in Sources */,
+				848A225228E1A13200ABC301 /* GalaryCollectionView.swift in Sources */,
 				8400D34528992F7700C35767 /* CharacterViewController.swift in Sources */,
 				84A0024728BF99DC00A233F1 /* SplashViewController.swift in Sources */,
 				84A0024C28C0B7CB00A233F1 /* TabBarViewController.swift in Sources */,
@@ -490,6 +497,7 @@
 				8400D35A289962BC00C35767 /* Episode.swift in Sources */,
 				8400D3562899629600C35767 /* CharacterNetwork.swift in Sources */,
 				8400D358289962A700C35767 /* Location.swift in Sources */,
+				848A225428E1A4A800ABC301 /* GalaryCollectionViewCell.swift in Sources */,
 				848DAFEC28CA194900FA8D82 /* R.generated.swift in Sources */,
 				8400D32E28991DD700C35767 /* AppDelegate.swift in Sources */,
 				848DAFF928D34B3700FA8D82 /* DetailViewController.swift in Sources */,
