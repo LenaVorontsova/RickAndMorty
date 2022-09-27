@@ -13,7 +13,7 @@ final class CarouselViewController: UIViewController {
     let viewModel: DetailViewModelProtocol
     
     private var gallaryCollectionView = GalaryCollectionView()
-    let images: [UIImage] = [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "3")!]
+    let images: [UIImage] = [UIImage(named: "one")!, UIImage(named: "two")!, UIImage(named: "three")!]
     
     init(viewModel: DetailViewModelProtocol) {
         self.viewModel = viewModel
