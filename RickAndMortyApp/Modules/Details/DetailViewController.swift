@@ -11,6 +11,7 @@ enum ConstantsDetail {
     static let sizeAvatar = 250
     static let topAvatar = 10
     static let leadAvatar = 20
+    static let trailAvatar = -20
     
     static let leadStack = 30
     static let topStack = 370
@@ -73,6 +74,7 @@ final class DetailViewController: UIViewController {
             let label = UILabel()
             label.text = text
             label.font = .systemFont(ofSize: 28)
+            label.textAlignment = .center
             stackView.addArrangedSubview(label)
         }
     }
@@ -82,7 +84,8 @@ final class DetailViewController: UIViewController {
         
         stackView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(ConstantsDetail.topStack)
-            $0.leading.trailing.equalToSuperview().offset(ConstantsDetail.leadStack)
+            // $0.leading.trailing.equalToSuperview().offset(ConstantsDetail.leadStack)
+            $0.center.equalToSuperview()
         }
     }
 }

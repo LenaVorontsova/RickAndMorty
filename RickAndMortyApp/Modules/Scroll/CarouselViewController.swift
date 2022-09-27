@@ -24,11 +24,11 @@ final class CarouselViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         
         let indexPath = IndexPath(row: gallaryCollectionView.numberOfItems / 2, section: 0)
-        gallaryCollectionView.scrollToItem(at: indexPath, at: .left, animated: false)
+        self.gallaryCollectionView.scrollToItem(at: indexPath, at: .left, animated: false)
     }
     
     override func viewDidLoad() {
@@ -36,7 +36,7 @@ final class CarouselViewController: UIViewController {
         
         configureConstraints()
         gallaryCollectionView.setCells(cells: images)
-
+        
         view.backgroundColor = UIColor(red: 200 / 255, green: 246 / 255, blue: 236 / 255, alpha: 1)
     }
     
@@ -48,6 +48,8 @@ final class CarouselViewController: UIViewController {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(ConstantsDetail.topAvatar)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading)
                 .offset(ConstantsDetail.leadAvatar)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
+                .offset(ConstantsDetail.trailAvatar)
         }
     }
 }
