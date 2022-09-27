@@ -91,19 +91,16 @@ final class EpisodesTableViewCell: UITableViewCell {
             make.leading.equalToSuperview().offset(ConstantsOfCells.offsetLabels)
             make.trailing.equalToSuperview().offset(-ConstantsOfCells.offsetLabels)
         }
-        
         airDateLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(ConstantsOfCells.offsetLabels)
             make.trailing.equalToSuperview().offset(-ConstantsOfCells.offsetLabels)
             make.top.equalTo(nameLabel.snp.bottom).offset(ConstantsOfCells.topLabels)
         }
-        
         seasonLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(ConstantsOfCells.offsetLabels)
             make.trailing.equalToSuperview().offset(-ConstantsOfCells.offsetLabels)
             make.top.equalTo(airDateLabel.snp.bottom).offset(ConstantsOfCells.topLabels)
         }
-        
         episodeLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(ConstantsOfCells.offsetLabels)
             make.trailing.equalToSuperview().offset(-ConstantsOfCells.offsetLabels)

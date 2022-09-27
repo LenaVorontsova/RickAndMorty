@@ -11,7 +11,6 @@ enum ConstantsDetail {
     static let sizeAvatar = 250
     static let topAvatar = 10
     static let offsetAvatar = 20
-    
     static let leadStack = 30
     static let topStack = 370
     static let spacingStack = 5
@@ -39,26 +38,20 @@ final class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let childVC = CarouselViewController(viewModel: viewModel)
-        
         createChildViewController(childVC: childVC)
-        
         addTitle()
-        
         configureConstraints()
-
         view.backgroundColor = R.color.backColor()
     }
     
     private func createChildViewController(childVC: CarouselViewController) {
         self.addChild(childVC)
         childVC.didMove(toParent: self)
-        
         setupController(childVC: childVC)
     }
     
     private func setupController(childVC: UIViewController) {
         view.addSubview(childVC.view)
-        
         childVC.view.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.trailing.leading.equalToSuperview()
@@ -80,7 +73,6 @@ final class DetailViewController: UIViewController {
     
     private func configureConstraints() {
         self.view.addSubview(stackView)
-        
         stackView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(ConstantsDetail.topStack)
             $0.center.equalToSuperview()

@@ -26,23 +26,19 @@ final class CarouselViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
         let indexPath = IndexPath(row: gallaryCollectionView.numberOfItems / 2, section: 0)
         self.gallaryCollectionView.scrollToItem(at: indexPath, at: .left, animated: false)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureConstraints()
         gallaryCollectionView.setCells(cells: images)
-        
         view.backgroundColor = R.color.backColor() 
     }
     
     private func configureConstraints() {
         view.addSubview(gallaryCollectionView)
-        
         gallaryCollectionView.snp.makeConstraints {
             $0.width.height.equalTo(ConstantsDetail.sizeAvatar)
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(ConstantsDetail.topAvatar)

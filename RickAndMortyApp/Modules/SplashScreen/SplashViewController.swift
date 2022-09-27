@@ -10,11 +10,9 @@ import UIKit
 final class SplashViewController: UIViewController {
     let search: SearchService
     private let presenter: SplashScreenPresenting
-    
     private var imageView: UIImageView = {
         let image = UIImageView()
         image.image = R.image.splash()
-        
         return image
     }()
     
@@ -30,7 +28,6 @@ final class SplashViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         configureConstraints()
         presenter.getInfo()
     }
@@ -41,7 +38,6 @@ final class SplashViewController: UIViewController {
     
     private func configureConstraints() {
         view.addSubview(imageView)
-        
         imageView.snp.makeConstraints {
             $0.height.width.equalToSuperview()
             $0.top.equalToSuperview()

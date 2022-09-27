@@ -97,7 +97,6 @@ final class CharactersTableViewCell: UITableViewCell {
             make.leading.equalTo(contentView.safeAreaLayoutGuide.snp.leading)
                 .offset(ConstantsCharactersCell.topAndLeadAvatar)
         }
-        
         nameLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(ConstantsCharactersCell.topAndLeadAvatar)
             make.leading.equalTo(avatarView.snp.trailing).offset(ConstantsCharactersCell.offsetLabels)

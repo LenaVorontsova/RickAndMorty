@@ -17,11 +17,9 @@ final class GalaryCollectionView: UICollectionView, UICollectionViewDelegate,
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         super.init(frame: .zero, collectionViewLayout: layout)
-        
         self.showsHorizontalScrollIndicator = false
         delegate = self
         dataSource = self
-        
         register(GalaryCollectionViewCell.self,
                  forCellWithReuseIdentifier: GalaryCollectionViewCell.collectionCellId)
     }

@@ -27,7 +27,6 @@ final class GalaryCollectionViewCell: UICollectionViewCell {
     
     private func configureContstrains() {
         addSubview(collectionImageView)
-        
         collectionImageView.snp.makeConstraints {
             $0.leading.trailing.top.bottom.equalToSuperview()
         }

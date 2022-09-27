@@ -66,13 +66,11 @@ final class LocationTableViewCell: UITableViewCell {
             make.leading.equalToSuperview().offset(ConstantsOfCells.offsetLabels)
             make.trailing.equalToSuperview().offset(-ConstantsOfCells.offsetLabels)
         }
-        
         typeLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(ConstantsOfCells.offsetLabels)
             make.trailing.equalToSuperview().offset(-ConstantsOfCells.offsetLabels)
             make.top.equalTo(nameLabel.snp.bottom).offset(ConstantsOfCells.topLabels)
         }
-        
         dimensionLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(ConstantsOfCells.offsetLabels)
             make.trailing.equalToSuperview().offset(-ConstantsOfCells.offsetLabels)

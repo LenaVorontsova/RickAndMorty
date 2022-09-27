@@ -14,12 +14,10 @@ final class LocationsViewController: UIViewController, IViewControllers {
         let table = UITableView()
         return table
     }()
-    
     private var searchBar: UISearchBar = {
         let search = UISearchBar()
         return search
     }()
-    
     private let presenter: LocationPresenting
     
     init(_ presenter: LocationPresenting) {
@@ -33,17 +31,12 @@ final class LocationsViewController: UIViewController, IViewControllers {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
-        
         configureConstraints()
-        
         presenter.getInfoLocation()
-        
         self.tableView.register(LocationTableViewCell.self, forCellReuseIdentifier: LocationTableViewCell.identifier)
-        
         self.title = R.string.modules.locTitle()
         view.backgroundColor = R.color.backColor()
     }
@@ -55,12 +48,10 @@ final class LocationsViewController: UIViewController, IViewControllers {
     private func configureConstraints() {
         view.addSubview(searchBar)
         view.addSubview(tableView)
-        
         searchBar.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.trailing.leading.equalToSuperview()
         }
-        
         tableView.snp.makeConstraints { make in
             make.top.equalTo(searchBar.snp.bottom)
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
@@ -79,10 +70,8 @@ extension LocationsViewController: UITableViewDataSource, UITableViewDelegate, U
                                                        for: indexPath) as? LocationTableViewCell else {
             return UITableViewCell()
         }
-        
         let cellModel = LocationTableViewCellFactory.cellModel(presenter.locationsSearch[indexPath.row])
         cell.config(with: cellModel)
-                    
         return cell
     }
     
