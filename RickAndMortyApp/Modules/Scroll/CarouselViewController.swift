@@ -47,9 +47,9 @@ final class CarouselViewController: UIViewController {
             $0.width.height.equalTo(ConstantsDetail.sizeAvatar)
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(ConstantsDetail.topAvatar)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading)
-                .offset(ConstantsDetail.leadAvatar)
+                .offset(ConstantsDetail.offsetAvatar)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
-                .offset(ConstantsDetail.trailAvatar)
+                .offset(-ConstantsDetail.offsetAvatar)
         }
     }
 }

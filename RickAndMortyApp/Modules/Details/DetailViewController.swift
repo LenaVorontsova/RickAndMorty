@@ -10,8 +10,7 @@ import UIKit
 enum ConstantsDetail {
     static let sizeAvatar = 250
     static let topAvatar = 10
-    static let leadAvatar = 20
-    static let trailAvatar = -20
+    static let offsetAvatar = 20
     
     static let leadStack = 30
     static let topStack = 370

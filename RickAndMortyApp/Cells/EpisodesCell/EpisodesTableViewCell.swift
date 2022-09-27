@@ -34,9 +34,8 @@ enum EpisodesTableViewCellFactory {
     }
 }
 
-enum ConstantsEpisodesCell {
-    static let leadLabels = 20
-    static let trailLabels = -20
+enum ConstantsOfCells {
+    static let offsetLabels = 20
     static let topLabels = 5
 }
 
@@ -89,26 +88,26 @@ final class EpisodesTableViewCell: UITableViewCell {
         contentView.addSubview(episodeLabel)
         
         nameLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(ConstantsEpisodesCell.leadLabels)
-            make.trailing.equalToSuperview().offset(ConstantsEpisodesCell.trailLabels)
+            make.leading.equalToSuperview().offset(ConstantsOfCells.offsetLabels)
+            make.trailing.equalToSuperview().offset(-ConstantsOfCells.offsetLabels)
         }
         
         airDateLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(ConstantsEpisodesCell.leadLabels)
-            make.trailing.equalToSuperview().offset(ConstantsEpisodesCell.trailLabels)
-            make.top.equalTo(nameLabel.snp.bottom).offset(ConstantsEpisodesCell.topLabels)
+            make.leading.equalToSuperview().offset(ConstantsOfCells.offsetLabels)
+            make.trailing.equalToSuperview().offset(-ConstantsOfCells.offsetLabels)
+            make.top.equalTo(nameLabel.snp.bottom).offset(ConstantsOfCells.topLabels)
         }
         
         seasonLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(ConstantsEpisodesCell.leadLabels)
-            make.trailing.equalToSuperview().offset(ConstantsEpisodesCell.trailLabels)
-            make.top.equalTo(airDateLabel.snp.bottom).offset(ConstantsEpisodesCell.topLabels)
+            make.leading.equalToSuperview().offset(ConstantsOfCells.offsetLabels)
+            make.trailing.equalToSuperview().offset(-ConstantsOfCells.offsetLabels)
+            make.top.equalTo(airDateLabel.snp.bottom).offset(ConstantsOfCells.topLabels)
         }
         
         episodeLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(ConstantsEpisodesCell.leadLabels)
-            make.trailing.equalToSuperview().offset(ConstantsEpisodesCell.trailLabels)
-            make.top.equalTo(seasonLabel.snp.bottom).offset(ConstantsEpisodesCell.topLabels)
+            make.leading.equalToSuperview().offset(ConstantsOfCells.offsetLabels)
+            make.trailing.equalToSuperview().offset(-ConstantsOfCells.offsetLabels)
+            make.top.equalTo(seasonLabel.snp.bottom).offset(ConstantsOfCells.topLabels)
         }
     }
 }

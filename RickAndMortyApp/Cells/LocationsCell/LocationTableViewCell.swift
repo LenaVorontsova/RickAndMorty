@@ -22,12 +22,6 @@ enum LocationTableViewCellFactory {
     }
 }
 
-enum ConstantsLocationsCell {
-    static let leadLabels = 20
-    static let trailLabels = -20
-    static let topLabels = 5
-}
-
 final class LocationTableViewCell: UITableViewCell {
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
@@ -69,20 +63,20 @@ final class LocationTableViewCell: UITableViewCell {
         contentView.addSubview(dimensionLabel)
         
         nameLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(ConstantsLocationsCell.leadLabels)
-            make.trailing.equalToSuperview().offset(ConstantsLocationsCell.trailLabels)
+            make.leading.equalToSuperview().offset(ConstantsOfCells.offsetLabels)
+            make.trailing.equalToSuperview().offset(-ConstantsOfCells.offsetLabels)
         }
         
         typeLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(ConstantsLocationsCell.leadLabels)
-            make.trailing.equalToSuperview().offset(ConstantsLocationsCell.trailLabels)
-            make.top.equalTo(nameLabel.snp.bottom).offset(ConstantsLocationsCell.topLabels)
+            make.leading.equalToSuperview().offset(ConstantsOfCells.offsetLabels)
+            make.trailing.equalToSuperview().offset(-ConstantsOfCells.offsetLabels)
+            make.top.equalTo(nameLabel.snp.bottom).offset(ConstantsOfCells.topLabels)
         }
         
         dimensionLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(ConstantsLocationsCell.leadLabels)
-            make.trailing.equalToSuperview().offset(ConstantsLocationsCell.trailLabels)
-            make.top.equalTo(typeLabel.snp.bottom).offset(ConstantsLocationsCell.topLabels)
+            make.leading.equalToSuperview().offset(ConstantsOfCells.offsetLabels)
+            make.trailing.equalToSuperview().offset(-ConstantsOfCells.offsetLabels)
+            make.top.equalTo(typeLabel.snp.bottom).offset(ConstantsOfCells.topLabels)
         }
     }
 }

@@ -13,7 +13,6 @@ final class GalaryCollectionViewCell: UICollectionViewCell {
     
     let collectionImageView: UIImageView = {
         let image = UIImageView()
-        image.backgroundColor = .blue
         return image
     }()
     
