@@ -55,7 +55,7 @@ final class LocationTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = UIColor(red: 200 / 255, green: 246 / 255, blue: 236 / 255, alpha: 1)
+        contentView.backgroundColor = R.color.backColor()
         configureConstraints()
     }
     

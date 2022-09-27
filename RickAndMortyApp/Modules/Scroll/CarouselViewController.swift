@@ -13,7 +13,7 @@ final class CarouselViewController: UIViewController {
     let viewModel: DetailViewModelProtocol
     
     private var gallaryCollectionView = GalaryCollectionView()
-    let images: [UIImage] = [UIImage(named: "one")!, UIImage(named: "two")!, UIImage(named: "three")!]
+    let images: [UIImage] = [R.image.one()!, R.image.two()!, R.image.three()!]
     
     init(viewModel: DetailViewModelProtocol) {
         self.viewModel = viewModel
@@ -37,7 +37,7 @@ final class CarouselViewController: UIViewController {
         configureConstraints()
         gallaryCollectionView.setCells(cells: images)
         
-        view.backgroundColor = UIColor(red: 200 / 255, green: 246 / 255, blue: 236 / 255, alpha: 1)
+        view.backgroundColor = R.color.backColor() 
     }
     
     private func configureConstraints() {

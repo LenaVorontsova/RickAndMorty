@@ -47,7 +47,7 @@ final class DetailViewController: UIViewController {
         
         configureConstraints()
 
-        view.backgroundColor = UIColor(red: 200 / 255, green: 246 / 255, blue: 236 / 255, alpha: 1)
+        view.backgroundColor = R.color.backColor()
     }
     
     private func createChildViewController(childVC: CarouselViewController) {
