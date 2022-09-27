@@ -84,7 +84,6 @@ final class DetailViewController: UIViewController {
         
         stackView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(ConstantsDetail.topStack)
-            // $0.leading.trailing.equalToSuperview().offset(ConstantsDetail.leadStack)
             $0.center.equalToSuperview()
         }
     }
