@@ -26,11 +26,9 @@ enum CharactersTableViewCellFactory {
 
 enum ConstantsCharactersCell {
     static let sizeAvatar = 103
-    static let topAvatar = 10
-    static let leadAvatar = 10
+    static let topAndLeadAvatar = 10
     
-    static let leadLabels = 20
-    static let trailLabels = -20
+    static let offsetLabels = 20
     static let topLabels = 5
 }
 
@@ -71,7 +69,7 @@ final class CharactersTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = UIColor(red: 200 / 255, green: 246 / 255, blue: 236 / 255, alpha: 1)
+        contentView.backgroundColor = R.color.backColor()
         configureConstraints()
     }
     
@@ -95,29 +93,28 @@ final class CharactersTableViewCell: UITableViewCell {
         
         avatarView.snp.makeConstraints { make in
             make.width.height.equalTo(ConstantsCharactersCell.sizeAvatar)
-            make.top.equalTo(contentView.safeAreaLayoutGuide.snp.top).offset(ConstantsCharactersCell.topAvatar)
+            make.top.equalTo(contentView.safeAreaLayoutGuide.snp.top).offset(ConstantsCharactersCell.topAndLeadAvatar)
             make.leading.equalTo(contentView.safeAreaLayoutGuide.snp.leading)
-                .offset(ConstantsCharactersCell.leadAvatar)
+                .offset(ConstantsCharactersCell.topAndLeadAvatar)
         }
-        
         nameLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(ConstantsCharactersCell.topAvatar)
-            make.leading.equalTo(avatarView.snp.trailing).offset(ConstantsCharactersCell.leadLabels)
-            make.trailing.equalToSuperview().offset(ConstantsCharactersCell.trailLabels)
+            make.top.equalToSuperview().offset(ConstantsCharactersCell.topAndLeadAvatar)
+            make.leading.equalTo(avatarView.snp.trailing).offset(ConstantsCharactersCell.offsetLabels)
+            make.trailing.equalToSuperview().offset(-ConstantsCharactersCell.offsetLabels)
         }
         genderLabel.snp.makeConstraints { make in
-            make.leading.equalTo(avatarView.snp.trailing).offset(ConstantsCharactersCell.leadLabels)
-            make.trailing.equalToSuperview().offset(ConstantsCharactersCell.trailLabels)
+            make.leading.equalTo(avatarView.snp.trailing).offset(ConstantsCharactersCell.offsetLabels)
+            make.trailing.equalToSuperview().offset(-ConstantsCharactersCell.offsetLabels)
             make.top.equalTo(nameLabel.snp.bottom).offset(ConstantsCharactersCell.topLabels)
         }
         speciesLabel.snp.makeConstraints { make in
-            make.leading.equalTo(avatarView.snp.trailing).offset(ConstantsCharactersCell.leadLabels)
-            make.trailing.equalToSuperview().offset(ConstantsCharactersCell.trailLabels)
+            make.leading.equalTo(avatarView.snp.trailing).offset(ConstantsCharactersCell.offsetLabels)
+            make.trailing.equalToSuperview().offset(-ConstantsCharactersCell.offsetLabels)
             make.top.equalTo(genderLabel.snp.bottom).offset(ConstantsCharactersCell.topLabels)
         }
         locationLabel.snp.makeConstraints { make in
-            make.leading.equalTo(avatarView.snp.trailing).offset(ConstantsCharactersCell.leadLabels)
-            make.trailing.equalToSuperview().offset(ConstantsCharactersCell.trailLabels)
+            make.leading.equalTo(avatarView.snp.trailing).offset(ConstantsCharactersCell.offsetLabels)
+            make.trailing.equalToSuperview().offset(-ConstantsCharactersCell.offsetLabels)
             make.top.equalTo(speciesLabel.snp.bottom).offset(ConstantsCharactersCell.topLabels)
         }
     }

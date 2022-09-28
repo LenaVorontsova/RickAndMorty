@@ -33,19 +33,14 @@ final class TabBarViewController: UITabBarController {
                                                                                           search: search))
         let episodeVC = UINavigationController(rootViewController: EpisodeBuilder.build(coreData: coreData, 
                                                                                         search: search))
-        
         characterVC.title = R.string.modules.charTitle()
         locationVC.title = R.string.modules.locTitle()
         episodeVC.title = R.string.modules.episodeTitle()
-        
         self.setViewControllers([characterVC, locationVC, episodeVC], animated: false)
-        
         guard let items = self.tabBar.items else {
             return
         }
-        
         let imagesNames = [R.string.modules.imageOne(), R.string.modules.imageTwo(), R.string.modules.imageThree()]
-        
         for i in 0..<items.count {
             items[i].image = UIImage(systemName: imagesNames[i])
         }

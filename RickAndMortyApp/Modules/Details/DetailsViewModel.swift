@@ -10,11 +10,9 @@ import UIKit
 
 final class CharacterViewModel: DetailViewModelProtocol {
     private var character: Character
-    
     var image: UIImage? {
         character.image
     }
-    
     var titleLabel: [String]? {
         var arr = [String]()
         arr.append(character.name ?? "")
@@ -31,9 +29,7 @@ final class CharacterViewModel: DetailViewModelProtocol {
 
 final class LocationViewModel: DetailViewModelProtocol {
     private var location: LocationInfo
-    
     var image: UIImage?
-    
     var titleLabel: [String]? {
         var arr = [String]()
         arr.append(location.name ?? "")
@@ -49,9 +45,7 @@ final class LocationViewModel: DetailViewModelProtocol {
 
 final class EpisodeViewModel: DetailViewModelProtocol {
     private var episode: EpisodeInfo
-    
     var image: UIImage?
-    
     var titleLabel: [String]? {
         var arr = [String]()
         arr.append(episode.name ?? "")

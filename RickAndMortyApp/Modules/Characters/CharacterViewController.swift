@@ -13,12 +13,10 @@ final class CharacterViewController: UIViewController, IViewControllers {
         let table = UITableView()
         return table
     }()
-    
     private var searchBar: UISearchBar = {
         let search = UISearchBar()
         return search
     }()
-    
     private let presenter: CharacterPresenting
     
     init(_ presenter: CharacterPresenting) {
@@ -32,19 +30,14 @@ final class CharacterViewController: UIViewController, IViewControllers {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
-        
         configureConstraints()
-        
         presenter.getInfoCharacter()
-        
         self.tableView.register(CharactersTableViewCell.self, forCellReuseIdentifier: CharactersTableViewCell.identifier)
-        
         self.title = R.string.modules.charTitle()
-        view.backgroundColor = UIColor(red: 200 / 255, green: 246 / 255, blue: 236 / 255, alpha: 1)
+        view.backgroundColor = R.color.backColor()
     }
     
     func reloadTable() {
@@ -54,12 +47,10 @@ final class CharacterViewController: UIViewController, IViewControllers {
     private func configureConstraints() {
         view.addSubview(searchBar)
         view.addSubview(tableView)
-        
         searchBar.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.trailing.leading.equalToSuperview()
         }
-        
         tableView.snp.makeConstraints { make in
             make.top.equalTo(searchBar.snp.bottom)
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
@@ -78,12 +69,9 @@ extension CharacterViewController: UITableViewDataSource, UITableViewDelegate, U
                                                        for: indexPath) as? CharactersTableViewCell else {
             return UITableViewCell()
         }
-            
         let cellModel = CharactersTableViewCellFactory.cellModel(presenter.charactersSearch[indexPath.row])
         cell.config(with: cellModel)
-        
         cell.avatarView.image = presenter.charactersSearch[indexPath.row].image
-
         return cell
     }
     

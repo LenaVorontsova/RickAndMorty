@@ -18,7 +18,6 @@ final class SplashScreenPresenter: SplashScreenPresenting {
     let network: NetworkService
     let search: SearchService
     let coreData: CoreDataService
-    
     weak var controller: UIViewController?
     
     init(network: NetworkService, search: SearchService, coreData: CoreDataService) {
@@ -31,7 +30,6 @@ final class SplashScreenPresenter: SplashScreenPresenting {
         var topWindow: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
         topWindow?.rootViewController = UIViewController()
         topWindow?.windowLevel = UIWindow.Level.alert + 1
-        
         let alert = UIAlertController(title: R.string.alertMessages.errorTitle(),
                                       message: error.localizedDescription,
                                       preferredStyle: .alert)
@@ -40,7 +38,6 @@ final class SplashScreenPresenter: SplashScreenPresenting {
             topWindow?.isHidden = true
             topWindow = nil
         })
-        
         topWindow?.makeKeyAndVisible()
         topWindow?.rootViewController?.present(alert, animated: true, completion: nil)
     }
@@ -50,7 +47,6 @@ final class SplashScreenPresenter: SplashScreenPresenting {
         let queue1 = DispatchQueue.global(qos: .utility)
         let queue2 = DispatchQueue.global(qos: .utility)
         let queue3 = DispatchQueue.global(qos: .utility)
-        
         queue1.async(group: infoGroup) {
             infoGroup.enter()
             self.network.getInfoCharacters(endPoint: EndPoints.character.rawValue) { [weak self] result in
@@ -65,7 +61,6 @@ final class SplashScreenPresenter: SplashScreenPresenting {
                 }
             }
         }
-        
         queue2.async(group: infoGroup) {
             infoGroup.enter()
             self.network.getInfoLocations(endPoint: EndPoints.location.rawValue) { [weak self] result in
@@ -80,7 +75,6 @@ final class SplashScreenPresenter: SplashScreenPresenting {
                 }
             }
         }
-        
         queue3.async(group: infoGroup) {
             infoGroup.enter()
             self.network.getInfoEpisodes(endPoint: EndPoints.episode.rawValue) { [weak self] result in
@@ -95,7 +89,6 @@ final class SplashScreenPresenter: SplashScreenPresenting {
                 }
             }
         }
-        
         infoGroup.notify(queue: DispatchQueue.main) {
             self.showTabBar()
         }

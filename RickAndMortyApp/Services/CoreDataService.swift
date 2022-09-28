@@ -14,7 +14,6 @@ final class CoreDataService {
     
     func saveToCoreDataCharacter(charactersArray: [CharacterNetwork]) {
         deleteAllData(R.string.services.characterData())
-          
         let entityCharacters = NSEntityDescription.entity(forEntityName: R.string.services.characterData(),
                                                           in: self.context!)!
         let entityLocation = NSEntityDescription.entity(forEntityName: R.string.services.characterLocData(),
@@ -28,13 +27,11 @@ final class CoreDataService {
             character.setValue(element.species, forKeyPath: R.string.services.species())
             location.setValue(element.location?.name, forKey: R.string.services.name())
             character.setValue(location, forKey: R.string.services.location())
-            
             if let urlString = element.image,
                let url = URL(string: urlString),
                let data = try? Data(contentsOf: url) {
                 character.setValue(data, forKey: R.string.services.image())
             }
-            
             do {
                 try self.context!.save()
             } catch let error as NSError {
@@ -45,9 +42,7 @@ final class CoreDataService {
     
     func saveToCoreDataLocation(locationsArray: [LocationInfo]) {
         deleteAllData(R.string.services.locationData())
-          
         let entity = NSEntityDescription.entity(forEntityName: R.string.services.locationData(), in: self.context!)!
-          
         for element in locationsArray {
             let location = NSManagedObject(entity: entity, insertInto: self.context)
             location.setValue(element.name, forKeyPath: R.string.services.name())
@@ -63,9 +58,7 @@ final class CoreDataService {
     
     func saveToCoreDataEpisodes(episodesArray: [EpisodeInfo]) {
         deleteAllData(R.string.services.episodeData())
-          
         let entity = NSEntityDescription.entity(forEntityName: R.string.services.episodeData(), in: self.context!)!
-        
         for element in episodesArray {
             let episode = NSManagedObject(entity: entity, insertInto: self.context)
             episode.setValue(element.name, forKeyPath: R.string.services.name())
@@ -81,13 +74,11 @@ final class CoreDataService {
     
     func fetchCharactersFromCoreData() -> [Character] {
         var arr: [Character] = []
-        
         do {
             let newArr = try context!.fetch(CharacterData.fetchRequest())
             for element in newArr {
                 var character = Character(name: nil, gender: nil, species: nil, location: nil, image: nil)
                 let location = Location(name: nil, url: nil)
-                
                 character.name = element.name
                 character.gender = element.gender
                 character.location = location
@@ -96,19 +87,16 @@ final class CoreDataService {
                 if let data = element.image {
                     character.image = UIImage(data: data)
                 }
-                
                 arr.append(character)
             }
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
-        
         return arr
     }
     
     func fetchLocationsFromCoreData() -> [LocationInfo] {
         var arr: [LocationInfo] = []
-        
         do {
             let newArr = try context!.fetch(LocationData.fetchRequest())
             for element in newArr {
@@ -121,13 +109,11 @@ final class CoreDataService {
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
-        
         return arr
     }
     
     func fetchEpisodesFromCoreData() -> [EpisodeInfo] {
         var arr: [EpisodeInfo] = []
-        
         do {
             let newArr = try context!.fetch(EpisodeData.fetchRequest())
             for element in newArr {
@@ -140,12 +126,10 @@ final class CoreDataService {
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
-        
         return arr
     }
     
     func deleteAllData(_ entity: String) {
-        
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
         let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         do {
