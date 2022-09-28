@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 
 final class GalaryCollectionViewCell: UICollectionViewCell {
-    static let collectionCellId = "collectionCellId"
+    static let collectionCellId = "GalaryCollectionViewCellId"
     
-    let collectionImageView: UIImageView = {
+    lazy var collectionImageView: UIImageView = {
         let image = UIImageView()
         return image
     }()
