@@ -6,4 +6,5 @@ pod 'Alamofire'
 pod 'SnapKit'
 pod 'SwiftLint'
 pod 'R.swift'
+pod 'FirebaseAnalytics'
 end
