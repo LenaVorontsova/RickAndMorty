@@ -10,6 +10,7 @@ import UIKit
 
 final class CharacterViewModel: DetailViewModelProtocol {
     private var character: Character
+    private var analytics: AnalyticsServie?
     var image: UIImage? {
         character.image
     }
@@ -24,10 +25,13 @@ final class CharacterViewModel: DetailViewModelProtocol {
     
     required init(character: Character) {
         self.character = character
+        self.analytics = GoogleAnalyticsWrapper()
+        self.analytics!.sendEvent(AnalyticsEvents.detailPage, "Character")
     }
 }
 
 final class LocationViewModel: DetailViewModelProtocol {
+    private var analytics: AnalyticsServie?
     private var location: LocationInfo
     var image: UIImage?
     var titleLabel: [String]? {
@@ -40,10 +44,13 @@ final class LocationViewModel: DetailViewModelProtocol {
     
     required init(location: LocationInfo) {
         self.location = location
+        self.analytics = GoogleAnalyticsWrapper()
+        self.analytics!.sendEvent(AnalyticsEvents.detailPage, "Location")
     }
 }
 
 final class EpisodeViewModel: DetailViewModelProtocol {
+    private var analytics: AnalyticsServie?
     private var episode: EpisodeInfo
     var image: UIImage?
     var titleLabel: [String]? {
@@ -56,5 +63,7 @@ final class EpisodeViewModel: DetailViewModelProtocol {
     
     required init(episode: EpisodeInfo) {
         self.episode = episode
+        self.analytics = GoogleAnalyticsWrapper()
+        self.analytics!.sendEvent(AnalyticsEvents.detailPage, "Episode")
     }
 }

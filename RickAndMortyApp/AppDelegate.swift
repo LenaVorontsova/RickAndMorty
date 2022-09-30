@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import FirebaseCore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
         startService = StartService(window: window)
+        FirebaseApp.configure()
         return true
     }
 
