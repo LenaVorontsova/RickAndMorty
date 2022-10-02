@@ -14,7 +14,7 @@ import UserNotifications
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var startService: StartService?
-    let notificationCenter = UNUserNotificationCenter.current()
+    let notifications = NotificationsService()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let window = UIWindow(frame: UIScreen.main.bounds)
@@ -22,13 +22,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         startService = StartService(window: window)
         FirebaseApp.configure()
         
-        let options: UNAuthorizationOptions = [.alert, .sound, .badge]
-        notificationCenter.requestAuthorization(options: options) { (didAllow, error) in
-            if !didAllow {
-                print("User has declined notifications")
-            }
-        }
+        notifications.notificationCenter.delegate = notifications
+        notifications.notificationRequest()
         return true
+    }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
 
     // MARK: - Core Data stack
