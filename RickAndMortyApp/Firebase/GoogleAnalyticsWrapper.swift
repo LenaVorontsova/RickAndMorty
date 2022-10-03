@@ -12,11 +12,17 @@ enum AnalyticsEvents: String {
     case detailPage
 }
 
-protocol AnalyticsServie {
-    func sendEvent(_ event: AnalyticsEvents, _ detail: String)
+protocol AnalyticsServies {
+    func sendEvent(_ event: AnalyticsEvents, _ detail: String?)
 }
 
-final class GoogleAnalyticsWrapper: AnalyticsServie {
+extension AnalyticsServies {
+    func sendEvent(_ event: AnalyticsEvents, _ detail: String? = nil) {
+        sendEvent(event, detail)
+    }
+}
+
+final class GoogleAnalyticsWrapper: AnalyticsServies {
     func sendEvent(_ event: AnalyticsEvents, _ detail: String) {
         Analytics.logEvent(event.rawValue, parameters: ["page subject": detail])
     }

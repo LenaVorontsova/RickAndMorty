@@ -10,7 +10,7 @@ import UIKit
 
 final class CharacterViewModel: DetailViewModelProtocol {
     private var character: Character
-    private var analytics: AnalyticsServie?
+    private var analytics: AnalyticsServies?
     var image: UIImage? {
         character.image
     }
@@ -31,7 +31,7 @@ final class CharacterViewModel: DetailViewModelProtocol {
 }
 
 final class LocationViewModel: DetailViewModelProtocol {
-    private var analytics: AnalyticsServie?
+    private var analytics: AnalyticsServies?
     private var location: LocationInfo
     var image: UIImage?
     var titleLabel: [String]? {
@@ -50,7 +50,7 @@ final class LocationViewModel: DetailViewModelProtocol {
 }
 
 final class EpisodeViewModel: DetailViewModelProtocol {
-    private var analytics: AnalyticsServie?
+    private var analytics: AnalyticsServies?
     private var episode: EpisodeInfo
     var image: UIImage?
     var titleLabel: [String]? {

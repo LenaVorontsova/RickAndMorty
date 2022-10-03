@@ -152,8 +152,8 @@
 		8400D32C28991DD700C35767 /* RickAndMortyApp */ = {
 			isa = PBXGroup;
 			children = (
-				84A07E5F28E5EA95009C5D84 /* Firebase */,
 				84A07E5C28E5E660009C5D84 /* GoogleService-Info.plist */,
+				84A07E5F28E5EA95009C5D84 /* Firebase */,
 				848DAFE428CA0B7500FA8D82 /* Localization */,
 				84A0023128B64A9700A233F1 /* Extensions */,
 				8400D3BF289EAE1E00C35767 /* Services */,
