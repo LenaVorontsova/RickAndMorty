@@ -19,6 +19,7 @@ final class StartService {
         let network = NetworkService()
         let search = SearchService()
         let coreData = CoreDataService()
+        
         let presenter: SplashScreenPresenting = SplashScreenPresenter(
             network: network,
             search: search,
