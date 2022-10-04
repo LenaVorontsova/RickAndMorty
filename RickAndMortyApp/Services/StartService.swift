@@ -20,11 +20,13 @@ final class StartService {
         let search = SearchService()
         let coreData = CoreDataService()
         let analytics = GoogleAnalyticsWrapper()
+        let notifications = NotificationsService()
         let presenter: SplashScreenPresenting = SplashScreenPresenter(
             network: network,
             search: search,
             coreData: coreData,
-            analytics: analytics
+            analytics: analytics,
+            notifications: notifications
         )
         if let win = window {
             win.rootViewController = UINavigationController(
@@ -33,7 +35,8 @@ final class StartService {
                     search: search,
                     presenter: presenter,
                     coreData: coreData,
-                    analytics: analytics
+                    analytics: analytics,
+                    notifications: notifications
                 ))
             win.makeKeyAndVisible()
         }

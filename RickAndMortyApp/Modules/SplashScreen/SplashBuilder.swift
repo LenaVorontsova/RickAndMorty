@@ -12,12 +12,15 @@ enum SplashBuilder {
                       search: SearchService,
                       presenter: SplashScreenPresenting,
                       coreData: CoreDataService,
-                      analytics: AnalyticsServies
+                      analytics: AnalyticsServies,
+                      notifications: INotificationService
     ) -> UIViewController {
         let presenter: SplashScreenPresenting = SplashScreenPresenter(network: network,
                                                                       search: search,
                                                                       coreData: coreData,
-                                                                      analytics: analytics)
+                                                                      analytics: analytics,
+                                                                      notifications: notifications
+        )
         let vc = SplashViewController(search: search, presenter: presenter)
         presenter.controller = vc
         return vc

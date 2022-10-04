@@ -19,13 +19,19 @@ final class SplashScreenPresenter: SplashScreenPresenting {
     let search: SearchService
     let coreData: CoreDataService
     let analytics: AnalyticsServies
+    let notifications: INotificationService
     weak var controller: UIViewController?
     
-    init(network: NetworkService, search: SearchService, coreData: CoreDataService, analytics: AnalyticsServies) {
+    init(network: NetworkService,
+         search: SearchService,
+         coreData: CoreDataService,
+         analytics: AnalyticsServies,
+         notifications: INotificationService) {
         self.network = network
         self.search = search
         self.coreData = coreData
         self.analytics = analytics
+        self.notifications = notifications
     }
     
     func showAlert(with error: AFError) {
@@ -97,7 +103,10 @@ final class SplashScreenPresenter: SplashScreenPresenting {
     }
     
     func showTabBar() {
-        let tabBarVC = TabBarViewController(search: search, coreData: coreData, analytic: analytics)
+        let tabBarVC = TabBarViewController(search: search,
+                                            coreData: coreData,
+                                            analytic: analytics,
+                                            notifications: notifications)
         tabBarVC.modalPresentationStyle = .fullScreen
         controller?.present(tabBarVC, animated: false)
     }

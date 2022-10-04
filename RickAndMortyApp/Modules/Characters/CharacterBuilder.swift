@@ -10,8 +10,12 @@ import UIKit
 enum CharacterBuilder {
     static func build(coreData: CoreDataService,
                       search: SearchService,
-                      analytic: AnalyticsServies) -> (UIViewController & IViewControllers) {
-        let presenter = CharacterPresenter(with: coreData, search: search, analytic: analytic)
+                      analytic: AnalyticsServies,
+                      notifications: INotificationService) -> (UIViewController & IViewControllers) {
+        let presenter = CharacterPresenter(with: coreData,
+                                           search: search,
+                                           analytic: analytic,
+                                           notifications: notifications)
         let vc = CharacterViewController(presenter)
         presenter.controller = vc
         return vc

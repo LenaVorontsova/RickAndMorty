@@ -18,7 +18,6 @@ final class CharacterViewController: UIViewController, IViewControllers {
         return search
     }()
     private let presenter: CharacterPresenting
-    let notifications = NotificationsService()
     
     init(_ presenter: CharacterPresenting) {
         self.presenter = presenter
@@ -84,13 +83,7 @@ extension CharacterViewController: UITableViewDataSource, UITableViewDelegate, U
         let viewModel = presenter.pathCharacterViewModel(indexPath: indexPath)
         let controller = DetailViewController(viewModel: viewModel)
         self.navigationController?.pushViewController(controller, animated: true)
-        let alert = UIAlertController(title: "",
-                                      message: "After 5 seconds local notification will appear",
-                                      preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-            self.notifications.scheduleNotification(notificationType: "local notification")
-        }
-        alert.addAction(okAction)
+        let alert = self.presenter.showNotification()
         self.present(alert, animated: true, completion: nil)
     }
     

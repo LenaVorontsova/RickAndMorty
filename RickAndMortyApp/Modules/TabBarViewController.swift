@@ -11,11 +11,16 @@ final class TabBarViewController: UITabBarController {
     private var search: SearchService
     private var coreData: CoreDataService
     private var analytic: AnalyticsServies
+    private var notifications: INotificationService
     
-    init(search: SearchService, coreData: CoreDataService, analytic: AnalyticsServies) {
+    init(search: SearchService,
+         coreData: CoreDataService,
+         analytic: AnalyticsServies,
+         notifications: INotificationService) {
         self.search = search
         self.coreData = coreData
         self.analytic = analytic
+        self.notifications = notifications
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -29,9 +34,13 @@ final class TabBarViewController: UITabBarController {
     }
     
     private func createTabBar() {
-        let  characterVC = UINavigationController(rootViewController: CharacterBuilder.build(coreData: coreData,
-                                                                                             search: search,
-                                                                                             analytic: analytic))
+        let  characterVC = UINavigationController(
+            rootViewController: CharacterBuilder.build(coreData: coreData,
+                                                       search: search,
+                                                       analytic: analytic,
+                                                       notifications: notifications
+                                                      )
+        )
         let locationVC = UINavigationController(rootViewController: LocationBuilder.build(coreData: coreData,
                                                                                           search: search,
                                                                                           analytic: analytic))

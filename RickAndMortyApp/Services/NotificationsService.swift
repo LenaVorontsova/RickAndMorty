@@ -8,7 +8,12 @@
 import Foundation
 import UserNotifications
 
-class NotificationsService: NSObject, UNUserNotificationCenterDelegate {
+protocol INotificationService {
+    func scheduleNotification(notificationType: String)
+    func notificationRequest()
+}
+
+final class NotificationsService: NSObject, UNUserNotificationCenterDelegate, INotificationService {
     let notificationCenter = UNUserNotificationCenter.current()
     
     func notificationRequest() {
