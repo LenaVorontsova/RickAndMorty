@@ -10,10 +10,12 @@ import UIKit
 final class TabBarViewController: UITabBarController {
     private var search: SearchService
     private var coreData: CoreDataService
+    private var analytic: AnalyticsServies
     
-    init(search: SearchService, coreData: CoreDataService) {
+    init(search: SearchService, coreData: CoreDataService, analytic: AnalyticsServies) {
         self.search = search
         self.coreData = coreData
+        self.analytic = analytic
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -28,11 +30,14 @@ final class TabBarViewController: UITabBarController {
     
     private func createTabBar() {
         let  characterVC = UINavigationController(rootViewController: CharacterBuilder.build(coreData: coreData,
-                                                                                             search: search))
+                                                                                             search: search,
+                                                                                             analytic: analytic))
         let locationVC = UINavigationController(rootViewController: LocationBuilder.build(coreData: coreData,
-                                                                                          search: search))
+                                                                                          search: search,
+                                                                                          analytic: analytic))
         let episodeVC = UINavigationController(rootViewController: EpisodeBuilder.build(coreData: coreData, 
-                                                                                        search: search))
+                                                                                        search: search,
+                                                                                        analytic: analytic))
         characterVC.title = R.string.modules.charTitle()
         locationVC.title = R.string.modules.locTitle()
         episodeVC.title = R.string.modules.episodeTitle()

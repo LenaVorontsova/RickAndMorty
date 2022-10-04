@@ -22,10 +22,12 @@ final class LocationPresenter: LocationPresenting {
     weak var controller: (UIViewController & IViewControllers)?
     let coreData: CoreDataService
     let search: SearchService
+    let analytic: AnalyticsServies
     
-    init(coreData: CoreDataService, search: SearchService) {
+    init(coreData: CoreDataService, search: SearchService, analytic: AnalyticsServies) {
         self.coreData = coreData
         self.search = search
+        self.analytic = analytic
     }
     
     func getInfoLocation() {
@@ -42,6 +44,6 @@ final class LocationPresenter: LocationPresenting {
     }
     
     func pathLocationViewModel(indexPath: IndexPath) -> DetailViewModelProtocol {
-        return LocationViewModel(location: locationsSearch[indexPath.row])
+        return LocationViewModel(location: locationsSearch[indexPath.row], analytic: analytic)
     }
 }

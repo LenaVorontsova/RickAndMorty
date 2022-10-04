@@ -22,10 +22,12 @@ final class EpisodePresenter: EpisodePresenting {
     weak var controller: (UIViewController & IViewControllers)?
     let coreData: CoreDataService
     let search: SearchService
+    let analytic: AnalyticsServies
     
-    init(coreData: CoreDataService, search: SearchService) {
+    init(coreData: CoreDataService, search: SearchService, analytic: AnalyticsServies) {
         self.coreData = coreData
         self.search = search
+        self.analytic = analytic
     }
     
     func getInfoEpisodes() {
@@ -42,6 +44,6 @@ final class EpisodePresenter: EpisodePresenting {
     }
     
     func pathEpisodeViewModel(indexPath: IndexPath) -> DetailViewModelProtocol {
-        return EpisodeViewModel(episode: episodesSearch[indexPath.row])
+        return EpisodeViewModel(episode: episodesSearch[indexPath.row], analytic: analytic)
     }
 }

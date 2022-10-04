@@ -22,10 +22,12 @@ final class CharacterPresenter: CharacterPresenting {
     weak var controller: (UIViewController & IViewControllers)?
     let coreData: CoreDataService
     let search: SearchService
+    let analytic: AnalyticsServies
     
-    init(with coreData: CoreDataService, search: SearchService) {
+    init(with coreData: CoreDataService, search: SearchService, analytic: AnalyticsServies) {
         self.coreData = coreData
         self.search = search
+        self.analytic = analytic
     }
     
     func getInfoCharacter() {
@@ -42,6 +44,6 @@ final class CharacterPresenter: CharacterPresenting {
     }
     
     func pathCharacterViewModel(indexPath: IndexPath) -> DetailViewModelProtocol {
-        return CharacterViewModel(character: charactersSearch[indexPath.row])
+        return CharacterViewModel(character: charactersSearch[indexPath.row], analytic: analytic)
     }
 }

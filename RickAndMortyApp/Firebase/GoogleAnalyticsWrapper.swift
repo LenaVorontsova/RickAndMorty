@@ -25,7 +25,7 @@ extension AnalyticsServies {
 final class GoogleAnalyticsWrapper: AnalyticsServies {
     func sendEvent(_ event: AnalyticsEvents, _ detail: String?) {
         if let detail = detail {
-            Analytics.logEvent(event.rawValue, parameters: ["page subject": detail])
+            Analytics.logEvent(event.rawValue, parameters: ["pageSubject": detail])
         } else {
             Analytics.logEvent(event.rawValue, parameters: nil)
         }

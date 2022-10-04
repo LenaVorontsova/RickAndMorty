@@ -87,7 +87,7 @@ extension CharacterViewController: UITableViewDataSource, UITableViewDelegate, U
         let alert = UIAlertController(title: "",
                                       message: "After 5 seconds local notification will appear",
                                       preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default) { action in
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
             self.notifications.scheduleNotification(notificationType: "local notification")
         }
         alert.addAction(okAction)

@@ -10,7 +10,7 @@ import UIKit
 
 final class CharacterViewModel: DetailViewModelProtocol {
     private var character: Character
-    private var analytics: AnalyticsServies?
+    private var analytic: AnalyticsServies
     var image: UIImage? {
         character.image
     }
@@ -23,15 +23,15 @@ final class CharacterViewModel: DetailViewModelProtocol {
         return arr
     }
     
-    required init(character: Character) {
+    required init(character: Character, analytic: AnalyticsServies) {
         self.character = character
-        self.analytics = GoogleAnalyticsWrapper()
-        self.analytics!.sendEvent(AnalyticsEvents.detailPage, "Character")
+        self.analytic = analytic
+        self.analytic.sendEvent(AnalyticsEvents.detailPage, "Character")
     }
 }
 
 final class LocationViewModel: DetailViewModelProtocol {
-    private var analytics: AnalyticsServies?
+    private var analytic: AnalyticsServies
     private var location: LocationInfo
     var image: UIImage?
     var titleLabel: [String]? {
@@ -42,15 +42,15 @@ final class LocationViewModel: DetailViewModelProtocol {
         return arr
     }
     
-    required init(location: LocationInfo) {
+    required init(location: LocationInfo, analytic: AnalyticsServies) {
         self.location = location
-        self.analytics = GoogleAnalyticsWrapper()
-        self.analytics!.sendEvent(AnalyticsEvents.detailPage, "Location")
+        self.analytic = analytic
+        self.analytic.sendEvent(AnalyticsEvents.detailPage, "Location")
     }
 }
 
 final class EpisodeViewModel: DetailViewModelProtocol {
-    private var analytics: AnalyticsServies?
+    private var analytic: AnalyticsServies
     private var episode: EpisodeInfo
     var image: UIImage?
     var titleLabel: [String]? {
@@ -61,9 +61,9 @@ final class EpisodeViewModel: DetailViewModelProtocol {
         return arr
     }
     
-    required init(episode: EpisodeInfo) {
+    required init(episode: EpisodeInfo, analytic: AnalyticsServies) {
         self.episode = episode
-        self.analytics = GoogleAnalyticsWrapper()
-        self.analytics!.sendEvent(AnalyticsEvents.detailPage, "Episode")
+        self.analytic = analytic
+        self.analytic.sendEvent(AnalyticsEvents.detailPage, "Episode")
     }
 }

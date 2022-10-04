@@ -8,8 +8,16 @@
 import UIKit
 
 enum SplashBuilder {
-    static func build(network: NetworkService, search: SearchService, presenter: SplashScreenPresenting, coreData: CoreDataService) -> UIViewController {
-        let presenter: SplashScreenPresenting = SplashScreenPresenter(network: network, search: search, coreData: coreData)
+    static func build(network: NetworkService,
+                      search: SearchService,
+                      presenter: SplashScreenPresenting,
+                      coreData: CoreDataService,
+                      analytics: AnalyticsServies
+    ) -> UIViewController {
+        let presenter: SplashScreenPresenting = SplashScreenPresenter(network: network,
+                                                                      search: search,
+                                                                      coreData: coreData,
+                                                                      analytics: analytics)
         let vc = SplashViewController(search: search, presenter: presenter)
         presenter.controller = vc
         return vc
