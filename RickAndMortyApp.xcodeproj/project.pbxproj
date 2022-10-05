@@ -48,6 +48,9 @@
 		84A0024C28C0B7CB00A233F1 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A0024B28C0B7CB00A233F1 /* TabBarViewController.swift */; };
 		84A0025328C1027E00A233F1 /* SplashScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A0025228C1027E00A233F1 /* SplashScreenPresenter.swift */; };
 		84A0025528C115C800A233F1 /* SplashBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A0025428C115C800A233F1 /* SplashBuilder.swift */; };
+		84A07E5D28E5E660009C5D84 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84A07E5C28E5E660009C5D84 /* GoogleService-Info.plist */; };
+		84A07E6128E5EAA6009C5D84 /* GoogleAnalyticsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A07E6028E5EAA6009C5D84 /* GoogleAnalyticsWrapper.swift */; };
+		84A07E6328E9FCAB009C5D84 /* NotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A07E6228E9FCAB009C5D84 /* NotificationsService.swift */; };
 		84EBB02028C79166009D0DE0 /* RickAndMorty.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84EBB01E28C79165009D0DE0 /* RickAndMorty.xcdatamodeld */; };
 		84EBB02328C7958D009D0DE0 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EBB02228C7958D009D0DE0 /* CoreDataService.swift */; };
 /* End PBXBuildFile section */
@@ -97,6 +100,9 @@
 		84A0024B28C0B7CB00A233F1 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		84A0025228C1027E00A233F1 /* SplashScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenPresenter.swift; sourceTree = "<group>"; };
 		84A0025428C115C800A233F1 /* SplashBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashBuilder.swift; sourceTree = "<group>"; };
+		84A07E5C28E5E660009C5D84 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		84A07E6028E5EAA6009C5D84 /* GoogleAnalyticsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAnalyticsWrapper.swift; sourceTree = "<group>"; };
+		84A07E6228E9FCAB009C5D84 /* NotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsService.swift; sourceTree = "<group>"; };
 		84EBB01F28C79165009D0DE0 /* RickAndMorty.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RickAndMorty.xcdatamodel; sourceTree = "<group>"; };
 		84EBB02228C7958D009D0DE0 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		8E616BEA614F5CAD2D1CBA76 /* Pods_RickAndMortyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RickAndMortyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,6 +152,8 @@
 		8400D32C28991DD700C35767 /* RickAndMortyApp */ = {
 			isa = PBXGroup;
 			children = (
+				84A07E5C28E5E660009C5D84 /* GoogleService-Info.plist */,
+				84A07E5F28E5EA95009C5D84 /* Firebase */,
 				848DAFE428CA0B7500FA8D82 /* Localization */,
 				84A0023128B64A9700A233F1 /* Extensions */,
 				8400D3BF289EAE1E00C35767 /* Services */,
@@ -258,6 +266,7 @@
 				84A0022D28B552D700A233F1 /* SearchService.swift */,
 				84A0024428BE434E00A233F1 /* StartService.swift */,
 				84EBB02228C7958D009D0DE0 /* CoreDataService.swift */,
+				84A07E6228E9FCAB009C5D84 /* NotificationsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -310,6 +319,14 @@
 				84A0025428C115C800A233F1 /* SplashBuilder.swift */,
 			);
 			path = SplashScreen;
+			sourceTree = "<group>";
+		};
+		84A07E5F28E5EA95009C5D84 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				84A07E6028E5EAA6009C5D84 /* GoogleAnalyticsWrapper.swift */,
+			);
+			path = Firebase;
 			sourceTree = "<group>";
 		};
 		CB60C1A6C2EF4564447BB26A /* Pods */ = {
@@ -389,6 +406,7 @@
 				848DAFE828CA0E6B00FA8D82 /* alertMessages.strings in Resources */,
 				848DAFE628CA0DE600FA8D82 /* modules.strings in Resources */,
 				8400D33728991DDA00C35767 /* Assets.xcassets in Resources */,
+				84A07E5D28E5E660009C5D84 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,6 +498,7 @@
 				8400D3BE289E9ACD00C35767 /* EpisodesTableViewCell.swift in Sources */,
 				84A0024128BCC74000A233F1 /* UIViewController+showAlert.swift in Sources */,
 				84A0023F28B9104400A233F1 /* CharacterBuilder.swift in Sources */,
+				84A07E6128E5EAA6009C5D84 /* GoogleAnalyticsWrapper.swift in Sources */,
 				848DAFFB28D4975300FA8D82 /* DetailsProtocols.swift in Sources */,
 				848DB02028DB553000FA8D82 /* CarouselViewController.swift in Sources */,
 				84A0023028B6423500A233F1 /* EndPoints.swift in Sources */,
@@ -498,6 +517,7 @@
 				8400D3562899629600C35767 /* CharacterNetwork.swift in Sources */,
 				8400D358289962A700C35767 /* Location.swift in Sources */,
 				848A225428E1A4A800ABC301 /* GalaryCollectionViewCell.swift in Sources */,
+				84A07E6328E9FCAB009C5D84 /* NotificationsService.swift in Sources */,
 				848DAFEC28CA194900FA8D82 /* R.generated.swift in Sources */,
 				8400D32E28991DD700C35767 /* AppDelegate.swift in Sources */,
 				848DAFF928D34B3700FA8D82 /* DetailViewController.swift in Sources */,

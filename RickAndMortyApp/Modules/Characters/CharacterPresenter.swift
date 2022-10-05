@@ -14,6 +14,7 @@ protocol CharacterPresenting: AnyObject {
     func getInfoCharacter()
     func searchCharacter(searchText: String)
     func pathCharacterViewModel(indexPath: IndexPath) -> DetailViewModelProtocol
+    func showNotification() -> UIAlertController
 }
 
 final class CharacterPresenter: CharacterPresenting {
@@ -22,10 +23,17 @@ final class CharacterPresenter: CharacterPresenting {
     weak var controller: (UIViewController & IViewControllers)?
     let coreData: CoreDataService
     let search: SearchService
+    let analytic: AnalyticsServies
+    let notifications: INotificationService
     
-    init(with coreData: CoreDataService, search: SearchService) {
+    init(with coreData: CoreDataService,
+         search: SearchService,
+         analytic: AnalyticsServies,
+         notifications: INotificationService) {
         self.coreData = coreData
         self.search = search
+        self.analytic = analytic
+        self.notifications = notifications
     }
     
     func getInfoCharacter() {
@@ -42,6 +50,17 @@ final class CharacterPresenter: CharacterPresenting {
     }
     
     func pathCharacterViewModel(indexPath: IndexPath) -> DetailViewModelProtocol {
-        return CharacterViewModel(character: charactersSearch[indexPath.row])
+        return CharacterViewModel(character: charactersSearch[indexPath.row], analytic: analytic)
+    }
+    
+    func showNotification() -> UIAlertController {
+        let alert = UIAlertController(title: "",
+                                      message: "After 5 seconds local notification will appear",
+                                      preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            self.notifications.scheduleNotification(notificationType: "local notification")
+        }
+        alert.addAction(okAction)
+        return alert
     }
 }

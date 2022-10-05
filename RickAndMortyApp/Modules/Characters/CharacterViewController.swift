@@ -83,6 +83,8 @@ extension CharacterViewController: UITableViewDataSource, UITableViewDelegate, U
         let viewModel = presenter.pathCharacterViewModel(indexPath: indexPath)
         let controller = DetailViewController(viewModel: viewModel)
         self.navigationController?.pushViewController(controller, animated: true)
+        let alert = self.presenter.showNotification()
+        self.present(alert, animated: true, completion: nil)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
