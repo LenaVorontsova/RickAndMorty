@@ -58,7 +58,10 @@ final class TabBarViewController: UITabBarController {
         for i in 0..<items.count {
             items[i].image = UIImage(systemName: imagesNames[i])
         }
-        
+        createGesture()
+    }
+    
+    private func createGesture() {
         let tapGesture = UITapGestureRecognizer(target: self,
                                                 action: #selector(didDoubleTap(_:)))
         tapGesture.numberOfTapsRequired = 5
@@ -67,6 +70,7 @@ final class TabBarViewController: UITabBarController {
     
     @objc
     func didDoubleTap(_ gesture: UITapGestureRecognizer) {
-        print("fired")
+        let debugViewController = DebugMenuView()
+        self.present(debugViewController, animated: true)
     }
 }
