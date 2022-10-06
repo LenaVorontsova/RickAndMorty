@@ -8,10 +8,13 @@
 import UIKit
 
 final class TabBarViewController: UITabBarController {
-    private var search: SearchService
-    private var coreData: CoreDataService
-    private var analytic: AnalyticsServies
-    private var notifications: INotificationService
+    private let search: SearchService
+    private let coreData: CoreDataService
+    private let analytic: AnalyticsServies
+    private let notifications: INotificationService
+    private let characterPresenter: CharacterPresenting
+    private let locationPresenter: LocationPresenting
+    private let episodePresenter: EpisodePresenting
     
     init(search: SearchService,
          coreData: CoreDataService,
@@ -21,6 +24,16 @@ final class TabBarViewController: UITabBarController {
         self.coreData = coreData
         self.analytic = analytic
         self.notifications = notifications
+        self.characterPresenter = CharacterPresenter(with: self.coreData,
+                                                     search: self.search,
+                                                     analytic: self.analytic,
+                                                     notifications: self.notifications)
+        self.locationPresenter = LocationPresenter(coreData: self.coreData,
+                                                   search: self.search,
+                                                   analytic: self.analytic)
+        self.episodePresenter = EpisodePresenter(coreData: self.coreData,
+                                                 search: self.search,
+                                                 analytic: self.analytic)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -38,9 +51,7 @@ final class TabBarViewController: UITabBarController {
             rootViewController: CharacterBuilder.build(coreData: coreData,
                                                        search: search,
                                                        analytic: analytic,
-                                                       notifications: notifications
-                                                      )
-        )
+                                                       notifications: notifications))
         let locationVC = UINavigationController(rootViewController: LocationBuilder.build(coreData: coreData,
                                                                                           search: search,
                                                                                           analytic: analytic))
@@ -70,7 +81,9 @@ final class TabBarViewController: UITabBarController {
     
     @objc
     func didDoubleTap(_ gesture: UITapGestureRecognizer) {
-        let debugViewController = DebugMenuView()
+        let debugViewController = DebugMenuViewController(characterPresenter: self.characterPresenter,
+                                                          locationPresenter: self.locationPresenter,
+                                                          episodePresenter: self.episodePresenter)
         self.present(debugViewController, animated: true)
     }
 }

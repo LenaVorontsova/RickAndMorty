@@ -12,7 +12,7 @@ enum DebugConstants {
     static let topLabels = 10
 }
 
-final class DebugMenuView: UIViewController {
+final class DebugMenuViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let title = UILabel()
         title.text = "Debug Menu"
@@ -27,6 +27,7 @@ final class DebugMenuView: UIViewController {
         title.textColor = .black
         title.font = .systemFont(ofSize: 24)
         title.textAlignment = .center
+        title.numberOfLines = 4
         return title
     }()
     private lazy var bitesInCoreDataCountLabel: UILabel = {
@@ -45,11 +46,28 @@ final class DebugMenuView: UIViewController {
         title.textAlignment = .center
         return title
     }()
+    private let characterPresenter: CharacterPresenting
+    private let locationPresenter: LocationPresenting
+    private let episodePresenter: EpisodePresenting
+    
+    init(characterPresenter: CharacterPresenting,
+         locationPresenter: LocationPresenting,
+         episodePresenter: EpisodePresenting) {
+        self.characterPresenter = characterPresenter
+        self.locationPresenter = locationPresenter
+        self.episodePresenter = episodePresenter
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         configureConstraints()
+        setTitlesText()
     }
     
     private func configureConstraints() {
@@ -73,5 +91,13 @@ final class DebugMenuView: UIViewController {
             $0.trailing.leading.equalToSuperview()
             $0.top.equalTo(bitesInCoreDataCountLabel.snp.bottom).offset(DebugConstants.topLabels)
         }
+    }
+    
+    private func setTitlesText() {
+        let charactersCount = characterPresenter.characters.count
+        let locationCount = locationPresenter.locations.count
+        let episodeCount = episodePresenter.episodes.count
+        cellsCountLabel.text = "Number of characters: \(charactersCount), Number of locations: \(locationCount), Number of characters: \(charactersCount)"
+        
     }
 }
