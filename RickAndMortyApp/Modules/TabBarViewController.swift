@@ -12,28 +12,18 @@ final class TabBarViewController: UITabBarController {
     private let coreData: CoreDataService
     private let analytic: AnalyticsServies
     private let notifications: INotificationService
-    private let characterPresenter: CharacterPresenting
-    private let locationPresenter: LocationPresenting
-    private let episodePresenter: EpisodePresenting
+    private let debugViewController: DebugMenuViewController
     
     init(search: SearchService,
          coreData: CoreDataService,
          analytic: AnalyticsServies,
-         notifications: INotificationService) {
+         notifications: INotificationService,
+         debugMenu: DebugMenuViewController) {
         self.search = search
         self.coreData = coreData
         self.analytic = analytic
         self.notifications = notifications
-        self.characterPresenter = CharacterPresenter(with: self.coreData,
-                                                     search: self.search,
-                                                     analytic: self.analytic,
-                                                     notifications: self.notifications)
-        self.locationPresenter = LocationPresenter(coreData: self.coreData,
-                                                   search: self.search,
-                                                   analytic: self.analytic)
-        self.episodePresenter = EpisodePresenter(coreData: self.coreData,
-                                                 search: self.search,
-                                                 analytic: self.analytic)
+        self.debugViewController = debugMenu
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -81,9 +71,6 @@ final class TabBarViewController: UITabBarController {
     
     @objc
     func didDoubleTap(_ gesture: UITapGestureRecognizer) {
-        let debugViewController = DebugMenuViewController(characterPresenter: self.characterPresenter,
-                                                          locationPresenter: self.locationPresenter,
-                                                          episodePresenter: self.episodePresenter)
         self.present(debugViewController, animated: true)
     }
 }

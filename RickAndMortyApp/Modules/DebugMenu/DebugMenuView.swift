@@ -46,21 +46,19 @@ final class DebugMenuViewController: UIViewController {
         title.textAlignment = .center
         return title
     }()
-    private let characterPresenter: CharacterPresenting
-    private let locationPresenter: LocationPresenting
-    private let episodePresenter: EpisodePresenting
+    var characterCount: Int
+    var locationCount: Int
+    var episodeCount: Int
     
-    init(characterPresenter: CharacterPresenting,
-         locationPresenter: LocationPresenting,
-         episodePresenter: EpisodePresenting) {
-        self.characterPresenter = characterPresenter
-        self.locationPresenter = locationPresenter
-        self.episodePresenter = episodePresenter
+    init(characterCount: Int, locationCount: Int, episodeCount: Int) {
+        self.characterCount = characterCount
+        self.locationCount = locationCount
+        self.episodeCount = episodeCount
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
@@ -94,10 +92,6 @@ final class DebugMenuViewController: UIViewController {
     }
     
     private func setTitlesText() {
-        let charactersCount = characterPresenter.characters.count
-        let locationCount = locationPresenter.locations.count
-        let episodeCount = episodePresenter.episodes.count
-        cellsCountLabel.text = "Number of characters: \(charactersCount), Number of locations: \(locationCount), Number of characters: \(charactersCount)"
-        
+        cellsCountLabel.text = "Number of characters: \(self.characterCount) \nNumber of locations: \(self.locationCount) \nNumber of characters: \(self.episodeCount)"
     }
 }

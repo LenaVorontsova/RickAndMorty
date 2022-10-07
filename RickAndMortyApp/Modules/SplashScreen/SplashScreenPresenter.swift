@@ -21,6 +21,10 @@ final class SplashScreenPresenter: SplashScreenPresenting {
     let analytics: AnalyticsServies
     let notifications: INotificationService
     weak var controller: UIViewController?
+    var debugMenu: DebugMenuViewController?
+    private var characterCount: Int = 0
+    private var locationCount: Int = 0
+    private var episodeCount: Int = 0
     
     init(network: NetworkService,
          search: SearchService,
@@ -62,6 +66,7 @@ final class SplashScreenPresenter: SplashScreenPresenting {
                 case .success(let serverData):
                     guard let self = self else { return }
                     self.coreData.saveToCoreDataCharacter(charactersArray: serverData.results)
+                    self.characterCount = serverData.results.count
                     infoGroup.leave()
                 case .failure(let error):
                     infoGroup.leave()
@@ -76,6 +81,7 @@ final class SplashScreenPresenter: SplashScreenPresenting {
                 case .success(let serverData):
                     guard let self = self else { return }
                     self.coreData.saveToCoreDataLocation(locationsArray: serverData.results)
+                    self.locationCount = serverData.results.count
                     infoGroup.leave()
                 case .failure(let error):
                     infoGroup.leave()
@@ -90,6 +96,7 @@ final class SplashScreenPresenter: SplashScreenPresenting {
                 case .success(let serverData):
                     guard let self = self else { return }
                     self.coreData.saveToCoreDataEpisodes(episodesArray: serverData.results)
+                    self.episodeCount = serverData.results.count
                     infoGroup.leave()
                 case .failure(let error):
                     infoGroup.leave()
@@ -103,10 +110,14 @@ final class SplashScreenPresenter: SplashScreenPresenting {
     }
     
     func showTabBar() {
+        debugMenu = DebugMenuViewController(characterCount: self.characterCount,
+                                            locationCount: self.locationCount,
+                                            episodeCount: self.episodeCount)
         let tabBarVC = TabBarViewController(search: search,
                                             coreData: coreData,
                                             analytic: analytics,
-                                            notifications: notifications)
+                                            notifications: notifications,
+                                            debugMenu: debugMenu!)
         tabBarVC.modalPresentationStyle = .fullScreen
         controller?.present(tabBarVC, animated: false)
     }
