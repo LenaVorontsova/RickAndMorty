@@ -30,9 +30,9 @@ final class DebugMenuViewController: UIViewController {
         title.numberOfLines = 4
         return title
     }()
-    private lazy var bitesInCoreDataCountLabel: UILabel = {
+    private lazy var bytesInCoreDataCountLabel: UILabel = {
         let title = UILabel()
-        title.text = "bitesInCoreDataCountLabel"
+        title.text = "bytesInCoreDataCountLabel"
         title.textColor = .black
         title.font = .systemFont(ofSize: 24)
         title.textAlignment = .center
@@ -71,7 +71,7 @@ final class DebugMenuViewController: UIViewController {
     private func configureConstraints() {
         view.addSubview(titleLabel)
         view.addSubview(cellsCountLabel)
-        view.addSubview(bitesInCoreDataCountLabel)
+        view.addSubview(bytesInCoreDataCountLabel)
         view.addSubview(memoryCountLabel)
         titleLabel.snp.makeConstraints {
             $0.trailing.leading.equalToSuperview()
@@ -81,13 +81,13 @@ final class DebugMenuViewController: UIViewController {
             $0.trailing.leading.equalToSuperview()
             $0.top.equalTo(titleLabel.snp.bottom).offset(DebugConstants.topLabels)
         }
-        bitesInCoreDataCountLabel.snp.makeConstraints {
+        bytesInCoreDataCountLabel.snp.makeConstraints {
             $0.trailing.leading.equalToSuperview()
             $0.top.equalTo(cellsCountLabel.snp.bottom).offset(DebugConstants.topLabels)
         }
         memoryCountLabel.snp.makeConstraints {
             $0.trailing.leading.equalToSuperview()
-            $0.top.equalTo(bitesInCoreDataCountLabel.snp.bottom).offset(DebugConstants.topLabels)
+            $0.top.equalTo(bytesInCoreDataCountLabel.snp.bottom).offset(DebugConstants.topLabels)
         }
     }
     
@@ -113,8 +113,24 @@ final class DebugMenuViewController: UIViewController {
         return usedMBAsString
     }
     
+    private func getBytesInCoreDataCount() -> String {
+        let filePath = "/Users/admin/Desktop/стажировка/elena-rickandmorty-ios/RickAndMortyApp/RickAndMorty.xcdatamodeld"
+        var fileSize: UInt64
+        do {
+            let attr = try FileManager.default.attributesOfItem(atPath: filePath)
+            let dict = attr as NSDictionary
+            fileSize = dict.fileSize()
+            let sizeString: String = "CoreData in memory: \(fileSize) bytes"
+            return sizeString
+        } catch {
+            print("Error: \(error)")
+        }
+        return ""
+    }
+    
     private func setTitlesText() {
         cellsCountLabel.text = "Number of characters: \(self.characterCount) \nNumber of locations: \(self.locationCount) \nNumber of characters: \(self.episodeCount)"
         memoryCountLabel.text = getMemoryCount()
+        bytesInCoreDataCountLabel.text = getBytesInCoreDataCount()
     }
 }
