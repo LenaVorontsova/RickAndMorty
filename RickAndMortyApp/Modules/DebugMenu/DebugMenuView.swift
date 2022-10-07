@@ -91,7 +91,30 @@ final class DebugMenuViewController: UIViewController {
         }
     }
     
+    private func getMemoryCount() -> String {
+        let taskVMInfoCount = mach_msg_type_number_t(
+            MemoryLayout<task_vm_info_data_t>.size / MemoryLayout<integer_t>.size)
+        guard let offset = MemoryLayout.offset(of: \task_vm_info_data_t.min_address) else { return "Memory: NA" }
+        let taskVMInfoRev1Count = mach_msg_type_number_t(offset / MemoryLayout<integer_t>.size)
+        var info = task_vm_info_data_t()
+        var count = taskVMInfoCount
+        let kr = withUnsafeMutablePointer(to: &info) { infoPtr in
+            infoPtr.withMemoryRebound(to: integer_t.self,
+                                      capacity: Int(count)) { intPtr in
+                task_info(mach_task_self_, task_flavor_t(TASK_VM_INFO), intPtr, &count)
+            }
+        }
+        guard kr == KERN_SUCCESS,
+              count >= taskVMInfoRev1Count else { return "Memory: NA" }
+        let usedBytes = Float(info.phys_footprint)
+        let usedBytesInt = UInt64(usedBytes)
+        let usedMB = usedBytesInt / 1024 / 1024
+        let usedMBAsString: String = "Memory: \(usedMB) MB"
+        return usedMBAsString
+    }
+    
     private func setTitlesText() {
         cellsCountLabel.text = "Number of characters: \(self.characterCount) \nNumber of locations: \(self.locationCount) \nNumber of characters: \(self.episodeCount)"
+        memoryCountLabel.text = getMemoryCount()
     }
 }
