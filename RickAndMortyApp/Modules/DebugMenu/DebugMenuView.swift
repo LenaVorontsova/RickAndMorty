@@ -46,14 +46,10 @@ final class DebugMenuViewController: UIViewController {
         title.textAlignment = .center
         return title
     }()
-    var characterCount: Int
-    var locationCount: Int
-    var episodeCount: Int
+    private let dataService: CoreDataService
     
-    init(characterCount: Int, locationCount: Int, episodeCount: Int) {
-        self.characterCount = characterCount
-        self.locationCount = locationCount
-        self.episodeCount = episodeCount
+    init(dataService: CoreDataService) {
+        self.dataService = dataService
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -129,7 +125,7 @@ final class DebugMenuViewController: UIViewController {
     }
     
     private func setTitlesText() {
-        cellsCountLabel.text = "Number of characters: \(self.characterCount) \nNumber of locations: \(self.locationCount) \nNumber of characters: \(self.episodeCount)"
+        cellsCountLabel.text = "Number of characters: \(self.dataService.characterCount) \nNumber of locations: \(self.dataService.locationCount) \nNumber of characters: \(self.dataService.episodeCount)"
         memoryCountLabel.text = getMemoryCount()
         bytesInCoreDataCountLabel.text = getBytesInCoreDataCount()
     }
