@@ -29,9 +29,8 @@ final class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureConstraints()
-        let coreData = CoreDataService()
-        let debugMenu = DebugMenuViewController(dataService: coreData)
-        if debugMenu.switchStatus {
+        let switchBool: Bool = UserDefaults.standard.bool(forKey: "SwitchOn")
+        if switchBool {
             presenter.getInfo()
         } else {
             presenter.getInfoTest()

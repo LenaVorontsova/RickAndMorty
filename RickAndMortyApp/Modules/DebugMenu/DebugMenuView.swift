@@ -53,6 +53,7 @@ final class DebugMenuViewController: UIViewController {
     }()
     var switchStatus = true
     private let dataService: CoreDataService
+    private let userDefaults = UserDefaults.standard
     
     init(dataService: CoreDataService) {
         self.dataService = dataService
@@ -67,13 +68,27 @@ final class DebugMenuViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         switchOnOff.addTarget(self, action: #selector(self.switchStateDidChange(_:)), for: .valueChanged)
+//        let switchBool: Bool = userDefaults.bool(forKey: "SwitchOn")
+//        if switchBool {
+//            switchOnOff.setOn(true, animated: true)
+//            switchStatus = true
+//        } else {
+//            switchOnOff.setOn(false, animated: true)
+//            switchStatus = false
+//        }
         configureConstraints()
         setTitlesText()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        switchOnOff.isOn = userDefaults.bool(forKey: "SwitchOn")
+    }
+    
     @objc
     func switchStateDidChange(_ sender: UISwitch!) {
-        if sender.isOn {
+        userDefaults.set(sender.isOn, forKey: "SwitchOn")
+        if sender.isOn == true {
             switchStatus = true
         } else {
             switchStatus = false
