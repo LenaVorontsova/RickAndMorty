@@ -29,7 +29,13 @@ final class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureConstraints()
-        presenter.getInfo()
+        let coreData = CoreDataService()
+        let debugMenu = DebugMenuViewController(dataService: coreData)
+        if debugMenu.switchStatus {
+            presenter.getInfo()
+        } else {
+            presenter.getInfoTest()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

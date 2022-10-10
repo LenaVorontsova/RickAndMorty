@@ -12,6 +12,7 @@ protocol SplashScreenPresenting: AnyObject {
     var controller: UIViewController? { get set }
     func showTabBar()
     func getInfo()
+    func getInfoTest()
 }
 
 final class SplashScreenPresenter: SplashScreenPresenting {
@@ -100,6 +101,19 @@ final class SplashScreenPresenter: SplashScreenPresenting {
         infoGroup.notify(queue: DispatchQueue.main) {
             self.showTabBar()
         }
+    }
+    
+    func getInfoTest() {
+        self.network.getInfoTest { [weak self] result in
+            switch result {
+            case .success(let serverData):
+                guard let self = self else { return }
+                self.coreData.saveToCoreDataEpisodes(episodesArray: serverData.results)
+            case .failure(let error):
+                self!.showAlert(with: error)
+            }
+        }
+        self.showTabBar()
     }
     
     func showTabBar() {

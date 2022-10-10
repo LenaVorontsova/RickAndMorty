@@ -46,6 +46,12 @@ final class DebugMenuViewController: UIViewController {
         title.textAlignment = .center
         return title
     }()
+    private lazy var switchOnOff: UISwitch = {
+        let switchUI = UISwitch()
+        switchUI.onTintColor = .green
+        return switchUI
+    }()
+    var switchStatus = true
     private let dataService: CoreDataService
     
     init(dataService: CoreDataService) {
@@ -60,8 +66,18 @@ final class DebugMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        switchOnOff.addTarget(self, action: #selector(self.switchStateDidChange(_:)), for: .valueChanged)
         configureConstraints()
         setTitlesText()
+    }
+    
+    @objc
+    func switchStateDidChange(_ sender: UISwitch!) {
+        if sender.isOn {
+            switchStatus = true
+        } else {
+            switchStatus = false
+        }
     }
     
     private func configureConstraints() {
@@ -69,6 +85,7 @@ final class DebugMenuViewController: UIViewController {
         view.addSubview(cellsCountLabel)
         view.addSubview(bytesInCoreDataCountLabel)
         view.addSubview(memoryCountLabel)
+        view.addSubview(switchOnOff)
         titleLabel.snp.makeConstraints {
             $0.trailing.leading.equalToSuperview()
             $0.top.equalTo(view.safeAreaInsets).offset(DebugConstants.topLabels)
@@ -84,6 +101,10 @@ final class DebugMenuViewController: UIViewController {
         memoryCountLabel.snp.makeConstraints {
             $0.trailing.leading.equalToSuperview()
             $0.top.equalTo(bytesInCoreDataCountLabel.snp.bottom).offset(DebugConstants.topLabels)
+        }
+        switchOnOff.snp.makeConstraints {
+            $0.centerY.centerX.equalToSuperview()
+            $0.top.equalTo(memoryCountLabel.snp.bottom).offset(DebugConstants.topLabels)
         }
     }
     
