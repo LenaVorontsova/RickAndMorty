@@ -29,12 +29,7 @@ final class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureConstraints()
-        let switchBool: Bool = UserDefaults.standard.bool(forKey: "SwitchOn")
-        if switchBool {
-            presenter.getInfo()
-        } else {
-            presenter.getInfoTest()
-        }
+        presenter.getInfo()
     }
     
     override func viewDidAppear(_ animated: Bool) {

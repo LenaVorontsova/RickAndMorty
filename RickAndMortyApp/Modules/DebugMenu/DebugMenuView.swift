@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Rswift
 
 enum DebugConstants {
     static let topLabels = 10
@@ -16,41 +17,42 @@ final class DebugMenuViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let title = UILabel()
         title.text = "Debug Menu"
-        title.textColor = .black
+        title.textColor = R.color.black()
         title.font = .systemFont(ofSize: 28)
         title.textAlignment = .center
         return title
     }()
+    
     private lazy var cellsCountLabel: UILabel = {
         let title = UILabel()
-        title.text = "cellsCountLabel"
-        title.textColor = .black
+        title.textColor = R.color.black()
         title.font = .systemFont(ofSize: 24)
         title.textAlignment = .center
-        title.numberOfLines = 4
         return title
     }()
+    
     private lazy var bytesInCoreDataCountLabel: UILabel = {
         let title = UILabel()
-        title.text = "bytesInCoreDataCountLabel"
-        title.textColor = .black
+        title.textColor = R.color.black()
         title.font = .systemFont(ofSize: 24)
         title.textAlignment = .center
         return title
     }()
+    
     private lazy var memoryCountLabel: UILabel = {
         let title = UILabel()
-        title.text = "memoryCountLabel"
-        title.textColor = .black
+        title.textColor = R.color.black()
         title.font = .systemFont(ofSize: 24)
         title.textAlignment = .center
         return title
     }()
+    
     private lazy var switchOnOff: UISwitch = {
         let switchUI = UISwitch()
-        switchUI.onTintColor = .green
+        switchUI.onTintColor = R.color.green()
         return switchUI
     }()
+    
     var switchStatus = true
     private let dataService: CoreDataService
     private let userDefaults = UserDefaults.standard
@@ -68,14 +70,6 @@ final class DebugMenuViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         switchOnOff.addTarget(self, action: #selector(self.switchStateDidChange(_:)), for: .valueChanged)
-//        let switchBool: Bool = userDefaults.bool(forKey: "SwitchOn")
-//        if switchBool {
-//            switchOnOff.setOn(true, animated: true)
-//            switchStatus = true
-//        } else {
-//            switchOnOff.setOn(false, animated: true)
-//            switchStatus = false
-//        }
         configureConstraints()
         setTitlesText()
     }
@@ -88,11 +82,7 @@ final class DebugMenuViewController: UIViewController {
     @objc
     func switchStateDidChange(_ sender: UISwitch!) {
         userDefaults.set(sender.isOn, forKey: "SwitchOn")
-        if sender.isOn == true {
-            switchStatus = true
-        } else {
-            switchStatus = false
-        }
+        switchStatus = sender.isOn
     }
     
     private func configureConstraints() {
