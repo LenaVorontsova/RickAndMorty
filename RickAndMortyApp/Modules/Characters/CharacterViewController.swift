@@ -17,6 +17,7 @@ final class CharacterViewController: UIViewController, IViewControllers {
         let search = UISearchBar()
         return search
     }()
+    private var refreshControl: UIRefreshControl!
     private let presenter: CharacterPresenting
     
     init(_ presenter: CharacterPresenting) {
@@ -38,6 +39,20 @@ final class CharacterViewController: UIViewController, IViewControllers {
         self.tableView.register(CharactersTableViewCell.self, forCellReuseIdentifier: CharactersTableViewCell.identifier)
         self.title = R.string.modules.charTitle()
         view.backgroundColor = R.color.backColor()
+        configureRefresh()
+    }
+    
+    private func configureRefresh() {
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        tableView.addSubview(refreshControl)
+    }
+    
+    @objc
+    func refreshData() {
+        DispatchQueue.main.async {
+            self.refreshControl.endRefreshing()
+        }
     }
     
     func reloadTable() {
