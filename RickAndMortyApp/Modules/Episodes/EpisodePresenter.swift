@@ -14,6 +14,7 @@ protocol EpisodePresenting: AnyObject {
     func getInfoEpisodes()
     func searchEpisode(searchText: String)
     func pathEpisodeViewModel(indexPath: IndexPath) -> DetailViewModelProtocol
+    func loadData()
 }
 
 final class EpisodePresenter: EpisodePresenting {
@@ -23,17 +24,23 @@ final class EpisodePresenter: EpisodePresenting {
     let coreData: CoreDataService
     let search: SearchService
     let analytic: AnalyticsServies
+    let dataService: DataService
     
-    init(coreData: CoreDataService, search: SearchService, analytic: AnalyticsServies) {
+    init(coreData: CoreDataService, search: SearchService, analytic: AnalyticsServies, dataService: DataService) {
         self.coreData = coreData
         self.search = search
         self.analytic = analytic
+        self.dataService = dataService
     }
     
     func getInfoEpisodes() {
         self.episodes = self.coreData.fetchEpisodesFromCoreData()
         self.episodesSearch = self.episodes
         self.controller?.reloadTable()
+    }
+    
+    func loadData() {
+        dataService.loadData()
     }
     
     func searchEpisode(searchText: String) {

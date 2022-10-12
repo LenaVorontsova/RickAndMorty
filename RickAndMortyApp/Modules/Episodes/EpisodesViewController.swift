@@ -18,6 +18,7 @@ final class EpisodesViewController: UIViewController, IViewControllers {
         let search = UISearchBar()
         return search
     }()
+    private var refreshControl: UIRefreshControl!
     private let presenter: EpisodePresenting
     
     init(_ presenter: EpisodePresenting) {
@@ -39,6 +40,21 @@ final class EpisodesViewController: UIViewController, IViewControllers {
         self.tableView.register(EpisodesTableViewCell.self, forCellReuseIdentifier: EpisodesTableViewCell.identifier)
         self.title = R.string.modules.episodeTitle()
         view.backgroundColor = R.color.backColor()
+        configureRefresh()
+    }
+    
+    private func configureRefresh() {
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        tableView.addSubview(refreshControl)
+    }
+    
+    @objc
+    func refreshData() {
+        presenter.loadData()
+        DispatchQueue.main.async {
+            self.refreshControl.endRefreshing()
+        }
     }
     
     func reloadTable() {

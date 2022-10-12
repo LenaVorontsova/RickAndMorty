@@ -15,12 +15,14 @@ protocol CharacterPresenting: AnyObject {
     func searchCharacter(searchText: String)
     func pathCharacterViewModel(indexPath: IndexPath) -> DetailViewModelProtocol
     func showNotification() -> UIAlertController
+    func loadData()
 }
 
 final class CharacterPresenter: CharacterPresenting {
     var characters: [Character] = []
     var charactersSearch: [Character] = []
     weak var controller: (UIViewController & IViewControllers)?
+    let dataService: DataService
     let coreData: CoreDataService
     let search: SearchService
     let analytic: AnalyticsServies
@@ -29,11 +31,17 @@ final class CharacterPresenter: CharacterPresenting {
     init(with coreData: CoreDataService,
          search: SearchService,
          analytic: AnalyticsServies,
-         notifications: INotificationService) {
+         notifications: INotificationService,
+         dataService: DataService) {
         self.coreData = coreData
         self.search = search
         self.analytic = analytic
         self.notifications = notifications
+        self.dataService = dataService
+    }
+    
+    func loadData() {
+        dataService.loadData()
     }
     
     func getInfoCharacter() {

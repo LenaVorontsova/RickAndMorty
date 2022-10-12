@@ -52,6 +52,7 @@
 		84A07E6128E5EAA6009C5D84 /* GoogleAnalyticsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A07E6028E5EAA6009C5D84 /* GoogleAnalyticsWrapper.swift */; };
 		84A07E6328E9FCAB009C5D84 /* NotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A07E6228E9FCAB009C5D84 /* NotificationsService.swift */; };
 		84B4A6AE28EEE485001D2CD3 /* DebugMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B4A6AD28EEE485001D2CD3 /* DebugMenuView.swift */; };
+		84B4A70628F6FE3D001D2CD3 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B4A70528F6FE3D001D2CD3 /* DataService.swift */; };
 		84EBB02028C79166009D0DE0 /* RickAndMorty.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84EBB01E28C79165009D0DE0 /* RickAndMorty.xcdatamodeld */; };
 		84EBB02328C7958D009D0DE0 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EBB02228C7958D009D0DE0 /* CoreDataService.swift */; };
 /* End PBXBuildFile section */
@@ -105,6 +106,7 @@
 		84A07E6028E5EAA6009C5D84 /* GoogleAnalyticsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAnalyticsWrapper.swift; sourceTree = "<group>"; };
 		84A07E6228E9FCAB009C5D84 /* NotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsService.swift; sourceTree = "<group>"; };
 		84B4A6AD28EEE485001D2CD3 /* DebugMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuView.swift; sourceTree = "<group>"; };
+		84B4A70528F6FE3D001D2CD3 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		84EBB01F28C79165009D0DE0 /* RickAndMorty.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RickAndMorty.xcdatamodel; sourceTree = "<group>"; };
 		84EBB02228C7958D009D0DE0 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		8E616BEA614F5CAD2D1CBA76 /* Pods_RickAndMortyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RickAndMortyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -270,6 +272,7 @@
 				84A0024428BE434E00A233F1 /* StartService.swift */,
 				84EBB02228C7958D009D0DE0 /* CoreDataService.swift */,
 				84A07E6228E9FCAB009C5D84 /* NotificationsService.swift */,
+				84B4A70528F6FE3D001D2CD3 /* DataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 				8400D367289ADAD400C35767 /* NetworkService.swift in Sources */,
 				8400D35228995F7200C35767 /* CharactersTableViewCell.swift in Sources */,
 				8400D34C28992FB000C35767 /* LocationsViewController.swift in Sources */,
+				84B4A70628F6FE3D001D2CD3 /* DataService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

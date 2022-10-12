@@ -13,17 +13,20 @@ final class TabBarViewController: UITabBarController {
     private let analytic: AnalyticsServies
     private let notifications: INotificationService
     private let debugViewController: DebugMenuViewController
+    private let dataService: DataService
     
     init(search: SearchService,
          coreData: CoreDataService,
          analytic: AnalyticsServies,
          notifications: INotificationService,
-         debugMenu: DebugMenuViewController) {
+         debugMenu: DebugMenuViewController,
+         dataService: DataService) {
         self.search = search
         self.coreData = coreData
         self.analytic = analytic
         self.notifications = notifications
         self.debugViewController = debugMenu
+        self.dataService = dataService
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -41,13 +44,16 @@ final class TabBarViewController: UITabBarController {
             rootViewController: CharacterBuilder.build(coreData: coreData,
                                                        search: search,
                                                        analytic: analytic,
-                                                       notifications: notifications))
+                                                       notifications: notifications,
+                                                       dataService: dataService))
         let locationVC = UINavigationController(rootViewController: LocationBuilder.build(coreData: coreData,
                                                                                           search: search,
-                                                                                          analytic: analytic))
+                                                                                          analytic: analytic,
+                                                                                          dataService: dataService))
         let episodeVC = UINavigationController(rootViewController: EpisodeBuilder.build(coreData: coreData, 
                                                                                         search: search,
-                                                                                        analytic: analytic))
+                                                                                        analytic: analytic,
+                                                                                       dataService: dataService))
         characterVC.title = R.string.modules.charTitle()
         locationVC.title = R.string.modules.locTitle()
         episodeVC.title = R.string.modules.episodeTitle()

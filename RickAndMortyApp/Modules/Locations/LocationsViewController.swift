@@ -18,6 +18,7 @@ final class LocationsViewController: UIViewController, IViewControllers {
         let search = UISearchBar()
         return search
     }()
+    private var refreshControl: UIRefreshControl!
     private let presenter: LocationPresenting
     
     init(_ presenter: LocationPresenting) {
@@ -39,6 +40,21 @@ final class LocationsViewController: UIViewController, IViewControllers {
         self.tableView.register(LocationTableViewCell.self, forCellReuseIdentifier: LocationTableViewCell.identifier)
         self.title = R.string.modules.locTitle()
         view.backgroundColor = R.color.backColor()
+        configureRefresh()
+    }
+    
+    private func configureRefresh() {
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        tableView.addSubview(refreshControl)
+    }
+    
+    @objc
+    func refreshData() {
+        presenter.loadData()
+        DispatchQueue.main.async {
+            self.refreshControl.endRefreshing()
+        }
     }
     
     func reloadTable() {

@@ -14,6 +14,7 @@ protocol LocationPresenting: AnyObject {
     func getInfoLocation()
     func searchLocation(searchText: String)
     func pathLocationViewModel(indexPath: IndexPath) -> DetailViewModelProtocol
+    func loadData()
 }
 
 final class LocationPresenter: LocationPresenting {
@@ -23,11 +24,17 @@ final class LocationPresenter: LocationPresenting {
     let coreData: CoreDataService
     let search: SearchService
     let analytic: AnalyticsServies
+    let dataService: DataService
     
-    init(coreData: CoreDataService, search: SearchService, analytic: AnalyticsServies) {
+    init(coreData: CoreDataService, search: SearchService, analytic: AnalyticsServies, dataService: DataService) {
         self.coreData = coreData
         self.search = search
         self.analytic = analytic
+        self.dataService = dataService
+    }
+    
+    func loadData() {
+        dataService.loadData()
     }
     
     func getInfoLocation() {

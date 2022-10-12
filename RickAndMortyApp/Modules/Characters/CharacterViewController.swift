@@ -50,6 +50,7 @@ final class CharacterViewController: UIViewController, IViewControllers {
     
     @objc
     func refreshData() {
+        presenter.loadData()
         DispatchQueue.main.async {
             self.refreshControl.endRefreshing()
         }

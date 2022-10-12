@@ -20,86 +20,26 @@ final class SplashScreenPresenter: SplashScreenPresenting {
     let coreData: CoreDataService
     let analytics: AnalyticsServies
     let notifications: INotificationService
+    let dataService: DataService
     weak var controller: UIViewController?
     
     init(network: NetworkService,
          search: SearchService,
          coreData: CoreDataService,
          analytics: AnalyticsServies,
-         notifications: INotificationService) {
+         notifications: INotificationService,
+         dataService: DataService) {
         self.network = network
         self.search = search
         self.coreData = coreData
         self.analytics = analytics
         self.notifications = notifications
+        self.dataService = dataService
     }
-    
-    func showAlert(with error: AFError) {
-        var topWindow: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
-        topWindow?.rootViewController = UIViewController()
-        topWindow?.windowLevel = UIWindow.Level.alert + 1
-        let alert = UIAlertController(title: R.string.alertMessages.errorTitle(),
-                                      message: error.localizedDescription,
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: R.string.alertMessages.okTitle(),
-                                      style: .cancel) { _ in
-            topWindow?.isHidden = true
-            topWindow = nil
-        })
-        topWindow?.makeKeyAndVisible()
-        topWindow?.rootViewController?.present(alert, animated: true, completion: nil)
-    }
-    
+
     func getInfo() {
-        let infoGroup = DispatchGroup()
-        let queue1 = DispatchQueue.global(qos: .utility)
-        let queue2 = DispatchQueue.global(qos: .utility)
-        let queue3 = DispatchQueue.global(qos: .utility)
-        queue1.async(group: infoGroup) {
-            infoGroup.enter()
-            self.network.getInfoCharacters(endPoint: EndPoints.character.rawValue) { [weak self] result in
-                switch result {
-                case .success(let serverData):
-                    guard let self = self else { return }
-                    self.coreData.saveToCoreDataCharacter(charactersArray: serverData.results)
-                    infoGroup.leave()
-                case .failure(let error):
-                    infoGroup.leave()
-                    self!.showAlert(with: error)
-                }
-            }
-        }
-        queue2.async(group: infoGroup) {
-            infoGroup.enter()
-            self.network.getInfoLocations(endPoint: EndPoints.location.rawValue) { [weak self] result in
-                switch result {
-                case .success(let serverData):
-                    guard let self = self else { return }
-                    self.coreData.saveToCoreDataLocation(locationsArray: serverData.results)
-                    infoGroup.leave()
-                case .failure(let error):
-                    infoGroup.leave()
-                    self!.showAlert(with: error)
-                }
-            }
-        }
-        queue3.async(group: infoGroup) {
-            infoGroup.enter()
-            self.network.getInfoEpisodes(endPoint: EndPoints.episode.rawValue) { [weak self] result in
-                switch result {
-                case .success(let serverData):
-                    guard let self = self else { return }
-                    self.coreData.saveToCoreDataEpisodes(episodesArray: serverData.results)
-                    infoGroup.leave()
-                case .failure(let error):
-                    infoGroup.leave()
-                    self!.showAlert(with: error)
-                }
-            }
-        }
-        infoGroup.notify(queue: DispatchQueue.main) {
-            self.showTabBar()
-        }
+        dataService.loadData()
+        self.showTabBar()
     }
     
     func showTabBar() {
@@ -108,7 +48,8 @@ final class SplashScreenPresenter: SplashScreenPresenting {
                                             coreData: coreData,
                                             analytic: analytics,
                                             notifications: notifications,
-                                            debugMenu: debugMenu)
+                                            debugMenu: debugMenu,
+                                            dataService: dataService)
         tabBarVC.modalPresentationStyle = .fullScreen
         controller?.present(tabBarVC, animated: false)
     }

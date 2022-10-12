@@ -11,11 +11,13 @@ enum CharacterBuilder {
     static func build(coreData: CoreDataService,
                       search: SearchService,
                       analytic: AnalyticsServies,
-                      notifications: INotificationService) -> (UIViewController & IViewControllers) {
+                      notifications: INotificationService,
+                      dataService: DataService) -> (UIViewController & IViewControllers) {
         let presenter = CharacterPresenter(with: coreData,
                                            search: search,
                                            analytic: analytic,
-                                           notifications: notifications)
+                                           notifications: notifications,
+                                           dataService: dataService)
         let vc = CharacterViewController(presenter)
         presenter.controller = vc
         return vc
