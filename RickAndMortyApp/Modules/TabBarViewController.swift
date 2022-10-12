@@ -8,19 +8,22 @@
 import UIKit
 
 final class TabBarViewController: UITabBarController {
-    private var search: SearchService
-    private var coreData: CoreDataService
-    private var analytic: AnalyticsServies
-    private var notifications: INotificationService
+    private let search: SearchService
+    private let coreData: CoreDataService
+    private let analytic: AnalyticsServies
+    private let notifications: INotificationService
+    private let debugViewController: DebugMenuViewController
     
     init(search: SearchService,
          coreData: CoreDataService,
          analytic: AnalyticsServies,
-         notifications: INotificationService) {
+         notifications: INotificationService,
+         debugMenu: DebugMenuViewController) {
         self.search = search
         self.coreData = coreData
         self.analytic = analytic
         self.notifications = notifications
+        self.debugViewController = debugMenu
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -38,9 +41,7 @@ final class TabBarViewController: UITabBarController {
             rootViewController: CharacterBuilder.build(coreData: coreData,
                                                        search: search,
                                                        analytic: analytic,
-                                                       notifications: notifications
-                                                      )
-        )
+                                                       notifications: notifications))
         let locationVC = UINavigationController(rootViewController: LocationBuilder.build(coreData: coreData,
                                                                                           search: search,
                                                                                           analytic: analytic))
@@ -58,5 +59,18 @@ final class TabBarViewController: UITabBarController {
         for i in 0..<items.count {
             items[i].image = UIImage(systemName: imagesNames[i])
         }
+        createGesture()
+    }
+    
+    private func createGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self,
+                                                action: #selector(didDoubleTap(_:)))
+        tapGesture.numberOfTapsRequired = 5
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc
+    func didDoubleTap(_ gesture: UITapGestureRecognizer) {
+        self.present(debugViewController, animated: true)
     }
 }

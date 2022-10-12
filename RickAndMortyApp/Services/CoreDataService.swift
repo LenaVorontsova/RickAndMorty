@@ -11,6 +11,9 @@ import CoreData
 final class CoreDataService {
     
     private let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+    var characterCount = 0
+    var locationCount = 0
+    var episodeCount = 0
     
     func saveToCoreDataCharacter(charactersArray: [CharacterNetwork]) {
         deleteAllData(R.string.services.characterData())
@@ -38,6 +41,7 @@ final class CoreDataService {
                 print("Could not save. \(error), \(error.userInfo)")
             }
         }
+        self.characterCount = charactersArray.count
     }
     
     func saveToCoreDataLocation(locationsArray: [LocationInfo]) {
@@ -54,6 +58,7 @@ final class CoreDataService {
                 print("Could not save. \(error), \(error.userInfo)")
             }
         }
+        self.locationCount = locationsArray.count
     }
     
     func saveToCoreDataEpisodes(episodesArray: [EpisodeInfo]) {
@@ -70,6 +75,7 @@ final class CoreDataService {
                 print("Could not save. \(error), \(error.userInfo)")
             }
         }
+        self.episodeCount = episodesArray.count
     }
     
     func fetchCharactersFromCoreData() -> [Character] {

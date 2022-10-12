@@ -103,10 +103,12 @@ final class SplashScreenPresenter: SplashScreenPresenting {
     }
     
     func showTabBar() {
+        let debugMenu = DebugMenuViewController(dataService: coreData)
         let tabBarVC = TabBarViewController(search: search,
                                             coreData: coreData,
                                             analytic: analytics,
-                                            notifications: notifications)
+                                            notifications: notifications,
+                                            debugMenu: debugMenu)
         tabBarVC.modalPresentationStyle = .fullScreen
         controller?.present(tabBarVC, animated: false)
     }

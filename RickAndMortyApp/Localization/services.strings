@@ -6,8 +6,6 @@
   
 */
 
-"baseUrl" = "https://rickandmortyapi.com/api/";
-
 "characterData" = "CharacterData";
 "characterLocData" = "CharactersLocationData";
 "locationData" = "LocationData";

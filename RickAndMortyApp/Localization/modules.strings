@@ -17,3 +17,5 @@
 "imageOne" = "person.3";
 "imageTwo" = "location.magnifyingglass";
 "imageThree" = "play.rectangle";
+
+"debugMenu" = "Debug Menu";
