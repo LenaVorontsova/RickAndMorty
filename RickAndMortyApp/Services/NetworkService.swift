@@ -10,12 +10,12 @@ import Alamofire
 import Rswift
 
 final class NetworkService {
-    var prodURL = R.string.services.baseUrl()
+    var prodURL = "https://rickandmortyapi.com/api/"
     var testURL = "https://breakingbadapi.com/api/quotes"
     
     private func checkSwitch() -> String {
         var baseURL = ""
-        if UserDefaults.standard.bool(forKey: "SwitchOn") {
+        if UserDefaults.standard.bool(forKey: "ChangeSwitch") {
             baseURL = self.prodURL
         } else {
             baseURL = self.testURL

@@ -16,7 +16,7 @@ enum DebugConstants {
 final class DebugMenuViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let title = UILabel()
-        title.text = "Debug Menu"
+        title.text = R.string.modules.debugMenu()
         title.textColor = R.color.black()
         title.font = .systemFont(ofSize: 28)
         title.textAlignment = .center
@@ -63,7 +63,7 @@ final class DebugMenuViewController: UIViewController {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(R.string.modules.fatalError())
     }
     
     override func viewDidLoad() {
@@ -76,12 +76,12 @@ final class DebugMenuViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        switchOnOff.isOn = userDefaults.bool(forKey: "SwitchOn")
+        switchOnOff.isOn = userDefaults.bool(forKey: "ChangeSwitch")
     }
     
     @objc
     func switchStateDidChange(_ sender: UISwitch!) {
-        userDefaults.set(sender.isOn, forKey: "SwitchOn")
+        userDefaults.set(sender.isOn, forKey: "ChangeSwitch")
         switchStatus = sender.isOn
     }
     
