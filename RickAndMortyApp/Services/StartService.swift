@@ -18,14 +18,12 @@ final class StartService {
     func configureWindow() {
         let network = NetworkService()
         let search = SearchService()
-        let coreData = CoreDataService()
         let analytics = GoogleAnalyticsWrapper()
         let notifications = NotificationsService()
         let dataService = DataService()
         let presenter: SplashScreenPresenting = SplashScreenPresenter(
             network: network,
             search: search,
-            coreData: coreData,
             analytics: analytics,
             notifications: notifications,
             dataService: dataService
@@ -36,7 +34,6 @@ final class StartService {
                     network: network,
                     search: search,
                     presenter: presenter,
-                    coreData: coreData,
                     analytics: analytics,
                     notifications: notifications,
                     dataService: dataService

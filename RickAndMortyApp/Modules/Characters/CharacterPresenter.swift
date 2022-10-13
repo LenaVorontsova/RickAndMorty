@@ -23,17 +23,14 @@ final class CharacterPresenter: CharacterPresenting {
     var charactersSearch: [Character] = []
     weak var controller: (UIViewController & IViewControllers)?
     let dataService: DataService
-    let coreData: CoreDataService
     let search: SearchService
     let analytic: AnalyticsServies
     let notifications: INotificationService
     
-    init(with coreData: CoreDataService,
-         search: SearchService,
+    init(search: SearchService,
          analytic: AnalyticsServies,
          notifications: INotificationService,
          dataService: DataService) {
-        self.coreData = coreData
         self.search = search
         self.analytic = analytic
         self.notifications = notifications
@@ -45,7 +42,7 @@ final class CharacterPresenter: CharacterPresenting {
     }
     
     func getInfoCharacter() {
-        self.characters = self.coreData.fetchCharactersFromCoreData()
+        self.characters = self.dataService.fetchCharactersFromCoreData()
         self.charactersSearch = self.characters
         self.controller?.reloadTable()
     }

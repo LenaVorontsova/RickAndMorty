@@ -54,10 +54,10 @@ final class DebugMenuViewController: UIViewController {
     }()
     
     var switchStatus = true
-    private let dataService: CoreDataService
+    private let dataService: DataService
     private let userDefaults = UserDefaults.standard
     
-    init(dataService: CoreDataService) {
+    init(dataService: DataService) {
         self.dataService = dataService
         super.init(nibName: nil, bundle: nil)
     }

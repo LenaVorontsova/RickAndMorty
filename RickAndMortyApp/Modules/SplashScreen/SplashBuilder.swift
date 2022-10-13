@@ -11,14 +11,12 @@ enum SplashBuilder {
     static func build(network: NetworkService,
                       search: SearchService,
                       presenter: SplashScreenPresenting,
-                      coreData: CoreDataService,
                       analytics: AnalyticsServies,
                       notifications: INotificationService,
                       dataService: DataService
     ) -> UIViewController {
         let presenter: SplashScreenPresenting = SplashScreenPresenter(network: network,
                                                                       search: search,
-                                                                      coreData: coreData,
                                                                       analytics: analytics,
                                                                       notifications: notifications,
                                                                       dataService: dataService)

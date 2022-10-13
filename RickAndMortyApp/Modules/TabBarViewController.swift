@@ -9,20 +9,17 @@ import UIKit
 
 final class TabBarViewController: UITabBarController {
     private let search: SearchService
-    private let coreData: CoreDataService
     private let analytic: AnalyticsServies
     private let notifications: INotificationService
     private let debugViewController: DebugMenuViewController
     private let dataService: DataService
     
     init(search: SearchService,
-         coreData: CoreDataService,
          analytic: AnalyticsServies,
          notifications: INotificationService,
          debugMenu: DebugMenuViewController,
          dataService: DataService) {
         self.search = search
-        self.coreData = coreData
         self.analytic = analytic
         self.notifications = notifications
         self.debugViewController = debugMenu
@@ -41,19 +38,16 @@ final class TabBarViewController: UITabBarController {
     
     private func createTabBar() {
         let  characterVC = UINavigationController(
-            rootViewController: CharacterBuilder.build(coreData: coreData,
-                                                       search: search,
+            rootViewController: CharacterBuilder.build(search: search,
                                                        analytic: analytic,
                                                        notifications: notifications,
                                                        dataService: dataService))
-        let locationVC = UINavigationController(rootViewController: LocationBuilder.build(coreData: coreData,
-                                                                                          search: search,
+        let locationVC = UINavigationController(rootViewController: LocationBuilder.build(search: search,
                                                                                           analytic: analytic,
                                                                                           dataService: dataService))
-        let episodeVC = UINavigationController(rootViewController: EpisodeBuilder.build(coreData: coreData, 
-                                                                                        search: search,
+        let episodeVC = UINavigationController(rootViewController: EpisodeBuilder.build(search: search,
                                                                                         analytic: analytic,
-                                                                                       dataService: dataService))
+                                                                                        dataService: dataService))
         characterVC.title = R.string.modules.charTitle()
         locationVC.title = R.string.modules.locTitle()
         episodeVC.title = R.string.modules.episodeTitle()

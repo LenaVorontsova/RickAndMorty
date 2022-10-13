@@ -8,13 +8,11 @@
 import UIKit
 
 enum CharacterBuilder {
-    static func build(coreData: CoreDataService,
-                      search: SearchService,
+    static func build(search: SearchService,
                       analytic: AnalyticsServies,
                       notifications: INotificationService,
                       dataService: DataService) -> (UIViewController & IViewControllers) {
-        let presenter = CharacterPresenter(with: coreData,
-                                           search: search,
+        let presenter = CharacterPresenter(search: search,
                                            analytic: analytic,
                                            notifications: notifications,
                                            dataService: dataService)

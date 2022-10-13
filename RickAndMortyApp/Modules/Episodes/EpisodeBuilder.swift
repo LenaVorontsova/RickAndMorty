@@ -8,12 +8,10 @@
 import UIKit
 
 enum EpisodeBuilder {
-    static func build(coreData: CoreDataService,
-                      search: SearchService,
+    static func build(search: SearchService,
                       analytic: AnalyticsServies,
                       dataService: DataService) -> (UIViewController & IViewControllers) {
-        let presenter = EpisodePresenter(coreData: coreData,
-                                         search: search,
+        let presenter = EpisodePresenter(search: search,
                                          analytic: analytic,
                                          dataService: dataService)
         let vc = EpisodesViewController(presenter)

@@ -21,13 +21,11 @@ final class LocationPresenter: LocationPresenting {
     var locations: [LocationInfo] = []
     var locationsSearch: [LocationInfo] = []
     weak var controller: (UIViewController & IViewControllers)?
-    let coreData: CoreDataService
     let search: SearchService
     let analytic: AnalyticsServies
     let dataService: DataService
     
-    init(coreData: CoreDataService, search: SearchService, analytic: AnalyticsServies, dataService: DataService) {
-        self.coreData = coreData
+    init(search: SearchService, analytic: AnalyticsServies, dataService: DataService) {
         self.search = search
         self.analytic = analytic
         self.dataService = dataService
@@ -38,7 +36,7 @@ final class LocationPresenter: LocationPresenting {
     }
     
     func getInfoLocation() {
-        self.locations = self.coreData.fetchLocationsFromCoreData()
+        self.locations = self.dataService.fetchLocationsFromCoreData()
         self.locationsSearch = self.locations
         self.controller?.reloadTable()
     }

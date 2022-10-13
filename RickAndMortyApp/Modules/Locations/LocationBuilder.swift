@@ -8,12 +8,10 @@
 import UIKit
 
 enum LocationBuilder {
-    static func build(coreData: CoreDataService,
-                      search: SearchService,
+    static func build(search: SearchService,
                       analytic: AnalyticsServies,
                       dataService: DataService) -> (UIViewController & IViewControllers) {
-        let presenter = LocationPresenter(coreData: coreData,
-                                          search: search,
+        let presenter = LocationPresenter(search: search,
                                           analytic: analytic,
                                           dataService: dataService)
         let vc = LocationsViewController(presenter)

@@ -17,7 +17,6 @@ protocol SplashScreenPresenting: AnyObject {
 final class SplashScreenPresenter: SplashScreenPresenting {
     let network: NetworkService
     let search: SearchService
-    let coreData: CoreDataService
     let analytics: AnalyticsServies
     let notifications: INotificationService
     let dataService: DataService
@@ -25,13 +24,11 @@ final class SplashScreenPresenter: SplashScreenPresenting {
     
     init(network: NetworkService,
          search: SearchService,
-         coreData: CoreDataService,
          analytics: AnalyticsServies,
          notifications: INotificationService,
          dataService: DataService) {
         self.network = network
         self.search = search
-        self.coreData = coreData
         self.analytics = analytics
         self.notifications = notifications
         self.dataService = dataService
@@ -43,9 +40,8 @@ final class SplashScreenPresenter: SplashScreenPresenting {
     }
     
     func showTabBar() {
-        let debugMenu = DebugMenuViewController(dataService: coreData)
+        let debugMenu = DebugMenuViewController(dataService: dataService)
         let tabBarVC = TabBarViewController(search: search,
-                                            coreData: coreData,
                                             analytic: analytics,
                                             notifications: notifications,
                                             debugMenu: debugMenu,

@@ -21,20 +21,18 @@ final class EpisodePresenter: EpisodePresenting {
     var episodes: [EpisodeInfo] = []
     var episodesSearch: [EpisodeInfo] = []
     weak var controller: (UIViewController & IViewControllers)?
-    let coreData: CoreDataService
     let search: SearchService
     let analytic: AnalyticsServies
     let dataService: DataService
     
-    init(coreData: CoreDataService, search: SearchService, analytic: AnalyticsServies, dataService: DataService) {
-        self.coreData = coreData
+    init(search: SearchService, analytic: AnalyticsServies, dataService: DataService) {
         self.search = search
         self.analytic = analytic
         self.dataService = dataService
     }
     
     func getInfoEpisodes() {
-        self.episodes = self.coreData.fetchEpisodesFromCoreData()
+        self.episodes = self.dataService.fetchEpisodesFromCoreData()
         self.episodesSearch = self.episodes
         self.controller?.reloadTable()
     }

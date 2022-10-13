@@ -17,7 +17,7 @@ final class CharacterViewController: UIViewController, IViewControllers {
         let search = UISearchBar()
         return search
     }()
-    private var refreshControl: UIRefreshControl!
+    private lazy var refreshControl = UIRefreshControl()
     private let presenter: CharacterPresenting
     
     init(_ presenter: CharacterPresenting) {
@@ -43,7 +43,6 @@ final class CharacterViewController: UIViewController, IViewControllers {
     }
     
     private func configureRefresh() {
-        refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         tableView.addSubview(refreshControl)
     }
