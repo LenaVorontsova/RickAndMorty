@@ -11,10 +11,15 @@ import CoreData
 
 final class DataService {
     weak var controller: UIViewController?
+    private var network: NetworkService
     private let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     var characterCount = 0
     var locationCount = 0
     var episodeCount = 0
+    
+    init(network: NetworkService) {
+        self.network = network
+    }
     
     func showAlert(with error: AFError) {
         var topWindow: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
@@ -33,15 +38,13 @@ final class DataService {
     }
     
     func loadData() {
-        let network = NetworkService()
-        
         let infoGroup = DispatchGroup()
         let queue1 = DispatchQueue.global(qos: .utility)
         let queue2 = DispatchQueue.global(qos: .utility)
         let queue3 = DispatchQueue.global(qos: .utility)
         queue1.async(group: infoGroup) {
             infoGroup.enter()
-            network.getInfoCharacters(endPoint: EndPoints.character.rawValue) { [weak self] result in
+            self.network.getInfoCharacters(endPoint: EndPoints.character.rawValue) { [weak self] result in
                 switch result {
                 case .success(let serverData):
                     self?.saveToCoreDataCharacter(charactersArray: serverData.results)
@@ -54,7 +57,7 @@ final class DataService {
         }
         queue2.async(group: infoGroup) {
             infoGroup.enter()
-            network.getInfoLocations(endPoint: EndPoints.location.rawValue) { [weak self] result in
+            self.network.getInfoLocations(endPoint: EndPoints.location.rawValue) { [weak self] result in
                 switch result {
                 case .success(let serverData):
                     self?.saveToCoreDataLocation(locationsArray: serverData.results)
@@ -67,7 +70,7 @@ final class DataService {
         }
         queue3.async(group: infoGroup) {
             infoGroup.enter()
-            network.getInfoEpisodes(endPoint: EndPoints.episode.rawValue) { [weak self] result in
+            self.network.getInfoEpisodes(endPoint: EndPoints.episode.rawValue) { [weak self] result in
                 switch result {
                 case .success(let serverData):
                     self?.saveToCoreDataEpisodes(episodesArray: serverData.results)
