@@ -19,14 +19,14 @@ final class SplashScreenPresenter: SplashScreenPresenting {
     let search: SearchService
     let analytics: AnalyticsServies
     let notifications: INotificationService
-    let dataService: DataService
+    let dataService: IDataService
     weak var controller: UIViewController?
     
     init(network: NetworkService,
          search: SearchService,
          analytics: AnalyticsServies,
          notifications: INotificationService,
-         dataService: DataService) {
+         dataService: IDataService) {
         self.network = network
         self.search = search
         self.analytics = analytics

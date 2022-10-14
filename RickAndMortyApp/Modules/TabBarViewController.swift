@@ -12,13 +12,13 @@ final class TabBarViewController: UITabBarController {
     private let analytic: AnalyticsServies
     private let notifications: INotificationService
     private let debugViewController: DebugMenuViewController
-    private let dataService: DataService
+    private let dataService: IDataService
     
     init(search: SearchService,
          analytic: AnalyticsServies,
          notifications: INotificationService,
          debugMenu: DebugMenuViewController,
-         dataService: DataService) {
+         dataService: IDataService) {
         self.search = search
         self.analytic = analytic
         self.notifications = notifications

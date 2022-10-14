@@ -22,7 +22,7 @@ final class CharacterPresenter: CharacterPresenting {
     var characters: [Character] = []
     var charactersSearch: [Character] = []
     weak var controller: (UIViewController & IViewControllers)?
-    let dataService: DataService
+    let dataService: IDataService
     let search: SearchService
     let analytic: AnalyticsServies
     let notifications: INotificationService
@@ -30,7 +30,7 @@ final class CharacterPresenter: CharacterPresenting {
     init(search: SearchService,
          analytic: AnalyticsServies,
          notifications: INotificationService,
-         dataService: DataService) {
+         dataService: IDataService) {
         self.search = search
         self.analytic = analytic
         self.notifications = notifications

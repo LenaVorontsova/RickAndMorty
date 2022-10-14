@@ -10,7 +10,7 @@ import UIKit
 enum EpisodeBuilder {
     static func build(search: SearchService,
                       analytic: AnalyticsServies,
-                      dataService: DataService) -> (UIViewController & IViewControllers) {
+                      dataService: IDataService) -> (UIViewController & IViewControllers) {
         let presenter = EpisodePresenter(search: search,
                                          analytic: analytic,
                                          dataService: dataService)

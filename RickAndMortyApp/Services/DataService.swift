@@ -9,7 +9,22 @@ import Foundation
 import Alamofire
 import CoreData
 
-final class DataService {
+protocol IDataService {
+    var characterCount: Int { get set }
+    var locationCount: Int { get set }
+    var episodeCount: Int { get set }
+    func showAlert(with error: AFError)
+    func loadData()
+    func saveToCoreDataCharacter(charactersArray: [CharacterNetwork])
+    func saveToCoreDataLocation(locationsArray: [LocationInfo])
+    func saveToCoreDataEpisodes(episodesArray: [EpisodeInfo])
+    func fetchCharactersFromCoreData() -> [Character]
+    func fetchLocationsFromCoreData() -> [LocationInfo]
+    func fetchEpisodesFromCoreData() -> [EpisodeInfo]
+    func deleteAllData(_ entity: String)
+}
+
+final class DataService: IDataService {
     weak var controller: UIViewController?
     private var network: NetworkService
     private let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext

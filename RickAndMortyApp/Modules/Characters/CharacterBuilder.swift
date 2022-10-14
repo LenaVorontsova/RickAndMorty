@@ -11,7 +11,7 @@ enum CharacterBuilder {
     static func build(search: SearchService,
                       analytic: AnalyticsServies,
                       notifications: INotificationService,
-                      dataService: DataService) -> (UIViewController & IViewControllers) {
+                      dataService: IDataService) -> (UIViewController & IViewControllers) {
         let presenter = CharacterPresenter(search: search,
                                            analytic: analytic,
                                            notifications: notifications,

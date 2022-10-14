@@ -23,9 +23,9 @@ final class LocationPresenter: LocationPresenting {
     weak var controller: (UIViewController & IViewControllers)?
     let search: SearchService
     let analytic: AnalyticsServies
-    let dataService: DataService
+    let dataService: IDataService
     
-    init(search: SearchService, analytic: AnalyticsServies, dataService: DataService) {
+    init(search: SearchService, analytic: AnalyticsServies, dataService: IDataService) {
         self.search = search
         self.analytic = analytic
         self.dataService = dataService

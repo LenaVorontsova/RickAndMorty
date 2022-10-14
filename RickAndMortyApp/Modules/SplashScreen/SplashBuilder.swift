@@ -13,7 +13,7 @@ enum SplashBuilder {
                       presenter: SplashScreenPresenting,
                       analytics: AnalyticsServies,
                       notifications: INotificationService,
-                      dataService: DataService
+                      dataService: IDataService
     ) -> UIViewController {
         let presenter: SplashScreenPresenting = SplashScreenPresenter(network: network,
                                                                       search: search,

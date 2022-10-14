@@ -20,7 +20,7 @@ final class StartService {
         let search = SearchService()
         let analytics = GoogleAnalyticsWrapper()
         let notifications = NotificationsService()
-        let dataService = DataService(network: network)
+        let dataService: IDataService = DataService(network: network)
         let presenter: SplashScreenPresenting = SplashScreenPresenter(
             network: network,
             search: search,
